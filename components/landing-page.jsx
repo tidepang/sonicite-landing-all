@@ -83,19 +83,19 @@ const copyByLocale = {
       list: [
         {
           title: "Understand",
-          summary: "读取 BPM、调性、能量、情绪、结构和语境，把音乐变成可理解的声音信号。",
+          summary: "读取音乐的能量、情绪、结构和语境，让声音先被理解。",
         },
         {
           title: "Search",
-          summary: "用意图、场景和氛围寻找音乐，而不只是依赖关键词、歌名和记忆。",
+          summary: "用意图、场景和氛围寻找音乐，不只依赖歌名和记忆。",
         },
         {
           title: "Orchestrate",
-          summary: "辅助完成选歌、排序、过渡和全天候声音节奏的编排判断。",
+          summary: "辅助选歌、排序、过渡和全天候声音节奏的编排。",
         },
         {
           title: "Operate",
-          summary: "让声音方案可播放、可管理、可复用，服务创作工作流和空间运营。",
+          summary: "让声音方案可播放、可管理、可复用，真正进入现场。",
         },
       ],
     },
@@ -190,19 +190,19 @@ const copyByLocale = {
       list: [
         {
           title: "Understand",
-          summary: "Read BPM, key, energy, mood, structure, and context as signals that can be understood.",
+          summary: "Reads energy, mood, structure, and context so sound can be understood.",
         },
         {
           title: "Search",
-          summary: "Find music through intention, atmosphere, and use case, not only keywords, titles, or memory.",
+          summary: "Finds music through intention and atmosphere, not only titles or memory.",
         },
         {
           title: "Orchestrate",
-          summary: "Support sequencing, transitions, set flow, and full-day sound arcs with clearer judgment.",
+          summary: "Supports sequencing, transitions, and full-day sound arcs with clarity.",
         },
         {
           title: "Operate",
-          summary: "Make sound plans playable, manageable, and reusable across creative workflows and spaces.",
+          summary: "Makes sound plans playable, manageable, and reusable in real spaces.",
         },
       ],
     },
@@ -557,11 +557,9 @@ export function LandingPage() {
 
         <section className="section section--highlights" id="highlights" aria-labelledby="highlights-title">
           <div className="section__inner">
-            <div className="highlights-header reveal">
-              <p className="eyebrow eyebrow--muted">{copy.highlights.eyebrow}</p>
-              <h2 id="highlights-title">{copy.highlights.title}</h2>
-              <p>{copy.highlights.description}</p>
-            </div>
+            <h2 className="sr-only" id="highlights-title">
+              {copy.highlights.title}
+            </h2>
 
             <div className="highlight-grid">
               {copy.highlights.list.map((highlight, index) => (

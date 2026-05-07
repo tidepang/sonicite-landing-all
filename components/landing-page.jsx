@@ -14,6 +14,8 @@ const copyByLocale = {
       brand: "品牌",
       products: "产品",
       highlights: "亮点",
+      blog: "博客",
+      about: "关于我们",
       contact: "联系",
       homeLabel: "SONICITE 首页",
     },
@@ -99,6 +101,63 @@ const copyByLocale = {
         },
       ],
     },
+    blog: {
+      eyebrow: "Insights",
+      title: "声音背后的故事",
+      description:
+        "从技术原理到场景实践，记录 SONICITE 如何让声音判断变得更清晰、更可用。",
+      tabs: ["全部", "品牌", "技术", "产品"],
+      articles: [
+        {
+          id: "blog-1",
+          title: "为什么音乐推荐不够用",
+          summary:
+            "推荐算法关注的是「你可能喜欢什么」，而不是「你现在需要什么」。SONICITE 选择了一条不同的路径——从场景和意图出发理解声音。",
+          category: "技术",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-2",
+          title: "咖啡店的声音不该是随机的",
+          summary:
+            "一家咖啡店的早高峰和午后时段需要完全不同的声音节奏。Atmos 通过理解营业节奏，让声音真正服务于空间体验。",
+          category: "品牌",
+          image: "/images/atmos-product.jpg",
+        },
+        {
+          id: "blog-3",
+          title: "SONICITE 技术架构：四个核心能力",
+          summary:
+            "理解、搜索、编排、操作——这四个能力如何协同工作，构成一个完整的声音智能系统。",
+          category: "技术",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-4",
+          title: "从 DJ 台到零售空间：声音智能的两条路径",
+          summary:
+            "Sonicite 和 Atmos 看起来是两个产品，但它们共享同一个核心——让声音判断从直觉变成系统。",
+          category: "品牌",
+          image: "/images/atmos-product.jpg",
+        },
+        {
+          id: "blog-5",
+          title: "Sonicite 1.0 发布：更快理解音乐的工作流",
+          summary:
+            "重新设计的音乐理解界面，让 DJ 在几秒内读取一首歌的能量、情绪和结构。",
+          category: "产品",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-6",
+          title: "Atmos 如何编排一整天的声音氛围",
+          summary:
+            "从晨间到深夜，Atmos 分析全天候的声音曲线，让每一个时段都有恰到好处的声音陪伴。",
+          category: "产品",
+          image: "/images/atmos-product.jpg",
+        },
+      ],
+    },
     footer: {
       title: "加入 SONICITE Circle",
       description:
@@ -121,6 +180,8 @@ const copyByLocale = {
       brand: "Brand",
       products: "Products",
       highlights: "Highlights",
+      blog: "Blog",
+      about: "About",
       contact: "Contact",
       homeLabel: "SONICITE home",
     },
@@ -206,6 +267,63 @@ const copyByLocale = {
         },
       ],
     },
+    blog: {
+      eyebrow: "Insights",
+      title: "Stories Behind Sound",
+      description:
+        "From technical principles to real-world practice, documenting how SONICITE makes sonic judgment clearer and more usable.",
+      tabs: ["All", "Brand", "Tech", "Product"],
+      articles: [
+        {
+          id: "blog-1",
+          title: "Why Music Recommendation Is Not Enough",
+          summary:
+            "Recommendation algorithms focus on what you might like, not what you need right now. SONICITE takes a different path — understanding sound through context and intent.",
+          category: "Tech",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-2",
+          title: "A Coffee Shop's Sound Shouldn't Be Random",
+          summary:
+            "Morning rush and afternoon lull need completely different sonic rhythms. Atmos understands business tempo to make sound truly serve the spatial experience.",
+          category: "Brand",
+          image: "/images/atmos-product.jpg",
+        },
+        {
+          id: "blog-3",
+          title: "SONICITE Architecture: Four Core Capabilities",
+          summary:
+            "Understand, Search, Orchestrate, Operate — how these four capabilities work together to form a complete sound intelligence system.",
+          category: "Tech",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-4",
+          title: "From DJ Booth to Retail: Two Paths of Sonic Intelligence",
+          summary:
+            "Sonicite and Atmos look like two products, but they share the same core — turning sonic judgment from intuition into system.",
+          category: "Brand",
+          image: "/images/atmos-product.jpg",
+        },
+        {
+          id: "blog-5",
+          title: "Sonicite 1.0 Launch: A Faster Music Understanding Workflow",
+          summary:
+            "Redesigned music understanding interface lets DJs read a song's energy, mood, and structure in seconds.",
+          category: "Product",
+          image: "/images/sonicite-product.jpg",
+        },
+        {
+          id: "blog-6",
+          title: "How Atmos Orchestrates a Full Day of Sonic Atmosphere",
+          summary:
+            "From morning to midnight, Atmos analyzes all-day sound curves to ensure every moment has just the right sonic companion.",
+          category: "Product",
+          image: "/images/atmos-product.jpg",
+        },
+      ],
+    },
     footer: {
       title: "Join the SONICITE Circle",
       description:
@@ -224,6 +342,91 @@ const copyByLocale = {
     },
   },
 };
+
+function BlogSection({ copy }) {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const allArticles = copy.blog.articles;
+  const activeLabel = copy.blog.tabs[activeTab];
+  const filteredArticles =
+    activeTab === 0 ? allArticles : allArticles.filter((a) => a.category === activeLabel);
+  const featured = filteredArticles[0];
+  const rest = filteredArticles.slice(1);
+
+  return (
+    <section className="section section--blog" id="blog" aria-labelledby="blog-title">
+      <div className="section__inner">
+        <div className="blog-header reveal">
+          <p className="eyebrow eyebrow--muted">{copy.blog.eyebrow}</p>
+          <h2 id="blog-title">{copy.blog.title}</h2>
+          <p>{copy.blog.description}</p>
+        </div>
+
+        <div className="blog-tabs reveal" role="tablist">
+          {copy.blog.tabs.map((tab, index) => (
+            <button
+              key={tab}
+              className={`blog-tab ${activeTab === index ? "is-active" : ""}`}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === index}
+              onClick={() => setActiveTab(index)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {featured ? (
+          <div className="blog-content reveal">
+            <article className="blog-card blog-card--featured">
+              <div className="blog-card__visual">
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  className="blog-card__image"
+                  sizes="(max-width: 720px) 100vw, 50vw"
+                />
+                <div className="blog-card__image-overlay"></div>
+              </div>
+              <div className="blog-card__body">
+                <span className="blog-card__category">{featured.category}</span>
+                <h3>{featured.title}</h3>
+                <p>{featured.summary}</p>
+                <a className="blog-card__link" href={`#${featured.id}`}>
+                  <span>{copy.blog.tabs[0] === "全部" ? "阅读全文" : "Read More"}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <div className="blog-list">
+              {rest.map((article) => (
+                <article className="blog-card blog-card--compact" key={article.id}>
+                  <div className="blog-card__thumb">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="blog-card__thumb-image"
+                      sizes="120px"
+                    />
+                  </div>
+                  <div className="blog-card__info">
+                    <span className="blog-card__category">{article.category}</span>
+                    <h3>{article.title}</h3>
+                    <p>{article.summary}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
 
 export function LandingPage() {
   const videoRef = useRef(null);
@@ -385,6 +588,10 @@ export function LandingPage() {
     event.preventDefault();
   };
 
+  const blogHref = `/blog?lang=${locale}`;
+  const aboutHref = `/about?lang=${locale}`;
+  const contactHref = `/contact?lang=${locale}`;
+
   return (
     <div className="page-shell">
       <header className="site-header">
@@ -397,7 +604,9 @@ export function LandingPage() {
             <a href="#brand-thesis">{copy.nav.brand}</a>
             <a href="#product-split">{copy.nav.products}</a>
             <a href="#highlights">{copy.nav.highlights}</a>
-            <a href="#footer">{copy.nav.contact}</a>
+            <a href={blogHref}>{copy.nav.blog}</a>
+            <a href={aboutHref}>{copy.nav.about}</a>
+            <a href={contactHref}>{copy.nav.contact}</a>
           </nav>
 
           <div className="locale-switch" aria-label="Language switch">
@@ -581,6 +790,8 @@ export function LandingPage() {
             </div>
           </div>
         </section>
+
+        <BlogSection copy={copy} />
       </main>
 
       <footer className="site-footer" id="footer">
@@ -603,7 +814,18 @@ export function LandingPage() {
           <nav className="footer-links" aria-label={copy.footer.company}>
             <h3>{copy.footer.company}</h3>
             {copy.footer.companyLinks.map((link) => (
-              <a href={link === "Contact" || link === "联系" ? "mailto:hello@sonicite.ai" : "#top"} key={link}>
+              <a
+                href={
+                  link === "Contact" || link === "联系"
+                    ? contactHref
+                    : link === "Blog" || link === "博客"
+                      ? blogHref
+                      : link === "About" || link === "关于"
+                        ? aboutHref
+                      : "#top"
+                }
+                key={link}
+              >
                 {link}
               </a>
             ))}

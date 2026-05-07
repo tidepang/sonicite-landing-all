@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "blog:seed": "node scripts/seed-blog-articles.mjs",
+    "blog:upload-docx": "node scripts/upload-blog-docx.mjs"
   },
   "dependencies": {
     "next": "^16.2.3",

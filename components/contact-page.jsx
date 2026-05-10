@@ -34,6 +34,13 @@ const copyByLocale = {
       sending: "发送中...",
       success: "感谢您的联系！我们会尽快回复。",
       error: "暂时发送失败，请直接邮件联系 hello@sonicite.ai。",
+      errors: {
+        invalid_fields: "请检查姓名、邮箱和消息内容后再提交。",
+        missing_supabase_config: "提交失败：站点还没有配置 Supabase 环境变量。",
+        missing_contact_table: "提交失败：数据库里还没有 contact 表。",
+        database_write_failed: "提交失败：数据库写入失败，请检查 Supabase 权限或表结构。",
+        contact_failed: "暂时发送失败，请直接邮件联系 hello@sonicite.ai。",
+      },
       roles: ["DJ", "制作人", "唱片公司", "学校", "创作者", "投资者", "其他"],
     },
     details: [
@@ -69,6 +76,13 @@ const copyByLocale = {
       sending: "Sending...",
       success: "Thanks for reaching out. We will get back to you soon.",
       error: "Sending failed for now. Please email hello@sonicite.ai directly.",
+      errors: {
+        invalid_fields: "Please check your name, email, and message before submitting.",
+        missing_supabase_config: "Submission failed: Supabase environment variables are not configured.",
+        missing_contact_table: "Submission failed: the contact database table is missing.",
+        database_write_failed: "Submission failed: database write failed. Check Supabase permissions or schema.",
+        contact_failed: "Sending failed for now. Please email hello@sonicite.ai directly.",
+      },
       roles: ["DJ", "Producer", "Label", "School", "Creator", "Investor", "Other"],
     },
     details: [
@@ -82,6 +96,7 @@ const copyByLocale = {
 export function ContactPage() {
   const [locale, setLocale] = useState("zh");
   const [status, setStatus] = useState("idle");
+  const [errorCode, setErrorCode] = useState("contact_failed");
   const copy = copyByLocale[locale];
 
   useEffect(() => {
@@ -109,19 +124,33 @@ export function ContactPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus("sending");
+    setErrorCode("contact_failed");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/mgvglrnq", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: new FormData(event.currentTarget),
-        headers: { Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          role: formData.get("role"),
+          message: formData.get("message"),
+          locale,
+        }),
       });
 
       if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        setErrorCode(result?.code || "contact_failed");
         throw new Error("Form submission failed");
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus("success");
     } catch (error) {
       console.error(error);
@@ -209,7 +238,11 @@ export function ContactPage() {
                 {status === "sending" ? copy.form.sending : copy.form.submit}
               </button>
               {status === "success" ? <p className="contact-form__status">{copy.form.success}</p> : null}
-              {status === "error" ? <p className="contact-form__status contact-form__status--error">{copy.form.error}</p> : null}
+              {status === "error" ? (
+                <p className="contact-form__status contact-form__status--error">
+                  {copy.form.errors[errorCode] ?? copy.form.error}
+                </p>
+              ) : null}
             </form>
           </div>
         </section>

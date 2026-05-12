@@ -95,7 +95,7 @@ input {
   margin: 24px auto 0;
   padding: 16px 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
+  border-radius: 30px;
   background: rgba(8, 8, 8, 0.48);
   backdrop-filter: blur(18px);
 }
@@ -426,8 +426,8 @@ input {
 
 .thesis-heading h2 {
   max-width: 10.6ch;
-  font-size: clamp(2.8rem, 5vw, 5.2rem);
-  line-height: 0.95;
+  font-size: clamp(2.45rem, 4.25vw, 4.35rem);
+  line-height: 1;
 }
 
 .thesis-copy {
@@ -610,7 +610,9 @@ input {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  gap: 24px;
+  width: min(100%, 1120px);
+  margin-inline: auto;
 }
 
 .product-card {
@@ -619,7 +621,7 @@ input {
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
-  border-radius: 34px;
+  border-radius: 24px;
   background: transparent;
   box-shadow: none;
 }
@@ -646,7 +648,7 @@ input {
 .product-card__visual-frame {
   position: relative;
   z-index: 1;
-  border-radius: 34px;
+  border-radius: 24px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
     linear-gradient(180deg, rgba(38, 38, 38, 0.92), rgba(18, 18, 18, 0.98));
@@ -657,8 +659,8 @@ input {
 
 .product-card__visual {
   position: relative;
-  min-height: 360px;
-  border-radius: 34px 34px 28px 28px;
+  min-height: clamp(252px, 21vw, 304px);
+  border-radius: 24px 24px 6px 6px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.24);
 }
@@ -720,9 +722,9 @@ input {
   flex: 1 1 auto;
   flex-direction: column;
   gap: 18px;
-  margin-top: -12px;
-  padding: 28px 30px 30px;
-  border-radius: 28px;
+  min-height: 238px;
+  margin-top: -8px;
+  padding: 24px 26px 26px;
   background:
     linear-gradient(180deg, rgba(24, 24, 24, 0.96), rgba(12, 12, 12, 0.98));
   box-shadow:
@@ -755,32 +757,37 @@ input {
 }
 
 .product-card h3 {
-  font-size: clamp(2.8rem, 4.6vw, 4.6rem);
-  line-height: 0.94;
+  font-size: clamp(2.35rem, 3.7vw, 3.7rem);
+  line-height: 0.98;
 }
 
 .product-card__summary {
   margin-top: 12px;
   max-width: 28rem;
-  font-size: 1.06rem;
-  line-height: 1.7;
+  padding-right: 72px;
+  font-size: 1rem;
+  line-height: 1.64;
   color: rgba(245, 241, 232, 0.76);
 }
 
 .product-card__cta {
-  position: relative;
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
   z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  width: fit-content;
-  margin-top: auto;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-top: 0;
   padding: 0;
   border: 0;
+  border-radius: 50%;
   background: transparent;
   color: var(--text);
-  font-size: 1.12rem;
+  font-size: 2.35rem;
   font-weight: 500;
+  line-height: 1;
   transition:
     transform 180ms ease,
     color 180ms ease;
@@ -788,7 +795,7 @@ input {
 
 .product-card__cta:hover,
 .product-card__cta:focus-visible {
-  transform: translateY(-1px);
+  transform: translate(3px, -3px);
   color: rgba(245, 241, 232, 0.86);
 }
 
@@ -1404,8 +1411,8 @@ input {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 0.62fr);
-  gap: 64px;
+  grid-template-columns: minmax(0, 0.72fr) minmax(390px, 0.66fr);
+  gap: 56px;
   align-items: start;
 }
 
@@ -1414,47 +1421,49 @@ input {
 }
 
 .contact-copy h1 {
-  max-width: 10ch;
-  font-size: clamp(3rem, 5.7vw, 6.4rem);
-  line-height: 0.96;
-  letter-spacing: -0.03em;
+  max-width: 12ch;
+  font-size: clamp(2.55rem, 4.25vw, 4.55rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
 }
 
 .contact-copy > p {
-  max-width: 650px;
+  max-width: 620px;
   margin-top: 24px;
 }
 
-.contact-details {
-  display: grid;
-  gap: 18px;
-  max-width: 660px;
-  margin-top: 54px;
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  max-width: 620px;
+  margin-top: 36px;
 }
 
-.contact-detail {
-  display: grid;
-  grid-template-columns: 110px minmax(0, 1fr);
-  gap: 22px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(245, 241, 232, 0.78);
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
 }
 
-.contact-detail span {
-  color: rgba(245, 241, 232, 0.48);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.contact-detail strong {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  color: rgba(245, 241, 232, 0.82);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.55;
+.contact-links a:hover,
+.contact-links a:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(245, 241, 232, 0.3);
+  background: rgba(255, 255, 255, 0.075);
+  color: rgba(245, 241, 232, 0.94);
 }
 
 .contact-form {
@@ -1513,6 +1522,7 @@ input {
 
 .contact-form__wide,
 .contact-form button,
+.contact-form__booking,
 .contact-form__status {
   grid-column: 1 / -1;
 }
@@ -1539,6 +1549,30 @@ input {
 .contact-form button:disabled {
   cursor: progress;
   opacity: 0.72;
+}
+
+.contact-form__booking {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  border: 1px solid rgba(255, 80, 74, 0.34);
+  border-radius: 16px;
+  background: rgba(255, 80, 74, 0.13);
+  color: rgba(245, 241, 232, 0.94);
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.contact-form__booking:hover,
+.contact-form__booking:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255, 80, 74, 0.58);
+  background: rgba(255, 80, 74, 0.2);
 }
 
 .contact-form__status {
@@ -2395,8 +2429,7 @@ input {
 
   .button,
   .console-button,
-  .volume-control,
-  .product-card__cta {
+  .volume-control {
     width: 100%;
   }
 
@@ -2428,13 +2461,14 @@ input {
 
   .product-card__visual {
     min-height: 248px;
-    border-radius: 24px 24px 22px 22px;
+    border-radius: 22px 22px 6px 6px;
   }
 
   .product-card__body {
     gap: 18px;
+    min-height: 230px;
     padding: 22px 22px 24px;
-    border-radius: 22px;
+    border-radius: 18px;
   }
 
   .product-card h3 {
@@ -2442,7 +2476,16 @@ input {
   }
 
   .product-card__summary {
+    padding-right: 66px;
     font-size: 1rem;
+  }
+
+  .product-card__cta {
+    right: 18px;
+    bottom: 20px;
+    width: 54px;
+    height: 54px;
+    font-size: 2.1rem;
   }
 
   .highlight-grid {
@@ -2483,7 +2526,7 @@ input {
 
   .content-hero h1,
   .contact-copy h1 {
-    font-size: clamp(2.8rem, 13vw, 4.7rem);
+    font-size: clamp(2.55rem, 11vw, 4rem);
   }
 
   .content-split {
@@ -2497,9 +2540,12 @@ input {
   }
 
   .belief-row,
-  .contact-detail,
   .contact-form {
     grid-template-columns: 1fr;
+  }
+
+  .contact-links {
+    margin-top: 28px;
   }
 
   .contact-section {

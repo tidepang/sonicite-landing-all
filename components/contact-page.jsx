@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 
 const localeStorageKey = "sonicite-landing-locale";
 const logoSrc = "/images/sonicite-logo.png";
+const socialLinkDefaults = {
+  Instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai",
+  X: process.env.NEXT_PUBLIC_X_URL || "https://x.com/sonicite_ai",
+  LinkedIn: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/company/sonicite",
+};
 
 const copyByLocale = {
   zh: {
@@ -19,9 +24,11 @@ const copyByLocale = {
     },
     locale: { zh: "中文", en: "EN" },
     hero: {
-      eyebrow: "Contact",
       title: "让我们谈谈您的音乐未来",
       summary: "无论您是 DJ、制作人，还是只是对我们正在构建的内容感到好奇，我们都很乐意听到您的声音。",
+      bookCall: "Book A Call",
+      email: "hello@sonicite.ai",
+      socials: ["Instagram", "X", "LinkedIn"],
     },
     form: {
       name: "您的姓名",
@@ -43,11 +50,6 @@ const copyByLocale = {
       },
       roles: ["DJ", "制作人", "唱片公司", "学校", "创作者", "投资者", "其他"],
     },
-    details: [
-      ["Email", "hello@sonicite.ai"],
-      ["Focus", "AI sound intelligence, DJ workflow, spatial music systems"],
-      ["For", "Product feedback, partnerships, investment, early users"],
-    ],
   },
   en: {
     nav: {
@@ -61,9 +63,11 @@ const copyByLocale = {
     },
     locale: { zh: "中文", en: "EN" },
     hero: {
-      eyebrow: "Contact",
       title: "Let's talk about your music future",
       summary: "Whether you are a DJ, producer, partner, or simply curious about what we are building, we would love to hear from you.",
+      bookCall: "Book A Call",
+      email: "hello@sonicite.ai",
+      socials: ["Instagram", "X", "LinkedIn"],
     },
     form: {
       name: "Your name",
@@ -85,11 +89,6 @@ const copyByLocale = {
       },
       roles: ["DJ", "Producer", "Label", "School", "Creator", "Investor", "Other"],
     },
-    details: [
-      ["Email", "hello@sonicite.ai"],
-      ["Focus", "AI sound intelligence, DJ workflow, spatial music systems"],
-      ["For", "Product feedback, partnerships, investment, early users"],
-    ],
   },
 };
 
@@ -162,6 +161,7 @@ export function ContactPage() {
   const blogHref = `/blog?lang=${locale}`;
   const aboutHref = `/about?lang=${locale}`;
   const contactHref = `/contact?lang=${locale}`;
+  const bookingHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/sonicite";
 
   return (
     <div className="page-shell content-page-shell">
@@ -195,15 +195,14 @@ export function ContactPage() {
         <section className="contact-section section">
           <div className="section__inner contact-layout">
             <div className="contact-copy">
-              <p className="eyebrow">{copy.hero.eyebrow}</p>
               <h1>{copy.hero.title}</h1>
               <p>{copy.hero.summary}</p>
-              <div className="contact-details">
-                {copy.details.map(([label, value]) => (
-                  <div className="contact-detail" key={label}>
-                    <span>{label}</span>
-                    <strong>{value}</strong>
-                  </div>
+              <div className="contact-links" aria-label="Contact links">
+                <a href={`mailto:${copy.hero.email}`}>{copy.hero.email}</a>
+                {copy.hero.socials.map((social) => (
+                  <a href={socialLinkDefaults[social]} key={social} target="_blank" rel="noreferrer">
+                    {social}
+                  </a>
                 ))}
               </div>
             </div>
@@ -237,6 +236,10 @@ export function ContactPage() {
               <button type="submit" disabled={status === "sending"}>
                 {status === "sending" ? copy.form.sending : copy.form.submit}
               </button>
+              <a className="contact-form__booking" href={bookingHref} target="_blank" rel="noreferrer">
+                {copy.hero.bookCall}
+                <span aria-hidden="true">↗</span>
+              </a>
               {status === "success" ? <p className="contact-form__status">{copy.form.success}</p> : null}
               {status === "error" ? (
                 <p className="contact-form__status contact-form__status--error">

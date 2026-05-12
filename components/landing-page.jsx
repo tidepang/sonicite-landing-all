@@ -56,7 +56,7 @@ const copyByLocale = {
           id: "sonicite-card",
           className: "product-card product-card--sonicite reveal",
           label: "For DJs & Music Workflows",
-          title: "Sonicite",
+          title: "Sonicite Flow",
           summary: "更快理解音乐，更稳定做选歌与编排判断。",
           imageSrc: "/images/sonicite-product.jpg",
           imageAlt: "DJ mixer and deck under vivid orange-red light.",
@@ -67,7 +67,7 @@ const copyByLocale = {
           id: "atmos-card",
           className: "product-card product-card--atmos reveal",
           label: "For Brands & Spaces",
-          title: "Atmos",
+          title: "Sonicite Atmos",
           summary: "为你的空间编排一整天的声音氛围。",
           imageSrc: "/images/atmos-product.jpg",
           imageAlt: "Immersive red-lit spatial environment with people and architecture.",
@@ -753,8 +753,7 @@ export function LandingPage() {
                       <p className="product-card__summary">{product.summary}</p>
                     </div>
 
-                    <a className="product-card__cta" href={`#${product.id}`}>
-                      <span>{product.cta}</span>
+                    <a className="product-card__cta" href={`#${product.id}`} aria-label={product.cta}>
                       <span aria-hidden="true">↗</span>
                     </a>
                   </div>

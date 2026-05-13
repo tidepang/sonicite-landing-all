@@ -78,9 +78,8 @@ export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRel
 
         <div className="site-header__right">
           <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#brand-thesis`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#product-split`}>{copy.nav.products}</a>
-            <a href={`${homeHref}#highlights`}>{copy.nav.highlights}</a>
+            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
+            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
             <a href={blogHref} aria-current="page">
               {copy.nav.blog}
             </a>

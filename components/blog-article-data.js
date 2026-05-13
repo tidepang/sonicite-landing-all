@@ -12,16 +12,16 @@ export const blogArticleSlugs = [
 export const articleCopyByLocale = {
   "zh": {
     "nav": {
-      "brand": "品牌",
-      "products": "产品",
+      "brand": "Flow",
+      "products": "Atmos",
       "highlights": "亮点",
-      "blog": "博客",
-      "about": "关于我们",
-      "contact": "联系",
-      "homeLabel": "SONICITE 首页"
+      "blog": "Blogs",
+      "about": "About",
+      "contact": "Contact",
+      "homeLabel": "Sonicite 首页"
     },
     "locale": {
-      "zh": "中文",
+      "zh": "CN",
       "en": "EN"
     },
     "actions": {
@@ -85,7 +85,7 @@ export const articleCopyByLocale = {
           },
           {
             "type": "paragraph",
-            "text": "这正是SONICITE 想做的事情，我们不是在做一个 DJ 工具，我们在重新设计“音乐 × AI × 人”的关系。在SONICITE 的世界里：音乐不再是“播放”，而是“共创”；情绪不再只是被音乐影响，而是能被用户塑造；创作不再是专业身份，而是一种生活方式。你可以：在地铁的晃动里截取一段节奏，扩展成鼓组；把深夜的情绪织成一段旋律；在健身房调节自己的能量曲线；在舞池里实时塑造下一秒的情绪高潮……在任何场景，用声音描述当下的自己，音乐将再次变得触手可及，随时可生长，随时可分享。"
+            "text": "这正是Sonicite 想做的事情，我们不是在做一个 DJ 工具，我们在重新设计“音乐 × AI × 人”的关系。在Sonicite 的世界里：音乐不再是“播放”，而是“共创”；情绪不再只是被音乐影响，而是能被用户塑造；创作不再是专业身份，而是一种生活方式。你可以：在地铁的晃动里截取一段节奏，扩展成鼓组；把深夜的情绪织成一段旋律；在健身房调节自己的能量曲线；在舞池里实时塑造下一秒的情绪高潮……在任何场景，用声音描述当下的自己，音乐将再次变得触手可及，随时可生长，随时可分享。"
           },
           {
             "type": "paragraph",
@@ -978,16 +978,16 @@ export const articleCopyByLocale = {
   },
   "en": {
     "nav": {
-      "brand": "Brand",
-      "products": "Products",
+      "brand": "Flow",
+      "products": "Atmos",
       "highlights": "Highlights",
-      "blog": "Blog",
+      "blog": "Blogs",
       "about": "About",
       "contact": "Contact",
-      "homeLabel": "SONICITE home"
+      "homeLabel": "Sonicite home"
     },
     "locale": {
-      "zh": "中文",
+      "zh": "CN",
       "en": "EN"
     },
     "actions": {
@@ -1051,7 +1051,7 @@ export const articleCopyByLocale = {
           },
           {
             "type": "paragraph",
-            "text": "这正是SONICITE 想做的事情，我们不是在做一个 DJ 工具，我们在重新设计“音乐 × AI × 人”的关系。在SONICITE 的世界里：音乐不再是“播放”，而是“共创”；情绪不再只是被音乐影响，而是能被用户塑造；创作不再是专业身份，而是一种生活方式。你可以：在地铁的晃动里截取一段节奏，扩展成鼓组；把深夜的情绪织成一段旋律；在健身房调节自己的能量曲线；在舞池里实时塑造下一秒的情绪高潮……在任何场景，用声音描述当下的自己，音乐将再次变得触手可及，随时可生长，随时可分享。"
+            "text": "这正是Sonicite 想做的事情，我们不是在做一个 DJ 工具，我们在重新设计“音乐 × AI × 人”的关系。在Sonicite 的世界里：音乐不再是“播放”，而是“共创”；情绪不再只是被音乐影响，而是能被用户塑造；创作不再是专业身份，而是一种生活方式。你可以：在地铁的晃动里截取一段节奏，扩展成鼓组；把深夜的情绪织成一段旋律；在健身房调节自己的能量曲线；在舞池里实时塑造下一秒的情绪高潮……在任何场景，用声音描述当下的自己，音乐将再次变得触手可及，随时可生长，随时可分享。"
           },
           {
             "type": "paragraph",

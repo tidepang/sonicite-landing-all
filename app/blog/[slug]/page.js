@@ -17,12 +17,12 @@ export async function generateMetadata({ params }) {
 
   if (!article) {
     return {
-      title: "Blog | SONICITE",
+      title: "Blog | Sonicite",
     };
   }
 
   return {
-    title: `${article.title} | SONICITE Blog`,
+    title: `${article.title} | Sonicite Blog`,
     description: article.summary,
   };
 }

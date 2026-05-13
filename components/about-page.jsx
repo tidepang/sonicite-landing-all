@@ -9,20 +9,20 @@ const logoSrc = "/images/sonicite-logo.png";
 const copyByLocale = {
   zh: {
     nav: {
-      brand: "品牌",
-      products: "产品",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "亮点",
-      blog: "博客",
-      about: "关于我们",
-      contact: "联系",
-      homeLabel: "SONICITE 首页",
+      blog: "Blogs",
+      about: "About",
+      contact: "Contact",
+      homeLabel: "Sonicite 首页",
     },
-    locale: { zh: "中文", en: "EN" },
+    locale: { zh: "CN", en: "EN" },
     hero: {
-      eyebrow: "About SONICITE",
+      eyebrow: "About Sonicite",
       title: "源于最纯粹的对音乐的热爱",
       summary:
-        "我们自己就是 DJ，也是长期沉浸在音乐里的创作者。SONICITE 不是为了替代创作，而是陪音乐人一起做判断。",
+        "我们自己就是 DJ，也是长期沉浸在音乐里的创作者。Sonicite 不是为了替代创作，而是陪音乐人一起做判断。",
     },
     story: {
       index: "01 / 我们的故事",
@@ -55,20 +55,20 @@ const copyByLocale = {
   },
   en: {
     nav: {
-      brand: "Brand",
-      products: "Products",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "Highlights",
-      blog: "Blog",
+      blog: "Blogs",
       about: "About",
       contact: "Contact",
-      homeLabel: "SONICITE home",
+      homeLabel: "Sonicite home",
     },
-    locale: { zh: "中文", en: "EN" },
+    locale: { zh: "CN", en: "EN" },
     hero: {
-      eyebrow: "About SONICITE",
+      eyebrow: "About Sonicite",
       title: "Built from a pure love of music",
       summary:
-        "We are DJs and creators ourselves. SONICITE is not here to replace creation. It helps music people make better judgments.",
+        "We are DJs and creators ourselves. Sonicite is not here to replace creation. It helps music people make better judgments.",
     },
     story: {
       index: "01 / Our Story",
@@ -140,9 +140,8 @@ export function AboutPage() {
         </a>
         <div className="site-header__right">
           <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#brand-thesis`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#product-split`}>{copy.nav.products}</a>
-            <a href={`${homeHref}#highlights`}>{copy.nav.highlights}</a>
+            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
+            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
             <a href={blogHref}>{copy.nav.blog}</a>
             <a href={aboutHref} aria-current="page">
               {copy.nav.about}

@@ -5,36 +5,29 @@ import { useEffect, useState } from "react";
 
 const localeStorageKey = "sonicite-landing-locale";
 const logoSrc = "/images/sonicite-logo.png";
-const socialLinkDefaults = {
-  Instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai",
-  X: process.env.NEXT_PUBLIC_X_URL || "https://x.com/sonicite_ai",
-  LinkedIn: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/company/sonicite",
-};
 
 const copyByLocale = {
   zh: {
     nav: {
-      brand: "品牌",
-      products: "产品",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "亮点",
-      blog: "博客",
-      about: "关于我们",
-      contact: "联系",
-      homeLabel: "SONICITE 首页",
+      blog: "Blogs",
+      about: "About",
+      contact: "Contact",
+      homeLabel: "Sonicite 首页",
     },
-    locale: { zh: "中文", en: "EN" },
+    locale: { zh: "CN", en: "EN" },
     hero: {
       title: "让我们谈谈您的音乐未来",
       summary: "无论您是 DJ、制作人，还是只是对我们正在构建的内容感到好奇，我们都很乐意听到您的声音。",
       bookCall: "Book A Call",
+      emailPrompt: "或者发邮件给我们：",
       email: "hello@sonicite.ai",
-      socials: ["Instagram", "X", "LinkedIn"],
     },
     form: {
       name: "您的姓名",
       email: "您的邮箱",
-      role: "角色",
-      rolePlaceholder: "选择角色",
       message: "消息",
       messagePlaceholder: "告诉我们您的想法...",
       submit: "发送消息",
@@ -48,32 +41,29 @@ const copyByLocale = {
         database_write_failed: "提交失败：数据库写入失败，请检查 Supabase 权限或表结构。",
         contact_failed: "暂时发送失败，请直接邮件联系 hello@sonicite.ai。",
       },
-      roles: ["DJ", "制作人", "唱片公司", "学校", "创作者", "投资者", "其他"],
     },
   },
   en: {
     nav: {
-      brand: "Brand",
-      products: "Products",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "Highlights",
-      blog: "Blog",
+      blog: "Blogs",
       about: "About",
       contact: "Contact",
-      homeLabel: "SONICITE home",
+      homeLabel: "Sonicite home",
     },
-    locale: { zh: "中文", en: "EN" },
+    locale: { zh: "CN", en: "EN" },
     hero: {
       title: "Let's talk about your music future",
       summary: "Whether you are a DJ, producer, partner, or simply curious about what we are building, we would love to hear from you.",
       bookCall: "Book A Call",
+      emailPrompt: "Or email us at ",
       email: "hello@sonicite.ai",
-      socials: ["Instagram", "X", "LinkedIn"],
     },
     form: {
       name: "Your name",
       email: "Your email",
-      role: "Role",
-      rolePlaceholder: "Select role",
       message: "Message",
       messagePlaceholder: "Tell us what you are thinking...",
       submit: "Send message",
@@ -87,7 +77,6 @@ const copyByLocale = {
         database_write_failed: "Submission failed: database write failed. Check Supabase permissions or schema.",
         contact_failed: "Sending failed for now. Please email hello@sonicite.ai directly.",
       },
-      roles: ["DJ", "Producer", "Label", "School", "Creator", "Investor", "Other"],
     },
   },
 };
@@ -137,7 +126,7 @@ export function ContactPage() {
         body: JSON.stringify({
           name: formData.get("name"),
           email: formData.get("email"),
-          role: formData.get("role"),
+          role: "",
           message: formData.get("message"),
           locale,
         }),
@@ -171,9 +160,8 @@ export function ContactPage() {
         </a>
         <div className="site-header__right">
           <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#brand-thesis`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#product-split`}>{copy.nav.products}</a>
-            <a href={`${homeHref}#highlights`}>{copy.nav.highlights}</a>
+            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
+            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
             <a href={blogHref}>{copy.nav.blog}</a>
             <a href={aboutHref}>{copy.nav.about}</a>
             <a href={contactHref} aria-current="page">
@@ -197,14 +185,16 @@ export function ContactPage() {
             <div className="contact-copy">
               <h1>{copy.hero.title}</h1>
               <p>{copy.hero.summary}</p>
-              <div className="contact-links" aria-label="Contact links">
-                <a href={`mailto:${copy.hero.email}`}>{copy.hero.email}</a>
-                {copy.hero.socials.map((social) => (
-                  <a href={socialLinkDefaults[social]} key={social} target="_blank" rel="noreferrer">
-                    {social}
-                  </a>
-                ))}
+              <div className="contact-primary-actions">
+                <a className="contact-booking" href={bookingHref} target="_blank" rel="noreferrer">
+                  {copy.hero.bookCall}
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
+              <p className="contact-email-line">
+                {copy.hero.emailPrompt}
+                <a href={`mailto:${copy.hero.email}`}>{copy.hero.email}</a>
+              </p>
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -216,19 +206,6 @@ export function ContactPage() {
                 <span>{copy.form.email}</span>
                 <input name="email" type="email" required />
               </label>
-              <label>
-                <span>{copy.form.role}</span>
-                <select name="role" defaultValue="" required>
-                  <option value="" disabled>
-                    {copy.form.rolePlaceholder}
-                  </option>
-                  {copy.form.roles.map((role) => (
-                    <option value={role} key={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-              </label>
               <label className="contact-form__wide">
                 <span>{copy.form.message}</span>
                 <textarea name="message" placeholder={copy.form.messagePlaceholder} rows={7} required />
@@ -236,10 +213,6 @@ export function ContactPage() {
               <button type="submit" disabled={status === "sending"}>
                 {status === "sending" ? copy.form.sending : copy.form.submit}
               </button>
-              <a className="contact-form__booking" href={bookingHref} target="_blank" rel="noreferrer">
-                {copy.hero.bookCall}
-                <span aria-hidden="true">↗</span>
-              </a>
               {status === "success" ? <p className="contact-form__status">{copy.form.success}</p> : null}
               {status === "error" ? (
                 <p className="contact-form__status contact-form__status--error">

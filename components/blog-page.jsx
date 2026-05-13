@@ -6,37 +6,55 @@ import { articleListCopyByLocale } from "@/components/blog-article-list";
 
 const localeStorageKey = "sonicite-landing-locale";
 const logoSrc = "/images/sonicite-logo.png";
+const footerSocialHrefs = {
+  IG: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai?igsh=NzI3MG9sYm56cDlj",
+  YouTube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://www.youtube.com/@sonicite-ai",
+  Rednote: "https://xhslink.com/m/5FNXRtD0fWp",
+  SoundCloud: process.env.NEXT_PUBLIC_SOUNDCLOUD_URL || "https://soundcloud.com/sonicite-fm",
+  MixCloud: process.env.NEXT_PUBLIC_MIXCLOUD_URL || "https://www.mixcloud.com/sonicite-fm",
+};
 
 const copyByLocale = {
   zh: {
     nav: {
-      brand: "品牌",
-      products: "产品",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "亮点",
-      blog: "博客",
-      about: "关于我们",
-      contact: "联系",
-      homeLabel: "SONICITE 首页",
+      blog: "Blogs",
+      about: "About",
+      contact: "Contact",
+      homeLabel: "Sonicite 首页",
     },
     locale: {
-      zh: "中文",
+      zh: "CN",
       en: "EN",
     },
     hero: {
-      eyebrow: "SONICITE Journal",
+      eyebrow: "Sonicite Journal",
       title: "关于声音智能、空间与音乐工作流的文章。",
       summary:
-        "记录 SONICITE 如何理解音乐、编排场景，并把声音从素材变成可运营的系统。",
+        "记录 Sonicite 如何理解音乐、编排场景，并把声音从素材变成可运营的系统。",
       latest: "最新文章",
       read: "阅读全文",
     },
     filters: ["全部", "品牌", "技术", "产品", "现场"],
     archiveTitle: "所有文章",
-    newsletter: {
-      title: "接收下一篇文章",
-      description: "我们会把关于音乐智能、产品更新和空间声音实践的内容发给你。",
-      placeholder: "输入您的邮箱",
-      submit: "订阅",
+    footer: {
+      title: "加入 Sonicite Circle",
+      description:
+        "接收关于音乐智能、DJ 工作流和空间声音系统的产品更新与早期体验邀请。",
+      emailPlaceholder: "输入您的邮箱",
+      subscribe: "订阅",
+      bookCall: "Book A Call",
+      privacy: "我们尊重你的隐私。随时退订。",
+      products: "产品",
+      productLinks: ["Sonicite", "Atmos"],
+      company: "公司",
+      companyLinks: ["关于", "博客", "联系"],
+      legal: "法律",
+      legalLinks: ["隐私", "条款"],
+      socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
+      copyright: "© 2026 Sonicite. All rights reserved.",
     },
     articles: [
       {
@@ -59,7 +77,7 @@ const copyByLocale = {
         readTime: "8 min",
         image: "/images/sonicite-product.jpg",
         summary:
-          "推荐算法解决的是喜好匹配，SONICITE 关心的是语境匹配：这首歌是否适合此刻、这个人、这个空间和这段节奏。",
+          "推荐算法解决的是喜好匹配，Sonicite 关心的是语境匹配：这首歌是否适合此刻、这个人、这个空间和这段节奏。",
         excerpt:
           "传统推荐系统会问：用户可能喜欢什么？声音智能还要继续追问：这个场景需要什么？当问题改变，特征、排序和交互方式也会改变。",
       },
@@ -89,7 +107,7 @@ const copyByLocale = {
       },
       {
         id: "architecture",
-        title: "SONICITE 架构里的四个核心能力",
+        title: "Sonicite 架构里的四个核心能力",
         category: "技术",
         date: "2026.03.28",
         readTime: "9 min",
@@ -115,33 +133,44 @@ const copyByLocale = {
   },
   en: {
     nav: {
-      brand: "Brand",
-      products: "Products",
+      brand: "Flow",
+      products: "Atmos",
       highlights: "Highlights",
-      blog: "Blog",
+      blog: "Blogs",
       about: "About",
       contact: "Contact",
-      homeLabel: "SONICITE home",
+      homeLabel: "Sonicite home",
     },
     locale: {
-      zh: "中文",
+      zh: "CN",
       en: "EN",
     },
     hero: {
-      eyebrow: "SONICITE Journal",
+      eyebrow: "Sonicite Journal",
       title: "Notes on sound intelligence, spaces, and music workflows.",
       summary:
-        "How SONICITE understands music, orchestrates context, and turns sound from material into an operating system.",
+        "How Sonicite understands music, orchestrates context, and turns sound from material into an operating system.",
       latest: "Latest Article",
       read: "Read Article",
     },
     filters: ["All", "Brand", "Tech", "Product", "Live"],
     archiveTitle: "All Articles",
-    newsletter: {
-      title: "Get the next article",
-      description: "Product updates, music intelligence notes, and spatial sound practices.",
-      placeholder: "Enter your email",
-      submit: "Subscribe",
+    footer: {
+      title: "Join the Sonicite Circle",
+      description:
+        "Receive product updates, music intelligence notes, and early access across Sonicite and Atmos.",
+      emailPlaceholder: "Enter your email",
+      subscribe: "Subscribe",
+      bookCall: "Book A Call",
+      privacy: "We respect your privacy. Unsubscribe anytime.",
+      products: "Products",
+      productLinks: ["Sonicite", "Atmos"],
+      company: "Company",
+      companyLinks: ["About", "Blog", "Contact"],
+      legal: "Legal",
+      legalLinks: ["Privacy", "Terms"],
+      socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
+      copyright: "© 2026 Sonicite. All rights reserved.",
     },
     articles: [
       {
@@ -164,7 +193,7 @@ const copyByLocale = {
         readTime: "8 min",
         image: "/images/sonicite-product.jpg",
         summary:
-          "Recommendation solves taste matching. SONICITE cares about context matching: whether a track fits this moment, person, space, and rhythm.",
+          "Recommendation solves taste matching. Sonicite cares about context matching: whether a track fits this moment, person, space, and rhythm.",
         excerpt:
           "Classic recommendation asks what a user might like. Sound intelligence asks what the situation needs. When the question changes, features, ranking, and interaction change too.",
       },
@@ -194,7 +223,7 @@ const copyByLocale = {
       },
       {
         id: "architecture",
-        title: "The four capabilities inside SONICITE",
+        title: "The four capabilities inside Sonicite",
         category: "Tech",
         date: "2026.03.28",
         readTime: "9 min",
@@ -276,8 +305,13 @@ export function BlogPage({ initialArticles = [] }) {
   }, [locale]);
 
   const homeHref = `/?lang=${locale}`;
+  const blogHref = `/blog?lang=${locale}`;
   const aboutHref = `/about?lang=${locale}`;
   const contactHref = `/contact?lang=${locale}`;
+  const bookingHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/sonicite";
+  const handleFooterSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <div className="page-shell blog-page-shell">
@@ -288,10 +322,9 @@ export function BlogPage({ initialArticles = [] }) {
 
         <div className="site-header__right">
           <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#brand-thesis`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#product-split`}>{copy.nav.products}</a>
-            <a href={`${homeHref}#highlights`}>{copy.nav.highlights}</a>
-            <a href={`/blog?lang=${locale}`} aria-current="page">
+            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
+            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
+            <a href={blogHref} aria-current="page">
               {copy.nav.blog}
             </a>
             <a href={aboutHref}>{copy.nav.about}</a>
@@ -400,23 +433,90 @@ export function BlogPage({ initialArticles = [] }) {
           </div>
         </section>
 
-        <section className="blog-newsletter" aria-labelledby="blog-newsletter-title">
-          <div className="section__inner blog-newsletter__inner">
-            <div>
-              <p className="eyebrow eyebrow--muted">{copy.hero.eyebrow}</p>
-              <h2 id="blog-newsletter-title">{copy.newsletter.title}</h2>
-              <p>{copy.newsletter.description}</p>
-            </div>
-            <form className="blog-newsletter__form" onSubmit={(event) => event.preventDefault()}>
-              <label className="sr-only" htmlFor="blog-email">
-                {copy.newsletter.placeholder}
-              </label>
-              <input id="blog-email" type="email" placeholder={copy.newsletter.placeholder} />
-              <button type="submit">{copy.newsletter.submit}</button>
-            </form>
-          </div>
-        </section>
       </main>
+
+      <footer className="site-footer" id="footer">
+        <div className="site-footer__grid section__inner">
+          <div className="site-footer__brand">
+            <a className="footer-brandmark" href={homeHref} aria-label={copy.nav.homeLabel}>
+              <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="footer-brandmark__logo" />
+            </a>
+          </div>
+
+          <nav className="footer-links" aria-label={copy.footer.products}>
+            <h3>{copy.footer.products}</h3>
+            {copy.footer.productLinks.map((link) => (
+              <a href={link === "Sonicite" ? `${homeHref}#sonicite-card` : `${homeHref}#atmos-card`} key={link}>
+                {link}
+              </a>
+            ))}
+          </nav>
+
+          <nav className="footer-links" aria-label={copy.footer.company}>
+            <h3>{copy.footer.company}</h3>
+            {copy.footer.companyLinks.map((link) => (
+              <a
+                href={
+                  link === "Contact" || link === "联系"
+                    ? contactHref
+                    : link === "Blog" || link === "博客"
+                      ? blogHref
+                      : link === "About" || link === "关于"
+                        ? aboutHref
+                        : homeHref
+                }
+                key={link}
+              >
+                {link}
+              </a>
+            ))}
+          </nav>
+
+          <div className="site-footer__newsletter">
+            <h3>{copy.footer.title}</h3>
+            <p>{copy.footer.description}</p>
+            <a className="footer-booking" href={bookingHref} target="_blank" rel="noreferrer">
+              {copy.footer.bookCall}
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <form className="footer-form" onSubmit={handleFooterSubmit}>
+              <label className="sr-only" htmlFor="blog-footer-email">
+                {copy.footer.emailPlaceholder}
+              </label>
+              <input id="blog-footer-email" type="email" placeholder={copy.footer.emailPlaceholder} />
+              <button type="submit">{copy.footer.subscribe}</button>
+            </form>
+
+            <p className="site-footer__privacy">{copy.footer.privacy}</p>
+          </div>
+        </div>
+
+        <div className="site-footer__meta section__inner">
+          <nav className="site-footer__legal" aria-label={copy.footer.legal}>
+            {copy.footer.legalLinks.map((link) => (
+              <a href={homeHref} key={link}>
+                {link}
+              </a>
+            ))}
+          </nav>
+
+          <nav className="site-footer__socials" aria-label="Social">
+            {copy.footer.socialLinks.map((link) => (
+              <a
+                href={footerSocialHrefs[link] || homeHref}
+                key={link}
+                target={footerSocialHrefs[link] ? "_blank" : undefined}
+                rel={footerSocialHrefs[link] ? "noreferrer" : undefined}
+              >
+                {link}
+              </a>
+            ))}
+          </nav>
+
+          <p>{copy.footer.copyright}</p>
+        </div>
+      </footer>
     </div>
   );
 }

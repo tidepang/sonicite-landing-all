@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { hasSupabaseAdminConfig, supabaseAdminFetch } from "@/lib/supabase-admin";
+import { buildContactConfirmationEmail, sendEmail } from "@/lib/resend-email";
 
 const formspreeEndpoint = "https://formspree.io/f/mgvglrnq";
 
@@ -87,6 +88,14 @@ export async function POST(request) {
     await saveToSupabase(payload);
     sendToFormspree(payload).catch((error) => {
       console.warn("Contact Formspree notification failed after database save:", error);
+    });
+    const email = buildContactConfirmationEmail(payload);
+    sendEmail({
+      to: payload.email,
+      subject: email.subject,
+      template: email.template,
+    }).catch((error) => {
+      console.warn("Contact confirmation email failed after database save:", error);
     });
 
     return NextResponse.json({ ok: true, source: "database" });

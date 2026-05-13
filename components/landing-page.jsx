@@ -167,6 +167,9 @@ const copyByLocale = {
         "接收关于音乐智能、DJ 工作流和空间声音系统的产品更新与早期体验邀请。",
       emailPlaceholder: "输入您的邮箱",
       subscribe: "订阅",
+      subscribing: "提交中...",
+      subscribeSuccess: "已发送确认邮件，请查收邮箱。",
+      subscribeError: "暂时发送失败，请稍后再试。",
       bookCall: "Book A Call",
       privacy: "我们尊重你的隐私。随时退订。",
       products: "产品",
@@ -330,6 +333,9 @@ const copyByLocale = {
         "Receive product updates, music intelligence notes, and early access across Sonicite and Atmos.",
       emailPlaceholder: "Enter your email",
       subscribe: "Subscribe",
+      subscribing: "Sending...",
+      subscribeSuccess: "Confirmation email sent. Please check your inbox.",
+      subscribeError: "Sending failed. Please try again later.",
       bookCall: "Book A Call",
       privacy: "We respect your privacy. Unsubscribe anytime.",
       products: "Products",
@@ -384,6 +390,7 @@ function BlogSection({ copy }) {
 export function LandingPage() {
   const videoRef = useRef(null);
   const [locale, setLocale] = useState("zh");
+  const [newsletterStatus, setNewsletterStatus] = useState("idle");
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(0);
@@ -537,8 +544,35 @@ export function LandingPage() {
     }
   };
 
-  const handleFooterSubmit = (event) => {
+  const handleFooterSubmit = async (event) => {
     event.preventDefault();
+    setNewsletterStatus("sending");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.get("email"),
+          locale,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Newsletter subscription failed");
+      }
+
+      form.reset();
+      setNewsletterStatus("success");
+    } catch (error) {
+      console.error(error);
+      setNewsletterStatus("error");
+    }
   };
 
   const blogHref = `/blog?lang=${locale}`;
@@ -786,9 +820,17 @@ export function LandingPage() {
               <label className="sr-only" htmlFor="footer-email">
                 {copy.footer.emailPlaceholder}
               </label>
-              <input id="footer-email" type="email" placeholder={copy.footer.emailPlaceholder} />
-              <button type="submit">{copy.footer.subscribe}</button>
+              <input id="footer-email" name="email" type="email" placeholder={copy.footer.emailPlaceholder} required />
+              <button type="submit" disabled={newsletterStatus === "sending"}>
+                {newsletterStatus === "sending" ? copy.footer.subscribing : copy.footer.subscribe}
+              </button>
             </form>
+            {newsletterStatus === "success" ? (
+              <p className="footer-form__status">{copy.footer.subscribeSuccess}</p>
+            ) : null}
+            {newsletterStatus === "error" ? (
+              <p className="footer-form__status footer-form__status--error">{copy.footer.subscribeError}</p>
+            ) : null}
 
             <p className="site-footer__privacy">{copy.footer.privacy}</p>
           </div>

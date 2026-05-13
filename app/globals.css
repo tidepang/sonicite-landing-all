@@ -970,6 +970,23 @@ input {
   color: #000;
 }
 
+.footer-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.footer-form__status {
+  margin: 16px 0 0;
+  color: rgba(245, 241, 232, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.footer-form__status--error {
+  color: #ffb0a5;
+}
+
 .site-footer__privacy {
   margin: 18px 0 0;
   color: rgba(245, 241, 232, 0.36);

@@ -2,285 +2,275 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { articleListCopyByLocale } from "@/components/blog-article-list";
+import { PageAmbient, SectionRule, SiteFooter, SiteNav } from "@/components/sonicite-shared";
 
 const localeStorageKey = "sonicite-landing-locale";
-const logoSrc = "/images/sonicite-logo.png";
-const footerSocialHrefs = {
-  IG: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai?igsh=NzI3MG9sYm56cDlj",
-  YouTube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://www.youtube.com/@sonicite-ai",
-  Rednote: "https://xhslink.com/m/5FNXRtD0fWp",
-  SoundCloud: process.env.NEXT_PUBLIC_SOUNDCLOUD_URL || "https://soundcloud.com/sonicite-fm",
-  MixCloud: process.env.NEXT_PUBLIC_MIXCLOUD_URL || "https://www.mixcloud.com/sonicite-fm",
-};
 
 const copyByLocale = {
   zh: {
     nav: {
-      brand: "Flow",
-      products: "Atmos",
-      highlights: "亮点",
-      blog: "Blogs",
-      about: "About",
-      contact: "Contact",
-      homeLabel: "Sonicite 首页",
-    },
-    locale: {
-      zh: "CN",
-      en: "EN",
-    },
-    hero: {
-      eyebrow: "Sonicite Journal",
-      title: "关于声音智能、空间与音乐工作流的文章。",
-      summary:
-        "记录 Sonicite 如何理解音乐、编排场景，并把声音从素材变成可运营的系统。",
-      latest: "最新文章",
-      read: "阅读全文",
-    },
-    filters: ["全部", "品牌", "技术", "产品", "现场"],
-    archiveTitle: "所有文章",
-    footer: {
-      title: "加入 Sonicite Circle",
-      description:
-        "接收关于音乐智能、DJ 工作流和空间声音系统的产品更新与早期体验邀请。",
-      emailPlaceholder: "输入您的邮箱",
-      subscribe: "订阅",
-      subscribing: "提交中...",
-      subscribeSuccess: "已发送确认邮件，请查收邮箱。",
-      subscribeError: "暂时发送失败，请稍后再试。",
-      bookCall: "Book A Call",
-      privacy: "我们尊重你的隐私。随时退订。",
-      products: "产品",
-      productLinks: ["Sonicite", "Atmos"],
-      company: "公司",
-      companyLinks: ["关于", "博客", "联系"],
-      legal: "法律",
-      legalLinks: ["隐私", "条款"],
-      socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
-      copyright: "© 2026 Sonicite. All rights reserved.",
-    },
-    articles: [
-      {
-        id: "sound-judgment",
-        title: "声音判断为什么需要系统化",
-        category: "品牌",
-        date: "2026.05.03",
-        readTime: "6 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "音乐不是背景填充，而是空间体验的一部分。当品牌把声音当作系统来运营，氛围、节奏和顾客感受才会进入同一条曲线。",
-        excerpt:
-          "在商业空间里，声音常常被放到最后处理：开店前选一个歌单，营业时让它自己播放。问题不在于歌单不好，而在于它无法理解当下。早高峰、午后、夜晚、节假日和活动现场，需要的是不同的能量结构。",
-      },
-      {
-        id: "recommendation-context",
-        title: "为什么音乐推荐不够用",
-        category: "技术",
-        date: "2026.04.22",
-        readTime: "8 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "推荐算法解决的是喜好匹配，Sonicite 关心的是语境匹配：这首歌是否适合此刻、这个人、这个空间和这段节奏。",
-        excerpt:
-          "传统推荐系统会问：用户可能喜欢什么？声音智能还要继续追问：这个场景需要什么？当问题改变，特征、排序和交互方式也会改变。",
-      },
-      {
-        id: "atmos-daypart",
-        title: "Atmos 如何编排一整天的声音氛围",
-        category: "产品",
-        date: "2026.04.15",
-        readTime: "7 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "从开门、午间、晚高峰到收店，Atmos 把不同营业时段拆成可管理的声音片段。",
-        excerpt:
-          "一天里的声音不是一条直线。Atmos 关注时段、客流、空间属性和品牌性格，让播放从随机歌单变成可以调整和复用的运营资产。",
-      },
-      {
-        id: "dj-workflow",
-        title: "从 DJ 台开始重做音乐理解工作流",
-        category: "现场",
-        date: "2026.04.03",
-        readTime: "5 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "DJ 对音乐的判断很快，但准备过程仍然依赖记忆和反复试听。Sonicite 试图让理解更快进入可用状态。",
-        excerpt:
-          "能量、情绪、段落、过渡空间和现场语境，这些信息原本散落在经验里。我们把它们整理成更直接的阅读界面。",
-      },
-      {
-        id: "architecture",
-        title: "Sonicite 架构里的四个核心能力",
-        category: "技术",
-        date: "2026.03.28",
-        readTime: "9 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "理解、搜索、编排、操作，这四个模块共同决定声音智能能不能真正落地。",
-        excerpt:
-          "理解负责把音乐变成结构化线索，搜索负责让意图进入音乐库，编排负责形成连续的声音路径，操作负责让方案进入真实场景。",
-      },
-      {
-        id: "brand-memory",
-        title: "品牌记忆里，声音应该占一个位置",
-        category: "品牌",
-        date: "2026.03.12",
-        readTime: "6 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "视觉、空间和服务之外，声音同样会影响顾客对品牌的记忆。它需要稳定，也需要随场景变化。",
-        excerpt:
-          "好的品牌声音不是固定播放同一类音乐，而是在稳定的性格之下拥有变化能力。它既要能被识别，也要能适应不同现场。",
-      },
-    ],
-  },
-  en: {
-    nav: {
-      brand: "Flow",
-      products: "Atmos",
-      highlights: "Highlights",
-      blog: "Blogs",
+      flow: "Flow",
+      atmos: "Atmos",
+      vibe: "Vibe",
+      experiences: "Experiences",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       homeLabel: "Sonicite home",
     },
-    locale: {
-      zh: "CN",
-      en: "EN",
-    },
+    locale: { zh: "CN", en: "EN" },
     hero: {
-      eyebrow: "Sonicite Journal",
-      title: "Notes on sound intelligence, spaces, and music workflows.",
-      summary:
-        "How Sonicite understands music, orchestrates context, and turns sound from material into an operating system.",
-      latest: "Latest Article",
-      read: "Read Article",
+      title: "Sound intelligence.",
+      accent: "In writing.",
+      dek: "关于音乐、身份与声音技术的观察。来自 Sonicite 团队的现场笔记，记录我们如何把声音当作系统来认真对待。",
     },
-    filters: ["All", "Brand", "Tech", "Product", "Live"],
-    archiveTitle: "All Articles",
-    footer: {
-      title: "Join the Sonicite Circle",
-      description:
-        "Receive product updates, music intelligence notes, and early access across Sonicite and Atmos.",
-      emailPlaceholder: "Enter your email",
-      subscribe: "Subscribe",
-      subscribing: "Sending...",
-      subscribeSuccess: "Confirmation email sent. Please check your inbox.",
-      subscribeError: "Sending failed. Please try again later.",
-      bookCall: "Book A Call",
-      privacy: "We respect your privacy. Unsubscribe anytime.",
-      products: "Products",
-      productLinks: ["Sonicite", "Atmos"],
-      company: "Company",
-      companyLinks: ["About", "Blog", "Contact"],
-      legal: "Legal",
-      legalLinks: ["Privacy", "Terms"],
-      socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
-      copyright: "© 2026 Sonicite. All rights reserved.",
+    rule: {
+      notes: "All Notes",
+      articles: "All Articles",
+      featured: "Featured",
     },
-    articles: [
-      {
-        id: "sound-judgment",
-        title: "Why sonic judgment needs a system",
-        category: "Brand",
-        date: "2026.05.03",
-        readTime: "6 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "Music is not background filler. When brands operate sound as a system, atmosphere, rhythm, and customer experience can move together.",
-        excerpt:
-          "In commercial spaces, sound is often handled last: choose a playlist before opening and let it run. The issue is not that playlists are bad. The issue is that they do not understand the moment.",
-      },
-      {
-        id: "recommendation-context",
-        title: "Why music recommendation is not enough",
-        category: "Tech",
-        date: "2026.04.22",
-        readTime: "8 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "Recommendation solves taste matching. Sonicite cares about context matching: whether a track fits this moment, person, space, and rhythm.",
-        excerpt:
-          "Classic recommendation asks what a user might like. Sound intelligence asks what the situation needs. When the question changes, features, ranking, and interaction change too.",
-      },
-      {
-        id: "atmos-daypart",
-        title: "How Atmos orchestrates a full day of sound",
-        category: "Product",
-        date: "2026.04.15",
-        readTime: "7 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "From opening to closing, Atmos breaks the business day into manageable sonic moments.",
-        excerpt:
-          "A day of sound is not a straight line. Atmos considers dayparts, traffic, space attributes, and brand character so playback becomes an operational asset.",
-      },
-      {
-        id: "dj-workflow",
-        title: "Rebuilding music understanding from the DJ booth",
-        category: "Live",
-        date: "2026.04.03",
-        readTime: "5 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "DJs judge music quickly, but preparation still depends on memory and repeated listening. Sonicite makes understanding immediately usable.",
-        excerpt:
-          "Energy, mood, sections, transition space, and live context usually live inside experience. We organize them into a faster reading interface.",
-      },
-      {
-        id: "architecture",
-        title: "The four capabilities inside Sonicite",
-        category: "Tech",
-        date: "2026.03.28",
-        readTime: "9 min",
-        image: "/images/sonicite-product.jpg",
-        summary:
-          "Understand, Search, Orchestrate, and Operate determine whether sound intelligence can become useful in the real world.",
-        excerpt:
-          "Understanding turns music into structured signals. Search brings intent into the library. Orchestration forms sonic paths. Operation moves plans into real spaces.",
-      },
-      {
-        id: "brand-memory",
-        title: "Sound deserves a place in brand memory",
-        category: "Brand",
-        date: "2026.03.12",
-        readTime: "6 min",
-        image: "/images/atmos-product.jpg",
-        summary:
-          "Beyond visuals, space, and service, sound shapes how people remember a brand. It needs consistency and contextual movement.",
-        excerpt:
-          "Good brand sound is not one fixed kind of music. It has a stable character with enough variation to adapt to the live environment.",
-      },
+    filters: [
+      { key: "all", label: "All" },
+      { key: "culture", label: "Culture" },
+      { key: "story", label: "Story" },
+      { key: "insights", label: "Insights" },
+      { key: "trend", label: "Trend" },
+      { key: "tech", label: "Tech" },
     ],
+    readArticle: "Read article",
+    empty: "No articles in this topic yet. Try another tag.",
+    invite: {
+      eyebrow: "Co-creation circle",
+      title: "Have insights worth sharing? Got a story, an essay, or a strong take on sound? Join our co-creation circle and write with us.",
+      primary: "Get in touch",
+      email: "hello@sonicite.ai",
+    },
   },
+  en: {
+    nav: {
+      flow: "Flow",
+      atmos: "Atmos",
+      vibe: "Vibe",
+      experiences: "Experiences",
+      blog: "Blog",
+      about: "About",
+      contact: "Contact",
+      homeLabel: "Sonicite home",
+    },
+    locale: { zh: "CN", en: "EN" },
+    hero: {
+      title: "Sound intelligence.",
+      accent: "In writing.",
+      dek: "Perspectives on music, identity, and the technology behind both. Field notes from people building the system that finally takes sound seriously.",
+    },
+    rule: {
+      notes: "All Notes",
+      articles: "All Articles",
+      featured: "Featured",
+    },
+    filters: [
+      { key: "all", label: "All" },
+      { key: "culture", label: "Culture" },
+      { key: "story", label: "Story" },
+      { key: "insights", label: "Insights" },
+      { key: "trend", label: "Trend" },
+      { key: "tech", label: "Tech" },
+    ],
+    readArticle: "Read article",
+    empty: "No articles in this topic yet. Try another tag.",
+    invite: {
+      eyebrow: "Co-creation circle",
+      title: "Have insights worth sharing? Got a story, an essay, or a strong take on sound? Join our co-creation circle and write with us.",
+      primary: "Get in touch",
+      email: "hello@sonicite.ai",
+    },
+  },
+};
+
+const articleCopy = {
+  zh: [
+    {
+      id: "why-humans-need-music",
+      tag: "culture",
+      category: "Culture",
+      title: "Why Humans Will Always Need Music",
+      readTime: "8 min read",
+      image: "/images/blog-1.jpg",
+      summary: "Music isn't just art — it's one of humanity's oldest survival mechanisms.",
+    },
+    {
+      id: "founder-confession",
+      tag: "story",
+      category: "Story",
+      title: "From The Pure Love of Music",
+      readTime: "10 min read",
+      image: "/images/blog-2.jpg",
+      summary: "Sonicite founder Brenda's musical journey, and why the best products start from personal frustration.",
+    },
+    {
+      id: "how-djs-find-music",
+      tag: "insights",
+      category: "Insights",
+      title: "How Do DJs Find Music?",
+      readTime: "7 min read",
+      image: "/images/blog-3.jpg",
+      summary: "We spoke with 20 professional DJs worldwide to break down how they dig — and what separates taste from knowing a lot of songs.",
+    },
+    {
+      id: "why-clubs-ban-phones",
+      tag: "trend",
+      category: "Trend",
+      title: "Why Are More Clubs Going Phone-Free?",
+      readTime: "9 min read",
+      image: "/images/blog-4.jpg",
+      summary: "From Berlin to Ibiza, nightlife venues are limiting phones to protect immersion, privacy, and authentic dance floor culture.",
+    },
+    {
+      id: "generative-ai-music-industry",
+      tag: "tech",
+      category: "Tech",
+      title: "How Generative AI Is Reshaping the Music Industry",
+      readTime: "8 min read",
+      image: "/images/blog-5.jpg",
+      summary: "From Suno and Udio to AI voice cloning, the way music is created, owned, and experienced is rapidly changing.",
+    },
+    {
+      id: "music-media-evolution",
+      tag: "tech",
+      category: "Tech",
+      title: "From Vinyl to Streaming",
+      readTime: "8 min read",
+      image: "/images/blog-6.jpg",
+      summary: "Over the past century, the evolution of music formats has continuously reshaped how music is produced, distributed, and consumed.",
+    },
+  ],
+  en: [
+    {
+      id: "why-humans-need-music",
+      tag: "culture",
+      category: "Culture",
+      title: "Why Humans Will Always Need Music",
+      readTime: "8 min read",
+      image: "/images/blog-1.jpg",
+      summary: "Music isn't just art — it's one of humanity's oldest survival mechanisms.",
+    },
+    {
+      id: "founder-confession",
+      tag: "story",
+      category: "Story",
+      title: "From The Pure Love of Music",
+      readTime: "10 min read",
+      image: "/images/blog-2.jpg",
+      summary: "Sonicite founder Brenda's musical journey, and why the best products start from personal frustration.",
+    },
+    {
+      id: "how-djs-find-music",
+      tag: "insights",
+      category: "Insights",
+      title: "How Do DJs Find Music?",
+      readTime: "7 min read",
+      image: "/images/blog-3.jpg",
+      summary: "We spoke with 20 professional DJs worldwide to break down how they dig — and what separates taste from knowing a lot of songs.",
+    },
+    {
+      id: "why-clubs-ban-phones",
+      tag: "trend",
+      category: "Trend",
+      title: "Why Are More Clubs Going Phone-Free?",
+      readTime: "9 min read",
+      image: "/images/blog-4.jpg",
+      summary: "From Berlin to Ibiza, nightlife venues are limiting phones to protect immersion, privacy, and authentic dance floor culture.",
+    },
+    {
+      id: "generative-ai-music-industry",
+      tag: "tech",
+      category: "Tech",
+      title: "How Generative AI Is Reshaping the Music Industry",
+      readTime: "8 min read",
+      image: "/images/blog-5.jpg",
+      summary: "From Suno and Udio to AI voice cloning, the way music is created, owned, and experienced is rapidly changing.",
+    },
+    {
+      id: "music-media-evolution",
+      tag: "tech",
+      category: "Tech",
+      title: "From Vinyl to Streaming",
+      readTime: "8 min read",
+      image: "/images/blog-6.jpg",
+      summary: "Over the past century, the evolution of music formats has continuously reshaped how music is produced, distributed, and consumed.",
+    },
+  ],
 };
 
 function getArticleUrl(article, locale) {
   return `/blog/${article.id}?lang=${locale}`;
 }
 
-export function BlogPage({ initialArticles = [] }) {
+function BlogHeroArt() {
+  return (
+    <svg className="blog-hero-svg" viewBox="0 0 520 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <radialGradient id="blogHaloA" cx="0.5" cy="0.5" r="0.55">
+          <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.4" />
+          <stop offset="0.55" stopColor="#b4c8e8" stopOpacity="0.16" />
+          <stop offset="1" stopColor="#0f0f10" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="blogHaloB" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#e8c8a0" stopOpacity="0.22" />
+          <stop offset="1" stopColor="#0f0f10" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="blogRule" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.85" />
+          <stop offset="0.5" stopColor="#b4c8e8" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#e8c8a0" stopOpacity="0.7" />
+        </linearGradient>
+      </defs>
+      <circle cx="260" cy="260" r="230" fill="url(#blogHaloA)" className="blog-hero-halo" />
+      <circle cx="260" cy="260" r="160" fill="url(#blogHaloB)" className="blog-hero-halo blog-hero-halo-secondary" />
+      <g className="blog-art-lines" stroke="url(#blogRule)" strokeLinecap="round" fill="none">
+        <line x1="120" y1="170" x2="400" y2="170" strokeWidth="1.4" opacity="0.85" />
+        <line x1="120" y1="200" x2="360" y2="200" strokeWidth="1.1" opacity="0.55" />
+        <line x1="120" y1="230" x2="380" y2="230" strokeWidth="1.1" opacity="0.55" />
+        <line x1="120" y1="260" x2="330" y2="260" strokeWidth="1.1" opacity="0.55" />
+        <line x1="120" y1="290" x2="370" y2="290" strokeWidth="1.1" opacity="0.55" />
+        <line x1="120" y1="320" x2="340" y2="320" strokeWidth="1.1" opacity="0.55" />
+        <line x1="120" y1="350" x2="300" y2="350" strokeWidth="1.1" opacity="0.55" />
+      </g>
+      <path className="blog-art-wave" d="M70 260 Q110 220 150 260 T230 260 T310 260 T390 260 T450 260" fill="none" stroke="#f1efe6" strokeWidth="1.4" strokeLinecap="round" opacity="0.78" />
+      <path className="blog-art-wave blog-art-wave-2" d="M70 260 Q110 295 150 260 T230 260 T310 260 T390 260 T450 260" fill="none" stroke="#c8b8ff" strokeWidth="1" strokeLinecap="round" opacity="0.55" />
+      <g className="blog-art-dots">
+        <circle cx="150" cy="260" r="2.6" fill="#c8b8ff" />
+        <circle cx="230" cy="260" r="2.2" fill="#b4c8e8" />
+        <circle cx="310" cy="260" r="2.6" fill="#e8c8a0" />
+        <circle cx="390" cy="260" r="2.2" fill="#e8b4be" />
+      </g>
+      <circle cx="260" cy="260" r="3.5" fill="#f1efe6" className="blog-hero-core" />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function BlogPage() {
   const [locale, setLocale] = useState("zh");
-  const [activeFilter, setActiveFilter] = useState(0);
-  const [newsletterStatus, setNewsletterStatus] = useState("idle");
+  const [activeTag, setActiveTag] = useState("all");
   const copy = copyByLocale[locale];
-  const articleCopy = articleListCopyByLocale[locale] ?? articleListCopyByLocale.zh;
-  const articles = initialArticles.length > 0 ? initialArticles : articleCopy.articles;
-  const filters = useMemo(() => {
-    const categoryFilters = [...new Set(articles.map((article) => article.category))];
-    return [locale === "zh" ? "全部" : "All", ...categoryFilters];
-  }, [articles, locale]);
+  const articles = articleCopy[locale];
   const featured = articles[0];
 
   const filteredArticles = useMemo(() => {
-    const activeLabel = filters[activeFilter];
-
-    if (activeFilter === 0) {
+    if (activeTag === "all") {
       return articles;
     }
 
-    return articles.filter((article) => article.category === activeLabel);
-  }, [activeFilter, articles, filters]);
+    return articles.filter((article) => article.tag === activeTag);
+  }, [activeTag, articles]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -302,263 +292,174 @@ export function BlogPage({ initialArticles = [] }) {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
     window.localStorage.setItem(localeStorageKey, locale);
 
     const url = new URL(window.location.href);
     url.searchParams.set("lang", locale);
     window.history.replaceState({}, "", url);
-    setActiveFilter(0);
+    setActiveTag("all");
   }, [locale]);
 
-  const homeHref = `/?lang=${locale}`;
-  const blogHref = `/blog?lang=${locale}`;
-  const aboutHref = `/about?lang=${locale}`;
-  const contactHref = `/contact?lang=${locale}`;
-  const bookingHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/sonicite";
-  const handleFooterSubmit = async (event) => {
-    event.preventDefault();
-    setNewsletterStatus("sending");
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.get("email"),
-          locale,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Newsletter subscription failed");
-      }
-
-      form.reset();
-      setNewsletterStatus("success");
-    } catch (error) {
-      console.error(error);
-      setNewsletterStatus("error");
-    }
-  };
-
   return (
-    <div className="page-shell blog-page-shell">
-      <header className="site-header">
-        <a className="brandmark" href={homeHref} aria-label={copy.nav.homeLabel}>
-          <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="brandmark__logo" priority />
-        </a>
+    <div className="sc-page page-blog">
+      <SiteNav locale={locale} setLocale={setLocale} current="blog" labels={copy} />
+      <PageAmbient />
 
-        <div className="site-header__right">
-          <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
-            <a href={blogHref} aria-current="page">
-              {copy.nav.blog}
-            </a>
-            <a href={aboutHref}>{copy.nav.about}</a>
-            <a href={contactHref}>{copy.nav.contact}</a>
-          </nav>
+      <main className="sc-main" id="top">
+        <section className="hero-v8 blog-hero" aria-labelledby="blog-page-title">
+          <div className="hv8-frost" aria-hidden="true"></div>
+          <div className="hv8-grain" aria-hidden="true"></div>
 
-          <div className="locale-switch" aria-label="Language switch">
-            <button
-              className={`locale-switch__button ${locale === "zh" ? "is-active" : ""}`}
-              type="button"
-              onClick={() => setLocale("zh")}
-              aria-pressed={locale === "zh"}
-            >
-              {copy.locale.zh}
-            </button>
-            <button
-              className={`locale-switch__button ${locale === "en" ? "is-active" : ""}`}
-              type="button"
-              onClick={() => setLocale("en")}
-              aria-pressed={locale === "en"}
-            >
-              {copy.locale.en}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="blog-page-hero" aria-labelledby="blog-page-title">
-          <Image
-            src={featured.image}
-            alt={featured.title}
-            fill
-            className="blog-page-hero__image"
-            sizes="100vw"
-            priority
-          />
-          <div className="blog-page-hero__overlay"></div>
-          <div className="blog-page-hero__content section__inner">
-            <p className="eyebrow">{copy.hero.eyebrow}</p>
-            <h1 id="blog-page-title">{copy.hero.title}</h1>
-            <p>{copy.hero.summary}</p>
-            <a className="blog-page-hero__latest" href={getArticleUrl(featured, locale)}>
-              <span>{copy.hero.latest}</span>
-              <strong>{featured.title}</strong>
-              <span aria-hidden="true">↗</span>
-            </a>
+          <div className="sc-container hv8-layout blog-hero-layout">
+            <div className="hv8-text">
+              <h1 className="hv8-title blog-hero-title" id="blog-page-title">
+                <span>{copy.hero.title}</span>
+                <br />
+                <em>{copy.hero.accent}</em>
+              </h1>
+              <p className="hv8-dek blog-hero-dek">{copy.hero.dek}</p>
+            </div>
+            <div className="hv8-art blog-hero-art">
+              <BlogHeroArt />
+            </div>
           </div>
         </section>
 
-        <section className="blog-archive section" aria-labelledby="blog-archive-title">
-          <div className="section__inner">
-            <div className="blog-archive__header">
-              <h2 id="blog-archive-title">{copy.archiveTitle}</h2>
-              <div className="blog-filter" role="tablist" aria-label={copy.archiveTitle}>
-                {filters.map((filter, index) => (
-                  <button
-                    key={filter}
-                    className={`blog-filter__button ${activeFilter === index ? "is-active" : ""}`}
-                    type="button"
-                    role="tab"
-                    aria-selected={activeFilter === index}
-                    onClick={() => setActiveFilter(index)}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="journal-grid">
-              {filteredArticles.map((article, index) => (
-                <article
-                  className={`journal-card ${index === 0 ? "journal-card--lead" : ""}`}
-                  id={article.id}
-                  key={article.id}
+        <section className="blog-filter-section" aria-label="Filter by topic">
+          <div className="sc-container">
+            <SectionRule label={copy.rule.notes} />
+            <div className="bf-bar" role="tablist">
+              {copy.filters.map((filter) => (
+                <button
+                  className={`bf-tag ${activeTag === filter.key ? "is-active" : ""}`}
+                  data-tag={filter.key}
+                  key={filter.key}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTag === filter.key}
+                  onClick={() => setActiveTag(filter.key)}
                 >
-                  <a className="journal-card__visual" href={getArticleUrl(article, locale)} aria-label={article.title}>
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="journal-card__image"
-                      sizes={index === 0 ? "(max-width: 960px) 100vw, 54vw" : "(max-width: 960px) 100vw, 33vw"}
-                    />
-                  </a>
-                  <div className="journal-card__body">
-                    <div className="journal-card__meta">
-                      <span>{article.category}</span>
-                      <span>{article.date}</span>
-                      <span>{article.readTime}</span>
-                    </div>
-                    <h3>
-                      <a href={getArticleUrl(article, locale)}>{article.title}</a>
-                    </h3>
-                    <p className="journal-card__summary">{article.summary}</p>
-                    <p className="journal-card__excerpt">{article.excerpt}</p>
-                    <a className="journal-card__link" href={getArticleUrl(article, locale)}>
-                      <span>{copy.hero.read}</span>
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </article>
+                  {filter.label}
+                </button>
               ))}
             </div>
           </div>
         </section>
 
+        <section className="blog-featured" data-tag={featured.tag}>
+          <div className="sc-container">
+            <span className="bf-eyebrow">{copy.rule.featured}</span>
+            <a className="bf-card" href={getArticleUrl(featured, locale)}>
+              <div className="bf-cover">
+                <Image src={featured.image} alt={featured.title} fill priority sizes="(max-width: 880px) 100vw, 58vw" className="bf-cover-inner" />
+              </div>
+              <div className="bf-body">
+                <div className="bf-meta">
+                  <span className={`bf-tag-badge bf-tag-${featured.tag}`}>{featured.category}</span>
+                  <span className="meta-dot"></span>
+                  <span className="bf-read">{featured.readTime}</span>
+                </div>
+                <h2 className="bf-title">{featured.title}</h2>
+                <p className="bf-summary">{featured.summary}</p>
+                <span className="bf-cta">
+                  <span>{copy.readArticle}</span>
+                  <ArrowIcon />
+                </span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section className="blog-grid-section">
+          <div className="sc-container">
+            <SectionRule label={copy.rule.articles} />
+            <div className="bg-grid" id="blog-grid">
+              {filteredArticles.map((article) => (
+                <a className="bg-card" data-tag={article.tag} href={getArticleUrl(article, locale)} key={article.id}>
+                  <div className="bg-cover">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      loading="eager"
+                      sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 33vw"
+                      className="bg-cover-inner"
+                    />
+                  </div>
+                  <div className="bg-card-body">
+                    <div className="bg-meta">
+                      <span className={`bg-tag bg-tag-${article.tag}`}>{article.category}</span>
+                      <span className="meta-dot"></span>
+                      <span className="bg-read">{article.readTime}</span>
+                    </div>
+                    <h3 className="bg-title">{article.title}</h3>
+                    <p className="bg-summary">{article.summary}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+            {filteredArticles.length === 0 ? <p className="bg-empty">{copy.empty}</p> : null}
+          </div>
+        </section>
+
+        <section className="blog-index-invitation">
+          <div className="sc-container">
+            <div className="about-invitation-card">
+              <div className="blog-inv-art" aria-hidden="true">
+                <svg viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <radialGradient id="blogInvGradA" cx="0.2" cy="0.4" r="0.7">
+                      <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.55" />
+                      <stop offset="1" stopColor="#c8b8ff" stopOpacity="0" />
+                    </radialGradient>
+                    <radialGradient id="blogInvGradB" cx="0.8" cy="0.7" r="0.65">
+                      <stop offset="0" stopColor="#e8b4be" stopOpacity="0.5" />
+                      <stop offset="1" stopColor="#e8b4be" stopOpacity="0" />
+                    </radialGradient>
+                    <linearGradient id="blogInvStroke" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.7" />
+                      <stop offset="1" stopColor="#e8c8a0" stopOpacity="0.6" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="320" height="220" fill="url(#blogInvGradA)" />
+                  <rect width="320" height="220" fill="url(#blogInvGradB)" />
+                  <g fill="none" stroke="url(#blogInvStroke)" strokeLinecap="round" className="blog-inv-rings">
+                    <circle cx="260" cy="110" r="40" strokeWidth="1.1" opacity="0.7" />
+                    <circle cx="260" cy="110" r="68" strokeWidth="0.9" opacity="0.45" />
+                    <circle cx="260" cy="110" r="96" strokeWidth="0.7" opacity="0.25" />
+                  </g>
+                  <path className="blog-inv-wave" d="M20 140 Q60 110 100 140 T180 140 T260 140 T320 140" fill="none" stroke="#e8e6de" strokeWidth="1.1" strokeLinecap="round" opacity="0.55" />
+                  <g className="blog-inv-dots">
+                    <circle cx="260" cy="110" r="2.6" fill="#f1efe6" />
+                    <circle cx="220" cy="96" r="1.8" fill="#c8b8ff" />
+                    <circle cx="296" cy="130" r="1.6" fill="#e8c8a0" />
+                  </g>
+                </svg>
+              </div>
+              <div className="about-inv-content">
+                <span>{copy.invite.eyebrow}</span>
+                <h3>
+                  Have insights worth <em>sharing</em>? Got a story, an essay, or a <em>strong take</em> on sound? Join our co-creation circle and write with us.
+                </h3>
+                <div>
+                  <a href={`/contact?lang=${locale}`}>
+                    {copy.invite.primary}
+                    <ArrowIcon />
+                  </a>
+                  <a href="mailto:hello@sonicite.ai">{copy.invite.email}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="site-footer" id="footer">
-        <div className="site-footer__grid section__inner">
-          <div className="site-footer__brand">
-            <a className="footer-brandmark" href={homeHref} aria-label={copy.nav.homeLabel}>
-              <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="footer-brandmark__logo" />
-            </a>
-          </div>
-
-          <nav className="footer-links" aria-label={copy.footer.products}>
-            <h3>{copy.footer.products}</h3>
-            {copy.footer.productLinks.map((link) => (
-              <a href={link === "Sonicite" ? `${homeHref}#sonicite-card` : `${homeHref}#atmos-card`} key={link}>
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <nav className="footer-links" aria-label={copy.footer.company}>
-            <h3>{copy.footer.company}</h3>
-            {copy.footer.companyLinks.map((link) => (
-              <a
-                href={
-                  link === "Contact" || link === "联系"
-                    ? contactHref
-                    : link === "Blog" || link === "博客"
-                      ? blogHref
-                      : link === "About" || link === "关于"
-                        ? aboutHref
-                        : homeHref
-                }
-                key={link}
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="site-footer__newsletter">
-            <h3>{copy.footer.title}</h3>
-            <p>{copy.footer.description}</p>
-            <a className="footer-booking" href={bookingHref} target="_blank" rel="noreferrer">
-              {copy.footer.bookCall}
-              <span aria-hidden="true">↗</span>
-            </a>
-
-            <form className="footer-form" onSubmit={handleFooterSubmit}>
-              <label className="sr-only" htmlFor="blog-footer-email">
-                {copy.footer.emailPlaceholder}
-              </label>
-              <input id="blog-footer-email" name="email" type="email" placeholder={copy.footer.emailPlaceholder} required />
-              <button type="submit" disabled={newsletterStatus === "sending"}>
-                {newsletterStatus === "sending" ? copy.footer.subscribing : copy.footer.subscribe}
-              </button>
-            </form>
-            {newsletterStatus === "success" ? (
-              <p className="footer-form__status">{copy.footer.subscribeSuccess}</p>
-            ) : null}
-            {newsletterStatus === "error" ? (
-              <p className="footer-form__status footer-form__status--error">{copy.footer.subscribeError}</p>
-            ) : null}
-
-            <p className="site-footer__privacy">{copy.footer.privacy}</p>
-          </div>
-        </div>
-
-        <div className="site-footer__meta section__inner">
-          <nav className="site-footer__legal" aria-label={copy.footer.legal}>
-            {copy.footer.legalLinks.map((link) => (
-              <a href={homeHref} key={link}>
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <nav className="site-footer__socials" aria-label="Social">
-            {copy.footer.socialLinks.map((link) => (
-              <a
-                href={footerSocialHrefs[link] || homeHref}
-                key={link}
-                target={footerSocialHrefs[link] ? "_blank" : undefined}
-                rel={footerSocialHrefs[link] ? "noreferrer" : undefined}
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <p>{copy.footer.copyright}</p>
-        </div>
-      </footer>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

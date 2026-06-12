@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { articleListCopyByLocale } from "./blog-article-list";
+import { SiteNav } from "./sonicite-shared";
 
 const heroVideoSrc =
   "https://ufwqrsdoaxjxcsbxpirb.supabase.co/storage/v1/object/public/langding_page/landing_all.mp4";
 const localeStorageKey = "sonicite-landing-locale";
 const logoSrc = "/images/sonicite-logo.png";
-const flowHref = "https://flow.sonicite.ai";
-const atmosHref = "https://atmos.sonicite.ai";
+const flowHref = "https://flow.sonicite.ai/";
+const atmosHref = "https://atmos.sonicite.ai/";
+const vibeHref = "https://vibe.sonicite.ai/";
 const footerSocialHrefs = {
   IG: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai?igsh=NzI3MG9sYm56cDlj",
   YouTube: process.env.NEXT_PUBLIC_YOUTUBE_URL || "https://www.youtube.com/@sonicite-ai",
@@ -18,15 +19,70 @@ const footerSocialHrefs = {
   MixCloud: process.env.NEXT_PUBLIC_MIXCLOUD_URL || "https://www.mixcloud.com/sonicite-fm",
 };
 
+const homeBlogArticles = [
+  {
+    id: "why-humans-need-music",
+    title: "Why Humans Will Always Need Music",
+    category: "Culture",
+    date: "04 · 06 · 2026",
+    readTime: "8 min read",
+    image: "/images/blog-1.jpg",
+  },
+  {
+    id: "founder-confession",
+    title: "From The Pure Love of Music",
+    category: "Story",
+    date: "28 · 05 · 2026",
+    readTime: "10 min read",
+    image: "/images/blog-2.jpg",
+  },
+  {
+    id: "how-djs-find-music",
+    title: "How Do DJs Find Music?",
+    category: "Insights",
+    date: "14 · 05 · 2026",
+    readTime: "7 min read",
+    image: "/images/blog-3.jpg",
+  },
+  {
+    id: "why-clubs-ban-phones",
+    title: "Why Are More Clubs Going Phone-Free?",
+    category: "Trend",
+    date: "30 · 04 · 2026",
+    readTime: "9 min read",
+    image: "/images/blog-4.jpg",
+  },
+  {
+    id: "generative-ai-music-industry",
+    title: "How Generative AI Is Reshaping the Music Industry",
+    category: "Tech",
+    date: "16 · 04 · 2026",
+    readTime: "8 min read",
+    image: "/images/blog-5.jpg",
+  },
+  {
+    id: "music-media-evolution",
+    title: "From Vinyl to Streaming",
+    category: "Tech",
+    date: "02 · 04 · 2026",
+    readTime: "8 min read",
+    image: "/images/blog-6.jpg",
+  },
+];
+
 const copyByLocale = {
   zh: {
     nav: {
+      flow: "flow",
+      atmos: "atmos",
+      vibe: "vibe",
       brand: "Flow",
       products: "Atmos",
+      experiences: "experiences",
       highlights: "亮点",
-      blog: "Blogs",
-      about: "About",
-      contact: "Contact",
+      blog: "blog",
+      about: "about",
+      contact: "contact",
       homeLabel: "Sonicite 首页",
     },
     locale: {
@@ -59,9 +115,9 @@ const copyByLocale = {
       meta: "Three orbits · one center",
       center: ["Sonicite", "System"],
       modules: [
-        { id: "flow", href: "#sonicite-card", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
-        { id: "atmos", href: "#atmos-card", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
-        { id: "vibe", href: "#product-split", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
+        { id: "flow", href: "#flow", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
+        { id: "atmos", href: "#atmos", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
+        { id: "vibe", href: "#vibe", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
       ],
       footLabel: "Read",
       foot:
@@ -122,6 +178,7 @@ const copyByLocale = {
           visualType: "vibe",
           mode: "Mode 03 · new",
           visualLabel: "pulse · orange",
+          ctaHref: vibeHref,
           specs: [
             ["Use", "Live · Co-create"],
             ["Mode", "Realtime"],
@@ -154,7 +211,7 @@ const copyByLocale = {
           sub: ["Music that meets you", "where you are."],
           body: "Vibe 为当下的房间、情绪和人群共同生成声音，让参与者进入实时共创的音乐体验。",
           cta: "Meet Vibe",
-          href: "#vibe-card",
+          href: vibeHref,
         },
       ],
       previous: "Previous",
@@ -191,9 +248,9 @@ const copyByLocale = {
     },
     blog: {
       eyebrow: "Insights",
-      title: "声音背后的故事",
+      title: "Sound intelligence. In writing.",
       description:
-        "从技术原理到场景实践，记录 Sonicite 如何让声音判断变得更清晰、更可用。",
+        "Perspectives on music, identity, and the technology behind both. Field notes from people building the system that finally takes sound seriously.",
       tabs: ["全部", "品牌", "技术", "产品"],
       articles: [
         {
@@ -260,9 +317,9 @@ const copyByLocale = {
       bookCall: "Book A Call",
       privacy: "我们尊重你的隐私。随时退订。",
       products: "产品",
-      productLinks: ["Sonicite", "Atmos"],
+      productLinks: ["Sonicite Flow", "Sonicite Atmos", "Sonicite Vibe"],
       company: "公司",
-      companyLinks: ["关于", "博客", "联系"],
+      companyLinks: ["Experiences", "博客", "关于", "联系"],
       legal: "法律",
       legalLinks: ["隐私", "条款"],
       socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
@@ -271,12 +328,16 @@ const copyByLocale = {
   },
   en: {
     nav: {
+      flow: "flow",
+      atmos: "atmos",
+      vibe: "vibe",
       brand: "Flow",
       products: "Atmos",
+      experiences: "experiences",
       highlights: "Highlights",
-      blog: "Blogs",
-      about: "About",
-      contact: "Contact",
+      blog: "blog",
+      about: "about",
+      contact: "contact",
       homeLabel: "Sonicite home",
     },
     locale: {
@@ -309,9 +370,9 @@ const copyByLocale = {
       meta: "Three orbits · one center",
       center: ["Sonicite", "System"],
       modules: [
-        { id: "flow", href: "#sonicite-card", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
-        { id: "atmos", href: "#atmos-card", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
-        { id: "vibe", href: "#product-split", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
+        { id: "flow", href: "#flow", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
+        { id: "atmos", href: "#atmos", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
+        { id: "vibe", href: "#vibe", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
       ],
       footLabel: "Read",
       foot:
@@ -325,10 +386,11 @@ const copyByLocale = {
         {
           id: "sonicite-card",
           className: "product-card product-card--sonicite",
-          label: "For DJs & Music Workflows",
+          label: "For DJs & Music Curators",
           title: "Sonicite Flow",
           module: "flow",
-          summary: "Understand music faster and make more stable sequencing decisions.",
+          summary:
+            "An AI music workflow system for DJs and music curators — understand, organize, and sequence music more efficiently.",
           cta: "View Sonicite",
           visualClassName: "product-card__visual product-card__visual--sonicite",
           visualType: "flow",
@@ -345,9 +407,9 @@ const copyByLocale = {
           id: "atmos-card",
           className: "product-card product-card--atmos",
           label: "For Brands & Spaces",
-          title: "Atmos",
+          title: "Sonicite Atmos",
           module: "atmos",
-          summary: "Orchestrate a full day of sonic atmosphere for your space.",
+          summary: "A dynamic sound system for brands and spaces — sound that shifts with scene, time, and atmosphere.",
           cta: "View Atmos",
           visualClassName: "product-card__visual product-card__visual--atmos",
           visualType: "atmos",
@@ -364,14 +426,16 @@ const copyByLocale = {
           id: "vibe-card",
           className: "product-card product-card--vibe",
           label: "For Live & Co-Creation",
-          title: "Vibe",
+          title: "Sonicite Vibe",
           module: "vibe",
-          summary: "A music co-creation experience combining AI music generation, live interaction, and real-time visuals.",
+          summary:
+            "A new music co-creation experience combining AI music generation, live coding, and real-time visual interaction.",
           cta: "View Vibe",
           visualClassName: "product-card__visual product-card__visual--vibe",
           visualType: "vibe",
           mode: "Mode 03 · new",
           visualLabel: "pulse · orange",
+          ctaHref: vibeHref,
           specs: [
             ["Use", "Live · Co-create"],
             ["Mode", "Realtime"],
@@ -394,7 +458,7 @@ const copyByLocale = {
           title: ["For", "Brands & Spaces"],
           short: "Brands",
           sub: ["A signature sound", "that scales."],
-          body: "Atmos turns your brand into a living sound system, adapting to time, weather, and footfall while staying unmistakably you across every venue.",
+          body: "Atmos turns your brand into a living sound system — adapting to time, weather, and footfall while staying unmistakably you across every venue.",
           cta: "Explore Atmos",
           href: atmosHref,
         },
@@ -402,9 +466,9 @@ const copyByLocale = {
           title: ["For", "Listeners"],
           short: "Listeners",
           sub: ["Music that meets you", "where you are."],
-          body: "Vibe co-creates sound for the room you are in, the mood you are in, and the people you are with, in real time.",
+          body: "Vibe co-creates sound for the room you're in, the mood you're in, and the people you're with — in real time, with the people in it.",
           cta: "Meet Vibe",
-          href: "#vibe-card",
+          href: vibeHref,
         },
       ],
       previous: "Previous",
@@ -441,9 +505,9 @@ const copyByLocale = {
     },
     blog: {
       eyebrow: "Insights",
-      title: "Stories Behind Sound",
+      title: "Sound intelligence. In writing.",
       description:
-        "From technical principles to real-world practice, documenting how Sonicite makes sonic judgment clearer and more usable.",
+        "Perspectives on music, identity, and the technology behind both. Field notes from people building the system that finally takes sound seriously.",
       tabs: ["All", "Brand", "Tech", "Product"],
       articles: [
         {
@@ -510,9 +574,9 @@ const copyByLocale = {
       bookCall: "Book A Call",
       privacy: "We respect your privacy. Unsubscribe anytime.",
       products: "Products",
-      productLinks: ["Sonicite", "Atmos"],
+      productLinks: ["Sonicite Flow", "Sonicite Atmos", "Sonicite Vibe"],
       company: "Company",
-      companyLinks: ["About", "Blog", "Contact"],
+      companyLinks: ["Experiences", "Blog", "About", "Contact"],
       legal: "Legal",
       legalLinks: ["Privacy", "Terms"],
       socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
@@ -521,8 +585,57 @@ const copyByLocale = {
   },
 };
 
-function formatBlogDate(date) {
-  return date ? date.replaceAll(".", " · ") : "";
+function FooterSocialIcon({ link }) {
+  if (link === "IG") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
+        <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (link === "YouTube") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M22.5 7.2c-.25-1.5-1-2.4-2.4-2.6C17.8 4.2 12 4.2 12 4.2s-5.8 0-8.1.4c-1.4.2-2.15 1.1-2.4 2.6C1.2 9.4 1.2 12 1.2 12s0 2.6.3 4.8c.25 1.5 1 2.4 2.4 2.6 2.3.4 8.1.4 8.1.4s5.8 0 8.1-.4c1.4-.2 2.15-1.1 2.4-2.6.3-2.2.3-4.8.3-4.8s0-2.6-.3-4.8z" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10 9l5 3-5 3V9z" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (link === "Rednote") {
+    return <span>RED</span>;
+  }
+
+  if (link === "SoundCloud") {
+    return (
+      <svg viewBox="0 0 24 16" fill="none" aria-hidden="true">
+        <g stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+          <line x1="1" y1="10" x2="1" y2="14" />
+          <line x1="3" y1="8" x2="3" y2="14" />
+          <line x1="5" y1="6" x2="5" y2="14" />
+          <line x1="7" y1="4" x2="7" y2="14" />
+          <line x1="9" y1="2.5" x2="9" y2="14" />
+          <line x1="11" y1="4" x2="11" y2="14" />
+        </g>
+        <path d="M13 14V6.5c0-.5.5-.9 1-.7 1.8.5 3.2 2 3.5 3.8.6-.4 1.3-.6 2-.6 2 0 3.5 1.5 3.5 3.5S21.5 16 19.5 16H13z" fill="currentColor" opacity="0.92" />
+      </svg>
+    );
+  }
+
+  if (link === "MixCloud") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="7" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="17" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    );
+  }
+
+  return <span>{link}</span>;
 }
 
 function ProductVisual({ type }) {
@@ -732,7 +845,7 @@ function AudienceSection({ copy }) {
 
   return (
     <section
-      className="section audiences-section"
+      className="section audiences audiences-section reveal"
       id="audiences"
       aria-labelledby="audiences-title"
       data-aud-active={activeAudience}
@@ -744,14 +857,18 @@ function AudienceSection({ copy }) {
       </div>
 
       <div className="section__inner aud-container">
-        <div className="aud-stage">
-          <button className="aud-arrow aud-arrow-prev" type="button" aria-label={copy.audiences.previous} onClick={() => goToAudience(activeAudience - 1)}>
+        <div className="section-rule aud-section-rule">
+          <span className="section-rule-label">Audiences</span>
+        </div>
+
+        <div className="aud-stage" data-aud-stage>
+          <button className="aud-arrow aud-arrow-prev" type="button" aria-label={copy.audiences.previous} data-aud-prev onClick={() => goToAudience(activeAudience - 1)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" aria-hidden="true">
               <path d="M15 6l-6 6 6 6" />
             </svg>
           </button>
 
-          <div className="aud-track">
+          <div className="aud-track" data-aud-track>
             {slides.map((slide, index) => {
               const previousSlide = slides[(index - 1 + slides.length) % slides.length];
               const nextSlide = slides[(index + 1) % slides.length];
@@ -759,6 +876,7 @@ function AudienceSection({ copy }) {
                 <article
                   className={`aud-slide ${activeAudience === index ? "is-active" : ""}`}
                   key={slide.short}
+                  data-aud-slide={index}
                 >
                   <h2 className="aud-title" id={index === 0 ? "audiences-title" : undefined} data-prev={`For ${previousSlide.short}`} data-next={`For ${nextSlide.short}`}>
                     {slide.title[0]} <em>{slide.title[1]}</em>
@@ -780,7 +898,7 @@ function AudienceSection({ copy }) {
             })}
           </div>
 
-          <button className="aud-arrow aud-arrow-next" type="button" aria-label={copy.audiences.next} onClick={() => goToAudience(activeAudience + 1)}>
+          <button className="aud-arrow aud-arrow-next" type="button" aria-label={copy.audiences.next} data-aud-next onClick={() => goToAudience(activeAudience + 1)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" aria-hidden="true">
               <path d="M9 6l6 6-6 6" />
             </svg>
@@ -796,13 +914,14 @@ function AudienceSection({ copy }) {
                 key={slide.short}
                 aria-label={slide.short}
                 aria-selected={activeAudience === index}
+                data-aud-goto={index}
                 onClick={() => goToAudience(index)}
               ></button>
             ))}
           </div>
           <span className="aud-count">
             <span>{String(activeAudience + 1).padStart(2, "0")}</span>
-            <span className="aud-count-sep">/</span>
+            <span className="aud-count-sep">∕</span>
             <span>{String(slides.length).padStart(2, "0")}</span>
           </span>
         </div>
@@ -812,47 +931,53 @@ function AudienceSection({ copy }) {
 }
 
 function BlogSection({ blogHref, copy, locale }) {
-  const articles = articleListCopyByLocale[locale].articles.slice(0, 6);
-
   return (
-    <section className="section section--blog" id="blog" aria-labelledby="blog-title">
-      <div className="section__inner">
-        <div className="blog-header reveal">
+    <section className="home-blog reveal" id="blog" aria-labelledby="blog-title">
+      <div className="section__inner home-blog-inner">
+        <div className="home-section-rule">
+          <span>Notes</span>
+        </div>
+
+        <div className="home-blog-head reveal">
           <h2 id="blog-title">{copy.blog.title}</h2>
           <p>{copy.blog.description}</p>
         </div>
 
-        <div className="blog-grid reveal">
-          {articles.map((article, index) => (
-            <a className="blog-card" href={`/blog/${article.id}?lang=${locale}`} key={article.id}>
-              <div className="blog-card__visual">
+        <div className="home-blog-grid reveal">
+          {homeBlogArticles.map((article) => (
+            <a className="home-blog-card" href={`/blog/${article.id}?lang=${locale}`} key={article.id}>
+              <div className="home-blog-card__image">
                 <Image
                   src={article.image}
                   alt={article.title}
                   fill
-                  className="blog-card__image"
-                  sizes="80px"
+                  loading="eager"
+                  className="home-blog-card__img"
+                  sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 33vw"
                 />
-                <div className="blog-card__image-overlay"></div>
               </div>
-              <span className="blog-card__category">{article.category}</span>
+              <div className="home-blog-card__meta">
+                <span>{article.category}</span>
+              </div>
               <h3>{article.title}</h3>
-              <span className="blog-card__date">{formatBlogDate(article.date)}</span>
-              <span className="blog-card__byline">{article.readTime}</span>
-              <span className="blog-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M7 17L17 7M9 7h8v8" />
+              <span className="home-blog-card__date">{article.date}</span>
+              <span className="home-blog-card__byline">{article.readTime}</span>
+              <span className="home-blog-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" focusable="false">
+                  <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
                 </svg>
               </span>
-              <span className="sr-only">{String(index + 1).padStart(2, "0")}</span>
             </a>
           ))}
         </div>
 
-        <div className="blog-pagination reveal">
-          <span>{copy.blog.page}</span>
+        <div className="home-blog-pagination reveal">
+          <span>6 entries</span>
           <a href={blogHref}>
-            {copy.blog.viewMore}
+            <span>Read all on the blog</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </a>
         </div>
       </div>
@@ -861,35 +986,43 @@ function BlogSection({ blogHref, copy, locale }) {
 }
 
 function ConstellationSection({ copy }) {
+  const constellationLabel = copy.constellation.eyebrow.replace(/^\d+\s*\/\s*/, "");
+
   return (
-    <section className="section constellation-section" id="constellation" aria-labelledby="constellation-title">
+    <section className="section constellation constellation-section reveal" id="constellation" aria-labelledby="constellation-title">
       <div className="section__inner">
-        <div className="constellation-head">
-          <span id="constellation-title">{copy.constellation.eyebrow}</span>
-          <span>{copy.constellation.meta}</span>
+        <div className="section-rule const-section-rule">
+          <span className="section-rule-label" id="constellation-title">{constellationLabel}</span>
+          <span className="const-meta">{copy.constellation.meta}</span>
         </div>
 
-        <div className="constellation-stage" aria-label={copy.constellation.meta}>
-          <div className="constellation-bands" aria-hidden="true"></div>
+        <div className="const-stage constellation-stage" aria-label={copy.constellation.meta}>
+          <div className="const-bands constellation-bands" aria-hidden="true"></div>
 
-          <svg className="constellation-ring" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <svg className="const-ring constellation-ring" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
             <circle cx="300" cy="300" r="230" fill="none" stroke="rgba(245,241,232,0.22)" strokeWidth="0.8" />
             <circle cx="300" cy="300" r="230" fill="none" stroke="rgba(245,241,232,0.06)" strokeWidth="0.8" strokeDasharray="2 6" />
           </svg>
 
-          <div className="constellation-center" aria-hidden="true">
-            {copy.constellation.center.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
+          <div className="const-center constellation-center" aria-hidden="true">
+            <span className="const-center-label">
+              {copy.constellation.center.map((line, index) => (
+                <span key={line}>
+                  {index > 0 ? <br /> : null}
+                  {line}
+                </span>
+              ))}
+            </span>
           </div>
 
           {copy.constellation.modules.map((module) => (
-            <div className={`constellation-orbit constellation-orbit--${module.id}`} key={module.id}>
-              <a className={`constellation-orb constellation-orb--${module.id}`} href={module.href} aria-label={module.ariaLabel}>
-                <span className="constellation-orb__blob" aria-hidden="true"></span>
-                <span className="constellation-orb__counter">
-                  <span className="constellation-orb__label">
+            <div className={`orbit orbit-${module.id} constellation-orbit constellation-orbit--${module.id}`} key={module.id}>
+              <a className={`orb orb-${module.id} constellation-orb constellation-orb--${module.id}`} href={module.href} aria-label={module.ariaLabel}>
+                <span className="orb-blob constellation-orb__blob" aria-hidden="true"></span>
+                <span className="orb-counter constellation-orb__counter">
+                  <span className="orb-label constellation-orb__label">
                     {module.name}
+                    <br />
                     <em>{module.label}</em>
                   </span>
                 </span>
@@ -897,16 +1030,16 @@ function ConstellationSection({ copy }) {
             </div>
           ))}
 
-          <svg className="constellation-paths" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <svg className="const-paths constellation-paths" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
             <circle cx="300" cy="300" r="180" fill="none" stroke="rgba(245,241,232,0.07)" strokeWidth="0.6" />
             <circle cx="300" cy="300" r="230" fill="none" stroke="rgba(245,241,232,0.06)" strokeWidth="0.6" />
             <circle cx="300" cy="300" r="270" fill="none" stroke="rgba(245,241,232,0.05)" strokeWidth="0.6" />
           </svg>
         </div>
 
-        <div className="constellation-foot">
-          <span>{copy.constellation.footLabel}</span>
-          <p>{copy.constellation.foot}</p>
+        <div className="const-foot constellation-foot">
+          <span className="const-foot-cap">{copy.constellation.footLabel}</span>
+          <span className="const-foot-val">{copy.constellation.foot}</span>
         </div>
       </div>
     </section>
@@ -1104,44 +1237,25 @@ export function LandingPage() {
   const blogHref = `/blog?lang=${locale}`;
   const aboutHref = `/about?lang=${locale}`;
   const contactHref = `/contact?lang=${locale}`;
-  const bookingHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/sonicite";
+  const experiencesHref = `/experiences?lang=${locale}`;
+  const footerProductHrefByLabel = {
+    "Sonicite Flow": flowHref,
+    "Sonicite Atmos": atmosHref,
+    "Sonicite Vibe": vibeHref,
+  };
+  const footerCompanyHrefByLabel = {
+    Experiences: experiencesHref,
+    Blog: blogHref,
+    "博客": blogHref,
+    About: aboutHref,
+    "关于": aboutHref,
+    Contact: contactHref,
+    "联系": contactHref,
+  };
 
   return (
     <div className="page-shell">
-      <header className="site-header">
-        <a className="brandmark" href="#top" aria-label={copy.nav.homeLabel}>
-          <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="brandmark__logo" priority />
-        </a>
-
-        <div className="site-header__right">
-          <nav className="site-nav" aria-label="Primary">
-            <a href="#sonicite-card">{copy.nav.brand}</a>
-            <a href="#atmos-card">{copy.nav.products}</a>
-            <a href={blogHref}>{copy.nav.blog}</a>
-            <a href={aboutHref}>{copy.nav.about}</a>
-            <a href={contactHref}>{copy.nav.contact}</a>
-          </nav>
-
-          <div className="locale-switch" aria-label="Language switch">
-            <button
-              className={`locale-switch__button ${locale === "zh" ? "is-active" : ""}`}
-              type="button"
-              onClick={() => setLocale("zh")}
-              aria-pressed={locale === "zh"}
-            >
-              {copy.locale.zh}
-            </button>
-            <button
-              className={`locale-switch__button ${locale === "en" ? "is-active" : ""}`}
-              type="button"
-              onClick={() => setLocale("en")}
-              aria-pressed={locale === "en"}
-            >
-              {copy.locale.en}
-            </button>
-          </div>
-        </div>
-      </header>
+      <SiteNav locale={locale} setLocale={setLocale} current="home" labels={copy} />
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
@@ -1235,51 +1349,64 @@ export function LandingPage() {
 
         <ConstellationSection copy={copy} />
 
-        <section className="section section--products" id="product-split" aria-labelledby="products-title">
+        <section className="section section--products products reveal" id="product-split" aria-labelledby="products-title">
           <div className="section__inner">
-            <div className="products-header reveal">
-              <h2 id="products-title">{copy.products.title}</h2>
-              <p>{copy.products.description}</p>
+            <div className="section-rule home-products-rule">
+              <span className="section-rule-label">System</span>
+            </div>
+            <div className="products-head reveal">
+              <h2 className="products-title" id="products-title">{copy.products.title}</h2>
+              <p className="products-sub">{copy.products.description}</p>
             </div>
 
-            <div className="product-grid">
+            <div className="products-grid">
               {copy.products.list.map((product) => (
-                <article className={product.className} id={product.id} key={product.id}>
-                  <div className="product-card__meta">
-                    <span>{product.title.replace("Sonicite ", "")}</span>
-                    <span>
-                      <span className="product-card__status-dot"></span>
-                      {product.mode}
+                <article
+                  className={`${product.className} tilt`}
+                  data-product={product.module}
+                  id={product.id}
+                  key={product.id}
+                >
+                  <span className="module-anchor" id={product.module} aria-hidden="true"></span>
+                  <div className="pc-header">
+                    <span className="pc-num">{product.module === "flow" ? "Flow" : product.module === "atmos" ? "Atmos" : "Vibe"}</span>
+                    <span className="pc-mode">
+                      <span className="pc-dot"></span>
+                      <span>{product.mode}</span>
                     </span>
                   </div>
-                  <div className="product-card__visual-frame">
-                    <div className={product.visualClassName} data-label={product.visualLabel}>
-                      <ProductVisual type={product.visualType} />
+                  <div className={`pc-glow pc-glow-${product.module === "flow" ? "purple" : product.module === "atmos" ? "blue" : "amber"}`}></div>
+                  <div className={`pc-visual visual-${product.module}`} data-label={product.visualLabel} aria-hidden="true">
+                    <ProductVisual type={product.visualType} />
+                  </div>
+
+                  <div className="pc-body">
+                    {product.module === "vibe" ? (
+                      <div className="pc-eyebrow-row">
+                        <span className="eyebrow">{product.label}</span>
+                        <span className="pc-badge">New</span>
+                      </div>
+                    ) : (
+                      <span className="eyebrow">{product.label}</span>
+                    )}
+                    <h3 className="pc-title">
+                      sonicite <span className={`pc-sub-label is-${product.module}`}>{product.module}</span>
+                    </h3>
+                    <div className="pc-row">
+                      <p className="pc-desc">{product.summary}</p>
+                      <a className="pc-arrow" href={product.ctaHref || `#${product.id}`} aria-label={product.cta}>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+                        </svg>
+                      </a>
                     </div>
                   </div>
 
-                  <div className="product-card__body">
-                    <div className="product-card__header">
-                      <p className="product-card__label">{product.label}</p>
-                      <h3>
-                        <span className="product-card__title-brand">sonicite</span>{" "}
-                        <span className={`product-card__title-module product-card__title-module--${product.module}`}>
-                          {product.module}
-                        </span>
-                      </h3>
-                      <p className="product-card__summary">{product.summary}</p>
-                    </div>
-
-                    <a className="product-card__cta" href={product.ctaHref || `#${product.id}`} aria-label={product.cta}>
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-
-                  <div className="product-card__specs" aria-label={`${product.title} details`}>
+                  <div className="pc-spec" aria-label={`${product.title} details`}>
                     {product.specs.map(([key, value]) => (
-                      <div className="product-card__spec" key={`${product.id}-${key}`}>
-                        <span>{key}</span>
-                        <strong>{value}</strong>
+                      <div key={`${product.id}-${key}`}>
+                        <span className="pc-spec-key">{key}</span>
+                        <span className="pc-spec-val">{value}</span>
                       </div>
                     ))}
                   </div>
@@ -1291,27 +1418,21 @@ export function LandingPage() {
 
         <AudienceSection copy={copy} />
 
-        <section className="section section--highlights" id="highlights" aria-labelledby="highlights-title">
+        <section className="section how reveal" id="highlights" aria-labelledby="highlights-title">
           <div className="section__inner">
-            <h2 className="sr-only" id="highlights-title">
-              {copy.highlights.title}
-            </h2>
-
-            <div className="highlights-header reveal">
-              <p className="eyebrow eyebrow--muted">{copy.highlights.eyebrow}</p>
-              <h2>{copy.highlights.title}</h2>
-              <p>{copy.highlights.description}</p>
+            <div className="section-rule home-how-rule">
+              <span className="section-rule-label">{copy.highlights.eyebrow}</span>
+            </div>
+            <div className="how-head reveal">
+              <h2 className="how-title" id="highlights-title">{copy.highlights.title}</h2>
             </div>
 
-            <div className="highlight-grid">
-              {copy.highlights.list.map((highlight, index) => (
-                <article className="highlight-card reveal" data-pillar={highlight.pillar} key={highlight.title}>
-                  <span className="highlight-card__index" aria-hidden="true">
-                    0{index + 1}
-                  </span>
+            <div className="how-grid">
+              {copy.highlights.list.map((highlight) => (
+                <article className="step-card reveal" data-pillar={highlight.pillar} key={highlight.title}>
                   <StepVisual pillar={highlight.pillar} />
-                  <h3>{highlight.title}</h3>
-                  <p>{highlight.summary}</p>
+                  <h4 className="step-title">{highlight.title}</h4>
+                  <p className="step-desc">{highlight.summary}</p>
                 </article>
               ))}
             </div>
@@ -1322,88 +1443,109 @@ export function LandingPage() {
       </main>
 
       <footer className="site-footer" id="footer">
-        <div className="site-footer__grid section__inner reveal">
-          <div className="site-footer__brand">
-            <a className="footer-brandmark" href="#top" aria-label={copy.nav.homeLabel}>
-              <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="footer-brandmark__logo" />
+        <div className="sf-accent" aria-hidden="true"></div>
+
+        <div className="section__inner sf-grid reveal">
+          <div className="sf-col sf-brand">
+            <a className="sf-logo" href="#top" aria-label={copy.nav.homeLabel}>
+              <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="sonicite-logo-img" />
             </a>
+            <p className="sf-tagline">Sound, finally on purpose.</p>
           </div>
 
-          <nav className="footer-links" aria-label={copy.footer.products}>
-            <h3>{copy.footer.products}</h3>
-            {copy.footer.productLinks.map((link) => (
-              <a href={link === "Sonicite" ? "#sonicite-card" : "#atmos-card"} key={link}>
-                {link}
-              </a>
-            ))}
+          <nav className="sf-col" aria-label={copy.footer.products}>
+            <h5 className="sf-col-title">{copy.footer.products}</h5>
+            <ul>
+              {copy.footer.productLinks.map((link) => (
+                <li key={link}>
+                  <a href={footerProductHrefByLabel[link] || "#product-split"}>{link}</a>
+                </li>
+              ))}
+            </ul>
           </nav>
 
-          <nav className="footer-links" aria-label={copy.footer.company}>
-            <h3>{copy.footer.company}</h3>
-            {copy.footer.companyLinks.map((link) => (
-              <a
-                href={
-                  link === "Contact" || link === "联系"
-                    ? contactHref
-                    : link === "Blog" || link === "博客"
-                      ? blogHref
-                      : link === "About" || link === "关于"
-                        ? aboutHref
-                      : "#top"
-                }
-                key={link}
-              >
-                {link}
-              </a>
-            ))}
+          <nav className="sf-col" aria-label={copy.footer.company}>
+            <h5 className="sf-col-title">{copy.footer.company}</h5>
+            <ul>
+              {copy.footer.companyLinks.map((link) => (
+                <li key={link}>
+                  <a href={footerCompanyHrefByLabel[link] || "#top"}>{link}</a>
+                </li>
+              ))}
+            </ul>
           </nav>
 
-          <div className="site-footer__newsletter">
-            <h3>{copy.footer.title}</h3>
-            <p>{copy.footer.description}</p>
-            <a className="footer-booking" href={bookingHref} target="_blank" rel="noreferrer">
-              {copy.footer.bookCall}
-              <span aria-hidden="true">↗</span>
-            </a>
+          <div className="sf-col sf-subscribe">
+            <h3 className="sf-circle-title">Stay in tune</h3>
+            <p className="sf-circle-body">{copy.footer.description}</p>
 
-            <form className="footer-form" onSubmit={handleFooterSubmit}>
-              <label className="sr-only" htmlFor="footer-email">
-                {copy.footer.emailPlaceholder}
+            <form className="sf-sub-form" onSubmit={handleFooterSubmit} noValidate>
+              <label className="sf-sub-row" htmlFor="sf-sub-email">
+                <input
+                  id="sf-sub-email"
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  autoComplete="email"
+                  required
+                  className="sf-sub-input"
+                  disabled={newsletterStatus === "success"}
+                />
+                <button
+                  className={`sf-sub-btn ${newsletterStatus === "success" ? "is-sent" : ""}`}
+                  type="submit"
+                  aria-label={copy.footer.subscribe}
+                  disabled={newsletterStatus === "sending" || newsletterStatus === "success"}
+                >
+                  {newsletterStatus === "success" ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12.5l4 4 10-10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
               </label>
-              <input id="footer-email" name="email" type="email" placeholder={copy.footer.emailPlaceholder} required />
-              <button type="submit" disabled={newsletterStatus === "sending"}>
-                {newsletterStatus === "sending" ? copy.footer.subscribing : copy.footer.subscribe}
-              </button>
+              <p className={`sf-sub-note ${newsletterStatus === "error" ? "is-error" : ""}`}>
+                {newsletterStatus === "success"
+                  ? copy.footer.subscribeSuccess
+                  : newsletterStatus === "error"
+                    ? copy.footer.subscribeError
+                    : copy.footer.privacy}
+              </p>
             </form>
-            {newsletterStatus === "success" ? (
-              <p className="footer-form__status">{copy.footer.subscribeSuccess}</p>
-            ) : null}
-            {newsletterStatus === "error" ? (
-              <p className="footer-form__status footer-form__status--error">{copy.footer.subscribeError}</p>
-            ) : null}
-
-            <p className="site-footer__privacy">{copy.footer.privacy}</p>
           </div>
         </div>
 
-        <div className="site-footer__meta section__inner">
-          <nav className="site-footer__legal" aria-label={copy.footer.legal}>
+        <div className="section__inner sf-base">
+          <nav className="sf-base-left" aria-label={copy.footer.legal}>
             {copy.footer.legalLinks.map((link) => (
-              <a href="#top" key={link}>
+              <a className="sf-base-link" href="#top" key={link}>
                 {link}
               </a>
             ))}
           </nav>
 
-          <nav className="site-footer__socials" aria-label="Social">
+          <nav className="sf-base-center sf-social" aria-label="Social">
             {copy.footer.socialLinks.map((link) => (
-              <a href={footerSocialHrefs[link] || "#top"} key={link} target={footerSocialHrefs[link] ? "_blank" : undefined} rel={footerSocialHrefs[link] ? "noreferrer" : undefined}>
-                {link}
+              <a
+                className={`sf-social-link ${link === "Rednote" ? "sf-social-text" : ""}`}
+                href={footerSocialHrefs[link] || "#top"}
+                key={link}
+                target={footerSocialHrefs[link] ? "_blank" : undefined}
+                rel={footerSocialHrefs[link] ? "noreferrer" : undefined}
+                aria-label={link}
+              >
+                <FooterSocialIcon link={link} />
               </a>
             ))}
           </nav>
 
-          <p>{copy.footer.copyright}</p>
+          <div className="sf-base-right">
+            <span>{copy.footer.copyright}</span>
+          </div>
         </div>
       </footer>
     </div>

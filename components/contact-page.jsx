@@ -1,37 +1,47 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { PageAmbient, SectionRule, SiteFooter, SiteNav } from "./sonicite-shared";
 
 const localeStorageKey = "sonicite-landing-locale";
-const logoSrc = "/images/sonicite-logo.png";
 
 const copyByLocale = {
   zh: {
     nav: {
-      brand: "Flow",
-      products: "Atmos",
-      highlights: "亮点",
-      blog: "Blogs",
+      flow: "Flow",
+      atmos: "Atmos",
+      vibe: "Vibe",
+      experiences: "Experiences",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       homeLabel: "Sonicite 首页",
     },
     locale: { zh: "CN", en: "EN" },
     hero: {
-      title: "让我们谈谈您的音乐未来",
-      summary: "无论您是 DJ、制作人，还是只是对我们正在构建的内容感到好奇，我们都很乐意听到您的声音。",
+      eyebrow: "Contact Sonicite",
+      titlePrefix: "Say",
+      titleEmphasis: "hello",
+      summary: "We'd love to hear from you.",
       bookCall: "Book A Call",
       emailPrompt: "或者发邮件给我们：",
       email: "hello@sonicite.ai",
     },
+    section: {
+      label: "Write to us",
+      title: "Tell us\nwhat's on your mind.",
+      body: "One field per thought. No identity boxes, no role pickers — just say what you'd say if we were across the table.",
+    },
     form: {
-      name: "您的姓名",
-      email: "您的邮箱",
-      message: "消息",
-      messagePlaceholder: "告诉我们您的想法...",
-      submit: "发送消息",
+      name: "Your name",
+      namePlaceholder: "Jane Smith",
+      email: "Your email",
+      emailPlaceholder: "jane@example.com",
+      message: "Your message",
+      messagePlaceholder: "What's on your mind?",
+      submit: "Send",
       sending: "发送中...",
+      sent: "Sent",
       success: "感谢您的联系！我们会尽快回复。",
       error: "暂时发送失败，请直接邮件联系 hello@sonicite.ai。",
       errors: {
@@ -45,29 +55,40 @@ const copyByLocale = {
   },
   en: {
     nav: {
-      brand: "Flow",
-      products: "Atmos",
-      highlights: "Highlights",
-      blog: "Blogs",
+      flow: "Flow",
+      atmos: "Atmos",
+      vibe: "Vibe",
+      experiences: "Experiences",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       homeLabel: "Sonicite home",
     },
     locale: { zh: "CN", en: "EN" },
     hero: {
-      title: "Let's talk about your music future",
-      summary: "Whether you are a DJ, producer, partner, or simply curious about what we are building, we would love to hear from you.",
+      eyebrow: "Contact Sonicite",
+      titlePrefix: "Say",
+      titleEmphasis: "hello",
+      summary: "We'd love to hear from you.",
       bookCall: "Book A Call",
       emailPrompt: "Or email us at ",
       email: "hello@sonicite.ai",
     },
+    section: {
+      label: "Write to us",
+      title: "Tell us\nwhat's on your mind.",
+      body: "One field per thought. No identity boxes, no role pickers — just say what you'd say if we were across the table.",
+    },
     form: {
       name: "Your name",
+      namePlaceholder: "Jane Smith",
       email: "Your email",
-      message: "Message",
-      messagePlaceholder: "Tell us what you are thinking...",
-      submit: "Send message",
+      emailPlaceholder: "jane@example.com",
+      message: "Your message",
+      messagePlaceholder: "What's on your mind?",
+      submit: "Send",
       sending: "Sending...",
+      sent: "Sent",
       success: "Thanks for reaching out. We will get back to you soon.",
       error: "Sending failed for now. Please email hello@sonicite.ai directly.",
       errors: {
@@ -80,6 +101,60 @@ const copyByLocale = {
     },
   },
 };
+
+function ContactSignalArt() {
+  return (
+    <svg className="hv8-art-svg ct-art-svg" viewBox="0 0 520 520" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="ct-glowOrigin" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.55" />
+          <stop offset="0.5" stopColor="#b4c8e8" stopOpacity="0.18" />
+          <stop offset="1" stopColor="#0f0f10" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="ct-glowTarget" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#e8c8a0" stopOpacity="0.45" />
+          <stop offset="0.6" stopColor="#e8b4be" stopOpacity="0.15" />
+          <stop offset="1" stopColor="#0f0f10" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="ct-arc" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#c8b8ff" stopOpacity="0.85" />
+          <stop offset="0.5" stopColor="#e8e6de" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#e8c8a0" stopOpacity="0.75" />
+        </linearGradient>
+        <linearGradient id="ct-arcGhost" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#e8e6de" stopOpacity="0.05" />
+          <stop offset="0.5" stopColor="#e8e6de" stopOpacity="0.22" />
+          <stop offset="1" stopColor="#e8e6de" stopOpacity="0.05" />
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="130" cy="380" rx="160" ry="160" fill="url(#ct-glowOrigin)" className="ct-origin" />
+      <ellipse cx="400" cy="150" rx="140" ry="140" fill="url(#ct-glowTarget)" className="ct-target" />
+      <path className="ct-arc-ghost" d="M 90 400 C 180 280, 280 220, 430 130" fill="none" stroke="url(#ct-arcGhost)" strokeWidth="1.1" strokeDasharray="2 6" strokeLinecap="round" />
+      <path className="ct-arc-main" d="M 100 390 C 190 270, 290 215, 420 140" fill="none" stroke="url(#ct-arc)" strokeWidth="1.4" strokeLinecap="round" pathLength="1" />
+
+      <g className="ct-dots">
+        <circle cx="100" cy="390" r="4.5" fill="#f1efe6" />
+        <circle cx="160" cy="310" r="2.4" fill="#c8b8ff" />
+        <circle cx="230" cy="250" r="2" fill="#b4c8e8" opacity=".85" />
+        <circle cx="310" cy="200" r="1.8" fill="#e8e6de" opacity=".7" />
+        <circle cx="380" cy="165" r="2.2" fill="#e8c8a0" opacity=".85" />
+        <circle cx="420" cy="140" r="5" fill="#f1efe6" />
+      </g>
+
+      <g fill="none" stroke="#e8e6de" className="ct-ping ct-ping-origin">
+        <circle cx="100" cy="390" r="14" strokeWidth="0.9" opacity=".55" />
+        <circle cx="100" cy="390" r="26" strokeWidth="0.7" opacity=".30" />
+        <circle cx="100" cy="390" r="40" strokeWidth="0.5" opacity=".15" />
+      </g>
+      <g fill="none" stroke="#e8c8a0" className="ct-ping ct-ping-target">
+        <circle cx="420" cy="140" r="12" strokeWidth="0.9" opacity=".55" />
+        <circle cx="420" cy="140" r="22" strokeWidth="0.7" opacity=".30" />
+        <circle cx="420" cy="140" r="34" strokeWidth="0.5" opacity=".15" />
+      </g>
+    </svg>
+  );
+}
 
 export function ContactPage() {
   const [locale, setLocale] = useState("zh");
@@ -146,83 +221,83 @@ export function ContactPage() {
     }
   };
 
-  const homeHref = `/?lang=${locale}`;
-  const blogHref = `/blog?lang=${locale}`;
-  const aboutHref = `/about?lang=${locale}`;
-  const contactHref = `/contact?lang=${locale}`;
-  const bookingHref = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/sonicite";
-
   return (
-    <div className="page-shell content-page-shell">
-      <header className="site-header">
-        <a className="brandmark" href={homeHref} aria-label={copy.nav.homeLabel}>
-          <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="brandmark__logo" priority />
-        </a>
-        <div className="site-header__right">
-          <nav className="site-nav" aria-label="Primary">
-            <a href={`${homeHref}#sonicite-card`}>{copy.nav.brand}</a>
-            <a href={`${homeHref}#atmos-card`}>{copy.nav.products}</a>
-            <a href={blogHref}>{copy.nav.blog}</a>
-            <a href={aboutHref}>{copy.nav.about}</a>
-            <a href={contactHref} aria-current="page">
-              {copy.nav.contact}
-            </a>
-          </nav>
-          <div className="locale-switch" aria-label="Language switch">
-            <button className={`locale-switch__button ${locale === "zh" ? "is-active" : ""}`} type="button" onClick={() => setLocale("zh")}>
-              {copy.locale.zh}
-            </button>
-            <button className={`locale-switch__button ${locale === "en" ? "is-active" : ""}`} type="button" onClick={() => setLocale("en")}>
-              {copy.locale.en}
-            </button>
-          </div>
-        </div>
-      </header>
+    <div className="page-shell sc-page page-contact">
+      <SiteNav locale={locale} setLocale={setLocale} current="contact" labels={copy} />
+      <PageAmbient />
 
-      <main>
-        <section className="contact-section section">
-          <div className="section__inner contact-layout">
-            <div className="contact-copy">
-              <h1>{copy.hero.title}</h1>
-              <p>{copy.hero.summary}</p>
-              <div className="contact-primary-actions">
-                <a className="contact-booking" href={bookingHref} target="_blank" rel="noreferrer">
-                  {copy.hero.bookCall}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-              <p className="contact-email-line">
-                {copy.hero.emailPrompt}
-                <a href={`mailto:${copy.hero.email}`}>{copy.hero.email}</a>
-              </p>
+      <main id="top" className="sc-main">
+        <section className="hero-v8 contact-hero">
+          <div className="hv8-frost" aria-hidden="true"></div>
+          <div className="hv8-grain" aria-hidden="true"></div>
+
+          <div className="sc-container hv8-layout contact-hero-layout">
+            <div className="hv8-text contact-hero-text">
+              <h1 className="hv8-title contact-hero-title">
+                {copy.hero.titlePrefix} <em>{copy.hero.titleEmphasis}</em>.
+              </h1>
+              <p className="hv8-dek contact-hero-dek">{copy.hero.summary}</p>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <label>
-                <span>{copy.form.name}</span>
-                <input name="name" type="text" required />
+            <div className="hv8-art contact-hero-art" aria-hidden="true">
+              <ContactSignalArt />
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-form-section" id="form">
+          <div className="sc-container">
+            <SectionRule label={copy.section.label} />
+            <div className="sc-section-head ct-head">
+              <h2 className="sc-section-head-title">
+                {copy.section.title.split("\n").map((line) => (
+                  <span key={line}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </h2>
+              <div className="sc-section-head-body">
+                <p>{copy.section.body}</p>
+              </div>
+            </div>
+
+            <form className="ct-form" onSubmit={handleSubmit} noValidate>
+              <div className="ct-row ct-row-two">
+                <label className="ct-field">
+                  <span className="ct-label">{copy.form.name}</span>
+                  <input name="name" type="text" placeholder={copy.form.namePlaceholder} autoComplete="name" required />
+                  <span className="ct-underline" aria-hidden="true"></span>
+                </label>
+                <label className="ct-field">
+                  <span className="ct-label">{copy.form.email}</span>
+                  <input name="email" type="email" placeholder={copy.form.emailPlaceholder} autoComplete="email" required />
+                  <span className="ct-underline" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <label className="ct-field ct-field-message">
+                <span className="ct-label">{copy.form.message}</span>
+                <textarea name="message" rows={6} placeholder={copy.form.messagePlaceholder} required />
+                <span className="ct-underline" aria-hidden="true"></span>
               </label>
-              <label>
-                <span>{copy.form.email}</span>
-                <input name="email" type="email" required />
-              </label>
-              <label className="contact-form__wide">
-                <span>{copy.form.message}</span>
-                <textarea name="message" placeholder={copy.form.messagePlaceholder} rows={7} required />
-              </label>
-              <button type="submit" disabled={status === "sending"}>
-                {status === "sending" ? copy.form.sending : copy.form.submit}
-              </button>
-              {status === "success" ? <p className="contact-form__status">{copy.form.success}</p> : null}
-              {status === "error" ? (
-                <p className="contact-form__status contact-form__status--error">
-                  {copy.form.errors[errorCode] ?? copy.form.error}
-                </p>
-              ) : null}
+
+              <div className="ct-actions">
+                <button type="submit" className={`ct-submit ${status === "success" ? "is-sent" : ""}`} disabled={status === "sending"}>
+                  <span className="ct-submit-label">{status === "sending" ? copy.form.sending : status === "success" ? copy.form.sent : copy.form.submit}</span>
+                  <svg className="ct-submit-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {status === "success" ? <span className="ct-form-status is-ok">{copy.form.success}</span> : null}
+                {status === "error" ? <span className="ct-form-status is-warn">{copy.form.errors[errorCode] ?? copy.form.error}</span> : null}
+              </div>
             </form>
           </div>
         </section>
       </main>
+
+      <SiteFooter locale={locale} />
     </div>
   );
 }

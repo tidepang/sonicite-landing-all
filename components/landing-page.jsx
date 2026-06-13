@@ -8,6 +8,16 @@ const heroVideoSrc =
   "https://ufwqrsdoaxjxcsbxpirb.supabase.co/storage/v1/object/public/langding_page/landing_all.mp4";
 const localeStorageKey = "sonicite-landing-locale";
 const logoSrc = "/images/sonicite-logo.png";
+const productLogoSrc = {
+  flow: "/images/products/sonicite-flow-logo.png",
+  atmos: "/images/products/sonicite-atmos-logo.png",
+  vibe: "/images/products/sonicite-vibe-logo.png",
+};
+const productPageHref = {
+  flow: "/flow",
+  atmos: "/atmos",
+  vibe: "/vibe",
+};
 const flowHref = "https://flow.sonicite.ai/";
 const atmosHref = "https://atmos.sonicite.ai/";
 const vibeHref = "https://vibe.sonicite.ai/";
@@ -77,7 +87,7 @@ const copyByLocale = {
       atmos: "atmos",
       vibe: "vibe",
       brand: "Flow",
-      products: "Atmos",
+      products: "Product",
       experiences: "experiences",
       highlights: "亮点",
       blog: "blog",
@@ -93,6 +103,7 @@ const copyByLocale = {
       title: "Sonicite AI Sound Systems",
       ctaPrimary: "Explore Sonicite Flow",
       ctaSecondary: "Explore Sonicite Atmos",
+      ctaTertiary: "Explore Sonicite Vibe",
       play: "Play",
       pause: "Pause",
       muted: "Muted",
@@ -140,7 +151,7 @@ const copyByLocale = {
           visualType: "flow",
           mode: "Mode 01",
           visualLabel: "signal · purple",
-          ctaHref: flowHref,
+          ctaHref: productPageHref.flow,
           specs: [
             ["Use", "DJs · Curators"],
             ["Mode", "Workflow"],
@@ -159,7 +170,7 @@ const copyByLocale = {
           visualType: "atmos",
           mode: "Mode 02",
           visualLabel: "field · blue",
-          ctaHref: atmosHref,
+          ctaHref: productPageHref.atmos,
           specs: [
             ["Use", "Brands · Spaces"],
             ["Mode", "Dynamic"],
@@ -178,7 +189,7 @@ const copyByLocale = {
           visualType: "vibe",
           mode: "Mode 03 · new",
           visualLabel: "pulse · orange",
-          ctaHref: vibeHref,
+          ctaHref: productPageHref.vibe,
           specs: [
             ["Use", "Live · Co-create"],
             ["Mode", "Realtime"],
@@ -332,7 +343,7 @@ const copyByLocale = {
       atmos: "atmos",
       vibe: "vibe",
       brand: "Flow",
-      products: "Atmos",
+      products: "Product",
       experiences: "experiences",
       highlights: "Highlights",
       blog: "blog",
@@ -348,6 +359,7 @@ const copyByLocale = {
       title: "Sonicite AI Sound Systems",
       ctaPrimary: "Explore Sonicite Flow",
       ctaSecondary: "Explore Sonicite Atmos",
+      ctaTertiary: "Explore Sonicite Vibe",
       play: "Play",
       pause: "Pause",
       muted: "Muted",
@@ -396,7 +408,7 @@ const copyByLocale = {
           visualType: "flow",
           mode: "Mode 01",
           visualLabel: "signal · purple",
-          ctaHref: flowHref,
+          ctaHref: productPageHref.flow,
           specs: [
             ["Use", "DJs · Curators"],
             ["Mode", "Workflow"],
@@ -415,7 +427,7 @@ const copyByLocale = {
           visualType: "atmos",
           mode: "Mode 02",
           visualLabel: "field · blue",
-          ctaHref: atmosHref,
+          ctaHref: productPageHref.atmos,
           specs: [
             ["Use", "Brands · Spaces"],
             ["Mode", "Dynamic"],
@@ -435,7 +447,7 @@ const copyByLocale = {
           visualType: "vibe",
           mode: "Mode 03 · new",
           visualLabel: "pulse · orange",
-          ctaHref: vibeHref,
+          ctaHref: productPageHref.vibe,
           specs: [
             ["Use", "Live · Co-create"],
             ["Mode", "Realtime"],
@@ -1118,6 +1130,18 @@ export function LandingPage() {
       return undefined;
     }
 
+    const revealVisibleElements = () => {
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const hasEnteredViewport = rect.top < window.innerHeight * 0.95;
+        const isNotFarAboveViewport = rect.bottom > -window.innerHeight * 0.25;
+
+        if (hasEnteredViewport && isNotFarAboveViewport) {
+          element.classList.add("is-visible");
+        }
+      });
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -1135,9 +1159,22 @@ export function LandingPage() {
       },
     );
 
-    elements.forEach((element) => observer.observe(element));
+    elements.forEach((element) => {
+      if (!element.classList.contains("is-visible")) {
+        observer.observe(element);
+      }
+    });
 
-    return () => observer.disconnect();
+    const frameId = window.requestAnimationFrame(revealVisibleElements);
+    const timeoutId = window.setTimeout(revealVisibleElements, 160);
+    window.addEventListener("pageshow", revealVisibleElements);
+
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("pageshow", revealVisibleElements);
+    };
   }, []);
 
   const handlePlayToggle = async () => {
@@ -1286,6 +1323,9 @@ export function LandingPage() {
                 <a className="button button--secondary" href={atmosHref}>
                   {copy.hero.ctaSecondary}
                 </a>
+                <a className="button button--secondary" href={vibeHref}>
+                  {copy.hero.ctaTertiary}
+                </a>
               </div>
 
               <div className="video-console" aria-label="Video controls">
@@ -1389,12 +1429,23 @@ export function LandingPage() {
                     ) : (
                       <span className="eyebrow">{product.label}</span>
                     )}
-                    <h3 className="pc-title">
-                      sonicite <span className={`pc-sub-label is-${product.module}`}>{product.module}</span>
+                    <h3 className="pc-title pc-title--logo">
+                      <Image
+                        className="pc-logo-img"
+                        src={productLogoSrc[product.module]}
+                        alt={product.title}
+                        width={596}
+                        height={193}
+                        sizes="(max-width: 720px) 220px, 280px"
+                      />
                     </h3>
                     <div className="pc-row">
                       <p className="pc-desc">{product.summary}</p>
-                      <a className="pc-arrow" href={product.ctaHref || `#${product.id}`} aria-label={product.cta}>
+                      <a
+                        className="pc-arrow"
+                        href={product.ctaHref?.startsWith("/") ? `${product.ctaHref}?lang=${locale}` : product.ctaHref || `#${product.id}`}
+                        aria-label={product.cta}
+                      >
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
                         </svg>

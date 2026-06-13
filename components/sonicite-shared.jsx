@@ -24,6 +24,11 @@ export function SiteNav({ locale, setLocale, current = "home", labels }) {
   const aboutHref = `/about?lang=${lang}`;
   const contactHref = `/contact?lang=${lang}`;
   const experiencesHref = `/experiences?lang=${lang}`;
+  const productItems = [
+    { id: "flow", href: `/flow?lang=${lang}`, name: "Flow", tag: "For DJs" },
+    { id: "atmos", href: `/atmos?lang=${lang}`, name: "Atmos", tag: "For spaces" },
+    { id: "vibe", href: `/vibe?lang=${lang}`, name: "Vibe", tag: "For everyone" },
+  ];
   const nav = labels?.nav ?? {};
   const localeLabels = labels?.locale ?? { zh: "CN", en: "EN" };
 
@@ -34,9 +39,19 @@ export function SiteNav({ locale, setLocale, current = "home", labels }) {
           <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="sc-logo-img" priority />
         </a>
         <div className="sc-nav-links">
-          <a href={`${homeHref}#sonicite-card`}>{nav.flow || "Flow"}</a>
-          <a href={`${homeHref}#atmos-card`}>{nav.atmos || "Atmos"}</a>
-          <a href={`${homeHref}#vibe-card`}>{nav.vibe || "Vibe"}</a>
+          <div className="sc-product-menu">
+            <button className="sc-product-menu-trigger" type="button" aria-current={["flow", "atmos", "vibe"].includes(current) ? "page" : undefined}>
+              {nav.product || nav.products || "Product"}
+            </button>
+            <div className="sc-product-dropdown" role="menu">
+              {productItems.map((item) => (
+                <a className="sc-product-dropdown-item" href={item.href} key={item.id} role="menuitem" aria-current={current === item.id ? "page" : undefined}>
+                  <span>{item.name}</span>
+                  <small>{item.tag}</small>
+                </a>
+              ))}
+            </div>
+          </div>
           <a href={experiencesHref} aria-current={current === "experiences" ? "page" : undefined}>
             {nav.experiences || "Experiences"}
           </a>

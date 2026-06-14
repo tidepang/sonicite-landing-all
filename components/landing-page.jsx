@@ -29,6 +29,14 @@ const footerSocialHrefs = {
   MixCloud: process.env.NEXT_PUBLIC_MIXCLOUD_URL || "https://www.mixcloud.com/sonicite-fm",
 };
 
+function withLocaleHref(href, locale) {
+  if (!href || !href.startsWith("/")) {
+    return href;
+  }
+
+  return `${href}?lang=${locale}`;
+}
+
 const homeBlogArticles = [
   {
     id: "why-humans-need-music",
@@ -87,12 +95,12 @@ const copyByLocale = {
       atmos: "atmos",
       vibe: "vibe",
       brand: "Flow",
-      products: "Product",
-      experiences: "experiences",
+      products: "产品",
+      experiences: "现场体验",
       highlights: "亮点",
-      blog: "blog",
-      about: "about",
-      contact: "contact",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite 首页",
     },
     locale: {
@@ -101,14 +109,14 @@ const copyByLocale = {
     },
     hero: {
       title: "Sonicite AI Sound Systems",
-      ctaPrimary: "Explore Sonicite Flow",
-      ctaSecondary: "Explore Sonicite Atmos",
-      ctaTertiary: "Explore Sonicite Vibe",
-      play: "Play",
-      pause: "Pause",
-      muted: "Muted",
-      soundOn: "Sound On",
-      volume: "Volume",
+      ctaPrimary: "了解 Sonicite Flow",
+      ctaSecondary: "了解 Sonicite Atmos",
+      ctaTertiary: "了解 Sonicite Vibe",
+      play: "播放",
+      pause: "暂停",
+      muted: "已静音",
+      soundOn: "打开声音",
+      volume: "音量",
       pauseVideo: "暂停视频",
       playVideo: "播放视频",
       muteVideo: "静音视频",
@@ -122,15 +130,15 @@ const copyByLocale = {
       ],
     },
     constellation: {
-      eyebrow: "02 / Constellation",
-      meta: "Three orbits · one center",
+      eyebrow: "02 / 星系",
+      meta: "三个轨道 · 一个核心",
       center: ["Sonicite", "System"],
       modules: [
-        { id: "flow", href: "#flow", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
-        { id: "atmos", href: "#atmos", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
-        { id: "vibe", href: "#vibe", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
+        { id: "flow", href: productPageHref.flow, name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
+        { id: "atmos", href: productPageHref.atmos, name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
+        { id: "vibe", href: productPageHref.vibe, name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
       ],
-      footLabel: "Read",
+      footLabel: "读取",
       foot:
         "三个模块围绕同一个声音智能核心运行。Flow 面向音乐工作流，Atmos 面向空间氛围，Vibe 作为现场共创方向被放在同一系统关系里呈现。",
     },
@@ -142,58 +150,58 @@ const copyByLocale = {
         {
           id: "sonicite-card",
           className: "product-card product-card--sonicite",
-          label: "For DJs & Music Workflows",
+          label: "面向 DJ 与音乐工作流",
           title: "Sonicite Flow",
           module: "flow",
           summary: "更快理解音乐，更稳定做选歌与编排判断。",
-          cta: "View Sonicite",
+          cta: "查看 Sonicite",
           visualClassName: "product-card__visual product-card__visual--sonicite",
           visualType: "flow",
-          mode: "Mode 01",
-          visualLabel: "signal · purple",
+          mode: "模式 01",
+          visualLabel: "信号 · 紫色",
           ctaHref: productPageHref.flow,
           specs: [
-            ["Use", "DJs · Curators"],
-            ["Mode", "Workflow"],
-            ["Status", "Live"],
+            ["用途", "DJs · Curators"],
+            ["模式", "工作流"],
+            ["状态", "已上线"],
           ],
         },
         {
           id: "atmos-card",
           className: "product-card product-card--atmos",
-          label: "For Brands & Spaces",
+          label: "面向品牌与空间",
           title: "Sonicite Atmos",
           module: "atmos",
           summary: "为你的空间编排一整天的声音氛围。",
-          cta: "View Atmos",
+          cta: "查看 Atmos",
           visualClassName: "product-card__visual product-card__visual--atmos",
           visualType: "atmos",
-          mode: "Mode 02",
-          visualLabel: "field · blue",
+          mode: "模式 02",
+          visualLabel: "场域 · 蓝色",
           ctaHref: productPageHref.atmos,
           specs: [
-            ["Use", "Brands · Spaces"],
-            ["Mode", "Dynamic"],
-            ["Status", "Live"],
+            ["用途", "品牌 · 空间"],
+            ["模式", "动态"],
+            ["状态", "已上线"],
           ],
         },
         {
           id: "vibe-card",
           className: "product-card product-card--vibe",
-          label: "For Live & Co-Creation",
+          label: "面向现场与共创",
           title: "Sonicite Vibe",
           module: "vibe",
           summary: "把 AI 音乐生成、现场互动和实时视觉放进共同创作体验。",
-          cta: "View Vibe",
+          cta: "查看 Vibe",
           visualClassName: "product-card__visual product-card__visual--vibe",
           visualType: "vibe",
-          mode: "Mode 03 · new",
-          visualLabel: "pulse · orange",
+          mode: "模式 03 · new",
+          visualLabel: "脉冲 · 橙色",
           ctaHref: productPageHref.vibe,
           specs: [
-            ["Use", "Live · Co-create"],
-            ["Mode", "Realtime"],
-            ["Status", "Preview"],
+            ["用途", "现场 · 共创"],
+            ["模式", "实时"],
+            ["状态", "预览"],
           ],
         },
       ],
@@ -201,67 +209,67 @@ const copyByLocale = {
     audiences: {
       slides: [
         {
-          title: ["For", "Musicians"],
+          title: ["面向", "Musicians"],
           short: "Musicians",
-          sub: ["Studio-grade taste", "at your fingertips."],
+          sub: ["专业级审美判断", "放在手边。"],
           body: "少花时间追参考，多把时间留给完成作品。Sonicite Flow 和你一起听，找到下一步，并逐渐适配你的风格。",
-          cta: "Try Flow",
-          href: flowHref,
+          cta: "体验 Flow",
+          href: productPageHref.flow,
         },
         {
-          title: ["For", "Brands & Spaces"],
+          title: ["面向", "Brands & Spaces"],
           short: "Brands",
-          sub: ["A signature sound", "that scales."],
+          sub: ["可规模化的", "品牌声音识别。"],
           body: "Atmos 把品牌变成一套可运行的声音系统，随时间、天气和人流调整，同时保持每个空间里的统一识别度。",
-          cta: "Explore Atmos",
-          href: atmosHref,
+          cta: "了解 Atmos",
+          href: productPageHref.atmos,
         },
         {
-          title: ["For", "Listeners"],
+          title: ["面向", "Listeners"],
           short: "Listeners",
-          sub: ["Music that meets you", "where you are."],
+          sub: ["音乐回应你", "所在的当下。"],
           body: "Vibe 为当下的房间、情绪和人群共同生成声音，让参与者进入实时共创的音乐体验。",
-          cta: "Meet Vibe",
-          href: vibeHref,
+          cta: "认识 Vibe",
+          href: productPageHref.vibe,
         },
       ],
-      previous: "Previous",
-      next: "Next",
-      label: "Audience slides",
+      previous: "上一项",
+      next: "下一项",
+      label: "受众轮播",
     },
     highlights: {
-      eyebrow: "Why Sonicite",
-      title: "Why Sonicite",
+      eyebrow: "为什么是 Sonicite",
+      title: "为什么是 Sonicite",
       description:
         "一套声音智能系统需要理解、生成、编排，并在真实场景中持续进化。",
       list: [
         {
-          title: "Understand",
+          title: "理解",
           pillar: "understand",
-          summary: "Reveal the structure, emotion, and intent behind sound.",
+          summary: "识别声音背后的结构、情绪与意图。",
         },
         {
-          title: "Create",
+          title: "创造",
           pillar: "create",
-          summary: "Transform ideas, emotions, and language into music.",
+          summary: "把想法、情绪和语言转化为音乐。",
         },
         {
-          title: "Orchestrate",
+          title: "编排",
           pillar: "orchestrate",
-          summary: "Adapt sound across people, spaces, and moments.",
+          summary: "让声音适配不同的人、空间与时刻。",
         },
         {
-          title: "Evolve",
+          title: "进化",
           pillar: "evolve",
-          summary: "Learn from creators, audiences, and environments.",
+          summary: "从创作者、听众与环境中持续学习。",
         },
       ],
     },
     blog: {
-      eyebrow: "Insights",
-      title: "Sound intelligence. In writing.",
+      eyebrow: "洞察",
+      title: "声音智能。写成文字。",
       description:
-        "Perspectives on music, identity, and the technology behind both. Field notes from people building the system that finally takes sound seriously.",
+        "关于音乐、身份与声音技术的观察。来自 Sonicite 团队的现场笔记，记录我们如何把声音当作系统来认真对待。",
       tabs: ["全部", "品牌", "技术", "产品"],
       articles: [
         {
@@ -325,16 +333,16 @@ const copyByLocale = {
       subscribing: "提交中...",
       subscribeSuccess: "已发送确认邮件，请查收邮箱。",
       subscribeError: "暂时发送失败，请稍后再试。",
-      bookCall: "Book A Call",
+      bookCall: "预约通话",
       privacy: "我们尊重你的隐私。随时退订。",
       products: "产品",
       productLinks: ["Sonicite Flow", "Sonicite Atmos", "Sonicite Vibe"],
       company: "公司",
-      companyLinks: ["Experiences", "博客", "关于", "联系"],
+      companyLinks: ["现场体验", "博客", "关于", "联系"],
       legal: "法律",
       legalLinks: ["隐私", "条款"],
       socialLinks: ["IG", "YouTube", "Rednote", "SoundCloud", "MixCloud"],
-      copyright: "© 2026 Sonicite. All rights reserved.",
+      copyright: "© 2026 Sonicite. 保留所有权利。",
     },
   },
   en: {
@@ -343,12 +351,12 @@ const copyByLocale = {
       atmos: "atmos",
       vibe: "vibe",
       brand: "Flow",
-      products: "Product",
-      experiences: "experiences",
+      products: "产品",
+      experiences: "现场体验",
       highlights: "Highlights",
-      blog: "blog",
-      about: "about",
-      contact: "contact",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite home",
     },
     locale: {
@@ -382,9 +390,9 @@ const copyByLocale = {
       meta: "Three orbits · one center",
       center: ["Sonicite", "System"],
       modules: [
-        { id: "flow", href: "#flow", name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
-        { id: "atmos", href: "#atmos", name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
-        { id: "vibe", href: "#vibe", name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
+        { id: "flow", href: productPageHref.flow, name: "sonicite", label: "flow", ariaLabel: "Sonicite Flow" },
+        { id: "atmos", href: productPageHref.atmos, name: "sonicite", label: "atmos", ariaLabel: "Sonicite Atmos" },
+        { id: "vibe", href: productPageHref.vibe, name: "sonicite", label: "vibe", ariaLabel: "Sonicite Vibe" },
       ],
       footLabel: "Read",
       foot:
@@ -464,7 +472,7 @@ const copyByLocale = {
           sub: ["Studio-grade taste", "at your fingertips."],
           body: "Spend less time chasing references and more time finishing tracks. Sonicite Flow listens with you, finds the next move, and adapts to your style.",
           cta: "Try Flow",
-          href: flowHref,
+          href: productPageHref.flow,
         },
         {
           title: ["For", "Brands & Spaces"],
@@ -472,7 +480,7 @@ const copyByLocale = {
           sub: ["A signature sound", "that scales."],
           body: "Atmos turns your brand into a living sound system — adapting to time, weather, and footfall while staying unmistakably you across every venue.",
           cta: "Explore Atmos",
-          href: atmosHref,
+          href: productPageHref.atmos,
         },
         {
           title: ["For", "Listeners"],
@@ -480,7 +488,7 @@ const copyByLocale = {
           sub: ["Music that meets you", "where you are."],
           body: "Vibe co-creates sound for the room you're in, the mood you're in, and the people you're with — in real time, with the people in it.",
           cta: "Meet Vibe",
-          href: vibeHref,
+          href: productPageHref.vibe,
         },
       ],
       previous: "Previous",
@@ -839,7 +847,7 @@ function StepVisual({ pillar }) {
   );
 }
 
-function AudienceSection({ copy }) {
+function AudienceSection({ copy, locale }) {
   const [activeAudience, setActiveAudience] = useState(0);
   const slides = copy.audiences.slides;
 
@@ -870,7 +878,7 @@ function AudienceSection({ copy }) {
 
       <div className="section__inner aud-container">
         <div className="section-rule aud-section-rule">
-          <span className="section-rule-label">Audiences</span>
+          <span className="section-rule-label">受众</span>
         </div>
 
         <div className="aud-stage" data-aud-stage>
@@ -899,7 +907,7 @@ function AudienceSection({ copy }) {
                     {slide.sub[1]}
                   </p>
                   <p className="aud-body">{slide.body}</p>
-                  <a className="aud-cta" href={slide.href}>
+                  <a className="aud-cta" href={withLocaleHref(slide.href, locale)}>
                     <span>{slide.cta}</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
                       <path d="M5 12h14M13 5l7 7-7 7" />
@@ -947,7 +955,7 @@ function BlogSection({ blogHref, copy, locale }) {
     <section className="home-blog reveal" id="blog" aria-labelledby="blog-title">
       <div className="section__inner home-blog-inner">
         <div className="home-section-rule">
-          <span>Notes</span>
+          <span>笔记</span>
         </div>
 
         <div className="home-blog-head reveal">
@@ -986,7 +994,7 @@ function BlogSection({ blogHref, copy, locale }) {
         <div className="home-blog-pagination reveal">
           <span>6 entries</span>
           <a href={blogHref}>
-            <span>Read all on the blog</span>
+            <span>阅读全部博客</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -997,7 +1005,7 @@ function BlogSection({ blogHref, copy, locale }) {
   );
 }
 
-function ConstellationSection({ copy }) {
+function ConstellationSection({ copy, locale }) {
   const constellationLabel = copy.constellation.eyebrow.replace(/^\d+\s*\/\s*/, "");
 
   return (
@@ -1029,7 +1037,7 @@ function ConstellationSection({ copy }) {
 
           {copy.constellation.modules.map((module) => (
             <div className={`orbit orbit-${module.id} constellation-orbit constellation-orbit--${module.id}`} key={module.id}>
-              <a className={`orb orb-${module.id} constellation-orb constellation-orb--${module.id}`} href={module.href} aria-label={module.ariaLabel}>
+              <a className={`orb orb-${module.id} constellation-orb constellation-orb--${module.id}`} href={withLocaleHref(module.href, locale)} aria-label={module.ariaLabel}>
                 <span className="orb-blob constellation-orb__blob" aria-hidden="true"></span>
                 <span className="orb-counter constellation-orb__counter">
                   <span className="orb-label constellation-orb__label">
@@ -1103,14 +1111,7 @@ export function LandingPage() {
 
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
-    const nextLocale =
-      queryLocale === "en" || queryLocale === "zh"
-        ? queryLocale
-        : storedLocale === "en" || storedLocale === "zh"
-          ? storedLocale
-          : browserLocale;
+    const nextLocale = queryLocale === "en" || queryLocale === "zh" ? queryLocale : "zh";
     setLocale(nextLocale);
   }, []);
 
@@ -1142,6 +1143,24 @@ export function LandingPage() {
       });
     };
 
+    const revealAllElements = () => {
+      elements.forEach((element) => element.classList.add("is-visible"));
+    };
+
+    const wasRestoredFromHistory = () => {
+      const navigationEntry = window.performance?.getEntriesByType?.("navigation")?.[0];
+      return navigationEntry?.type === "back_forward";
+    };
+
+    const handlePageShow = (event) => {
+      if (event.persisted || wasRestoredFromHistory()) {
+        revealAllElements();
+        return;
+      }
+
+      revealVisibleElements();
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -1167,13 +1186,13 @@ export function LandingPage() {
 
     const frameId = window.requestAnimationFrame(revealVisibleElements);
     const timeoutId = window.setTimeout(revealVisibleElements, 160);
-    window.addEventListener("pageshow", revealVisibleElements);
+    window.addEventListener("pageshow", handlePageShow);
 
     return () => {
       observer.disconnect();
       window.cancelAnimationFrame(frameId);
       window.clearTimeout(timeoutId);
-      window.removeEventListener("pageshow", revealVisibleElements);
+      window.removeEventListener("pageshow", handlePageShow);
     };
   }, []);
 
@@ -1275,13 +1294,17 @@ export function LandingPage() {
   const aboutHref = `/about?lang=${locale}`;
   const contactHref = `/contact?lang=${locale}`;
   const experiencesHref = `/experiences?lang=${locale}`;
+  const flowPageHref = withLocaleHref(productPageHref.flow, locale);
+  const atmosPageHref = withLocaleHref(productPageHref.atmos, locale);
+  const vibePageHref = withLocaleHref(productPageHref.vibe, locale);
   const footerProductHrefByLabel = {
-    "Sonicite Flow": flowHref,
-    "Sonicite Atmos": atmosHref,
-    "Sonicite Vibe": vibeHref,
+    "Sonicite Flow": flowPageHref,
+    "Sonicite Atmos": atmosPageHref,
+    "Sonicite Vibe": vibePageHref,
   };
   const footerCompanyHrefByLabel = {
     Experiences: experiencesHref,
+    "现场体验": experiencesHref,
     Blog: blogHref,
     "博客": blogHref,
     About: aboutHref,
@@ -1317,18 +1340,18 @@ export function LandingPage() {
 
             <div className="hero__control-row reveal">
               <div className="hero__actions">
-                <a className="button button--primary" href={flowHref}>
+                <a className="button button--primary" href={flowPageHref}>
                   {copy.hero.ctaPrimary}
                 </a>
-                <a className="button button--secondary" href={atmosHref}>
+                <a className="button button--secondary" href={atmosPageHref}>
                   {copy.hero.ctaSecondary}
                 </a>
-                <a className="button button--secondary" href={vibeHref}>
+                <a className="button button--secondary" href={vibePageHref}>
                   {copy.hero.ctaTertiary}
                 </a>
               </div>
 
-              <div className="video-console" aria-label="Video controls">
+              <div className="video-console" aria-label="视频控制">
                 <button
                   className="console-button"
                   type="button"
@@ -1387,12 +1410,12 @@ export function LandingPage() {
           </div>
         </section>
 
-        <ConstellationSection copy={copy} />
+        <ConstellationSection copy={copy} locale={locale} />
 
         <section className="section section--products products reveal" id="product-split" aria-labelledby="products-title">
           <div className="section__inner">
             <div className="section-rule home-products-rule">
-              <span className="section-rule-label">System</span>
+              <span className="section-rule-label">系统</span>
             </div>
             <div className="products-head reveal">
               <h2 className="products-title" id="products-title">{copy.products.title}</h2>
@@ -1424,7 +1447,7 @@ export function LandingPage() {
                     {product.module === "vibe" ? (
                       <div className="pc-eyebrow-row">
                         <span className="eyebrow">{product.label}</span>
-                        <span className="pc-badge">New</span>
+                        <span className="pc-badge">新</span>
                       </div>
                     ) : (
                       <span className="eyebrow">{product.label}</span>
@@ -1467,7 +1490,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <AudienceSection copy={copy} />
+        <AudienceSection copy={copy} locale={locale} />
 
         <section className="section how reveal" id="highlights" aria-labelledby="highlights-title">
           <div className="section__inner">
@@ -1501,7 +1524,7 @@ export function LandingPage() {
             <a className="sf-logo" href="#top" aria-label={copy.nav.homeLabel}>
               <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="sonicite-logo-img" />
             </a>
-            <p className="sf-tagline">Sound, finally on purpose.</p>
+            <p className="sf-tagline">让声音终于有意图。</p>
           </div>
 
           <nav className="sf-col" aria-label={copy.footer.products}>
@@ -1527,7 +1550,7 @@ export function LandingPage() {
           </nav>
 
           <div className="sf-col sf-subscribe">
-            <h3 className="sf-circle-title">Stay in tune</h3>
+            <h3 className="sf-circle-title">{copy.footer.title}</h3>
             <p className="sf-circle-body">{copy.footer.description}</p>
 
             <form className="sf-sub-form" onSubmit={handleFooterSubmit} noValidate>
@@ -1536,7 +1559,7 @@ export function LandingPage() {
                   id="sf-sub-email"
                   name="email"
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={copy.footer.emailPlaceholder}
                   autoComplete="email"
                   required
                   className="sf-sub-input"
@@ -1579,7 +1602,7 @@ export function LandingPage() {
             ))}
           </nav>
 
-          <nav className="sf-base-center sf-social" aria-label="Social">
+          <nav className="sf-base-center sf-social" aria-label="社交媒体">
             {copy.footer.socialLinks.map((link) => (
               <a
                 className={`sf-social-link ${link === "Rednote" ? "sf-social-text" : ""}`}

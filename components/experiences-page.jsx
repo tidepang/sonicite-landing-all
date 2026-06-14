@@ -12,11 +12,11 @@ const copy = {
     flow: "Flow",
     atmos: "Atmos",
     vibe: "Vibe",
-    experiences: "Experiences",
-    blog: "Blog",
-    about: "About",
-    contact: "Contact",
-    homeLabel: "Sonicite home",
+    experiences: "现场体验",
+    blog: "博客",
+    about: "关于",
+    contact: "联系",
+    homeLabel: "Sonicite 首页",
   },
   locale: { zh: "CN", en: "EN" },
 };
@@ -352,13 +352,12 @@ function BringVisual({ index }) {
 }
 
 export function ExperiencesPage() {
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("zh");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    setLocale(queryLocale === "zh" || queryLocale === "en" ? queryLocale : storedLocale === "zh" ? "zh" : "en");
+    setLocale(queryLocale === "zh" || queryLocale === "en" ? queryLocale : "zh");
   }, []);
 
   useEffect(() => {
@@ -381,10 +380,10 @@ export function ExperiencesPage() {
           <div className="sc-container hv8-layout experiences-hero-layout">
             <div className="hv8-text experiences-hero-text">
               <h1 className="hv8-title experiences-hero-title">
-                We soundtrack the <em>moments</em> that matter.
+                我们为重要的<em>时刻</em>配乐。
               </h1>
               <p className="hv8-dek experiences-hero-dek">
-                From opening nights to after-hours raves, Sonicite brings sound intelligence into physical space — as atmosphere, as performance, as experience.
+                从 opening night 到 after-hours rave，Sonicite 把声音智能带入真实空间：作为氛围，作为表演，也作为体验。
               </p>
             </div>
             <div className="hv8-art experiences-hero-art" aria-hidden="true">
@@ -395,7 +394,7 @@ export function ExperiencesPage() {
 
         <section className="xp-events" id="events">
           <div className="sc-container">
-            <SectionRule label="Events" />
+            <SectionRule label="活动" />
             <div className="xp-events-grid">
               {experienceEvents.map((event) => (
                 <a className="xp-event-card" href={`/experiences/${event.slug}?lang=${locale}`} data-tone={event.tone} key={event.slug}>
@@ -410,7 +409,7 @@ export function ExperiencesPage() {
                     <h3 className="xp-event-title">{event.title}</h3>
                     <p className="xp-event-tag">{event.cardTag}</p>
                     <span className="xp-event-arrow">
-                      View <span aria-hidden="true">→</span>
+                      查看 <span aria-hidden="true">→</span>
                     </span>
                   </div>
                 </a>
@@ -421,7 +420,7 @@ export function ExperiencesPage() {
 
         <section className="xp-bring" id="bring">
           <div className="sc-container">
-            <SectionRule label="What We Bring" />
+            <SectionRule label="我们带来什么" />
             <div className="xp-bring-grid">
               {bringItems.map(([tone, title, text], index) => (
                 <article className="xp-bring-card" data-tone={tone} key={title}>
@@ -441,13 +440,13 @@ export function ExperiencesPage() {
             <div className="about-invitation-card">
               <div className="about-inv-art" aria-hidden="true"></div>
               <div className="about-inv-content">
-                <span>Got a space or an event?</span>
+                <span>有空间或活动想一起做？</span>
                 <h3>
-                  Whether it's a <em>venue</em>, a <em>brand moment</em>, or a <em>festival</em> — or just a room that needs the right sound — we'd love to build it with you.
+                  不论是<em>场地</em>、<em>品牌时刻</em>、<em>音乐节</em>，还是一个需要对的声音的房间，我们都想和你一起把它做出来。
                 </h3>
                 <div>
                   <a className="sc-text-pill" href={`/contact?lang=${locale}`}>
-                    Say hello <span aria-hidden="true">→</span>
+                    打个招呼 <span aria-hidden="true">→</span>
                   </a>
                   <a className="sc-text-pill" href="mailto:hello@sonicite.ai">
                     hello@sonicite.ai

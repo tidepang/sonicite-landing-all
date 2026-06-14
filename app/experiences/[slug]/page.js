@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${event.title} | Sonicite Experiences`,
+    title: `${event.title} | Sonicite 现场体验`,
     description: `${event.venue} · ${event.city} · ${event.date}`,
   };
 }

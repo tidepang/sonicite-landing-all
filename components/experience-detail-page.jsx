@@ -11,11 +11,11 @@ const copy = {
     flow: "Flow",
     atmos: "Atmos",
     vibe: "Vibe",
-    experiences: "Experiences",
-    blog: "Blog",
-    about: "About",
-    contact: "Contact",
-    homeLabel: "Sonicite home",
+    experiences: "现场体验",
+    blog: "博客",
+    about: "关于",
+    contact: "联系",
+    homeLabel: "Sonicite 首页",
   },
   locale: { zh: "CN", en: "EN" },
 };
@@ -86,13 +86,12 @@ function renderCreditName(name) {
 }
 
 export function ExperienceDetailPage({ event }) {
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("zh");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    setLocale(queryLocale === "zh" || queryLocale === "en" ? queryLocale : storedLocale === "zh" ? "zh" : "en");
+    setLocale(queryLocale === "zh" || queryLocale === "en" ? queryLocale : "zh");
   }, []);
 
   useEffect(() => {
@@ -113,7 +112,7 @@ export function ExperienceDetailPage({ event }) {
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M19 12H5M11 19l-7-7 7-7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          All experiences
+          所有现场体验
         </a>
 
         <section className="xpd-hero">
@@ -141,40 +140,51 @@ export function ExperienceDetailPage({ event }) {
           </div>
         </section>
 
-        <section className="xpd-video-wrap">
-          <div className="sc-container">
-            <div className="xpd-video">
-              <div className="xpd-video-placeholder">
-                <div className="xpd-play" aria-hidden="true">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5v14l11-7-11-7z" fill="currentColor" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <span className="xpd-play-label">Featured video · placeholder</span>
+        {event.videoSrc ? (
+          <section className="xpd-video-wrap">
+            <div className="sc-container">
+              <div className="xpd-video">
+                <video className="xpd-video-player" src={event.videoSrc} autoPlay muted controls playsInline preload="metadata" poster={event.fullImage} />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         <section className="xpd-gallery-wrap">
           <div className="sc-container">
-            <SectionRule label="Gallery" />
+            <SectionRule label="现场图集" />
             <div className="xpd-gallery">
-              {(event.galleryRatios || ["ar-4-5", "ar-16-9", "ar-3-4", "ar-3-2", "ar-1-1", "ar-3-4", "ar-4-5", "ar-16-9", "ar-3-2"]).map((ratio, index) => (
-                <div className={`xpd-gallery-item ${ratio}`} key={`${ratio}-${index}`}>
-                  <div className="xpd-gallery-placeholder">
-                    <GalleryPlaceholderIcon />
-                    <span>Photo · placeholder {String(index + 1).padStart(2, "0")}</span>
+              {(event.galleryImages?.length ? event.galleryImages : event.galleryRatios || ["ar-4-5", "ar-16-9", "ar-3-4", "ar-3-2", "ar-1-1", "ar-3-4", "ar-4-5", "ar-16-9", "ar-3-2"]).map((item, index) => {
+                const hasImage = event.galleryImages?.length;
+                const ratio = hasImage ? event.galleryRatios?.[index % event.galleryRatios.length] || "ar-4-5" : item;
+
+                return (
+                  <div className={`xpd-gallery-item ${ratio}`} key={`${ratio}-${index}`}>
+                    {hasImage ? (
+                      <Image
+                        src={item}
+                        alt={`${event.title} photo ${String(index + 1).padStart(2, "0")}`}
+                        fill
+                        unoptimized
+                        sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+                        className="xpd-gallery-img"
+                      />
+                    ) : (
+                      <div className="xpd-gallery-placeholder">
+                        <GalleryPlaceholderIcon />
+                        <span>照片 · 待上传 {String(index + 1).padStart(2, "0")}</span>
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
 
         <section className="xpd-credits">
           <div className="sc-container">
-            <SectionRule label="Credits" />
+            <SectionRule label="参与者" />
             <div className="xpd-credits-grid">
               {event.credits.map(([role, name, bio]) => (
                 <div className="xpd-credit-item" key={`${role}-${typeof name === "string" ? name : name.text}`}>
@@ -190,7 +200,7 @@ export function ExperienceDetailPage({ event }) {
         {event.partners?.length ? (
           <section className="xpd-featured xpd-partners">
             <div className="sc-container">
-              <SectionRule label="Partners" />
+              <SectionRule label="合作伙伴" />
               <div className="xpd-partner-row">
                 {event.partners.map((partner) => {
                   const src = partnerSrc(partner);

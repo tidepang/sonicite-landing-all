@@ -17,7 +17,7 @@ export function PageAmbient() {
   );
 }
 
-export function SiteNav({ locale, setLocale, current = "home", labels }) {
+export function SiteNav({ locale, setLocale, current = "home", labels, hideLocaleSwitch = false }) {
   const lang = locale === "zh" ? "zh" : "en";
   const homeHref = `/?lang=${lang}`;
   const blogHref = `/blog?lang=${lang}`;
@@ -25,23 +25,23 @@ export function SiteNav({ locale, setLocale, current = "home", labels }) {
   const contactHref = `/contact?lang=${lang}`;
   const experiencesHref = `/experiences?lang=${lang}`;
   const productItems = [
-    { id: "flow", href: `/flow?lang=${lang}`, name: "Flow", tag: "For DJs" },
-    { id: "atmos", href: `/atmos?lang=${lang}`, name: "Atmos", tag: "For spaces" },
-    { id: "vibe", href: `/vibe?lang=${lang}`, name: "Vibe", tag: "For everyone" },
+    { id: "flow", href: `/flow?lang=${lang}`, name: "Flow", tag: "面向 DJ" },
+    { id: "atmos", href: `/atmos?lang=${lang}`, name: "Atmos", tag: "面向空间" },
+    { id: "vibe", href: `/vibe?lang=${lang}`, name: "Vibe", tag: "面向所有人" },
   ];
   const nav = labels?.nav ?? {};
   const localeLabels = labels?.locale ?? { zh: "CN", en: "EN" };
 
   return (
     <header className="sc-nav-wrap">
-      <nav className="sc-nav" aria-label="Primary">
+      <nav className="sc-nav" aria-label={locale === "zh" ? "主导航" : "Primary"}>
         <a className="sc-nav-logo" href={homeHref} aria-label={nav.homeLabel || "Sonicite home"}>
           <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="sc-logo-img" priority />
         </a>
         <div className="sc-nav-links">
           <div className="sc-product-menu">
             <button className="sc-product-menu-trigger" type="button" aria-current={["flow", "atmos", "vibe"].includes(current) ? "page" : undefined}>
-              {nav.product || nav.products || "Product"}
+              Product
             </button>
             <div className="sc-product-dropdown" role="menu">
               {productItems.map((item) => (
@@ -53,25 +53,27 @@ export function SiteNav({ locale, setLocale, current = "home", labels }) {
             </div>
           </div>
           <a href={experiencesHref} aria-current={current === "experiences" ? "page" : undefined}>
-            {nav.experiences || "Experiences"}
+            Experiences
           </a>
           <a href={blogHref} aria-current={current === "blog" ? "page" : undefined}>
-            {nav.blog || "Blog"}
+            Blog
           </a>
           <a href={aboutHref} aria-current={current === "about" ? "page" : undefined}>
-            {nav.about || "About"}
+            About
           </a>
           <a href={contactHref} aria-current={current === "contact" ? "page" : undefined}>
-            {nav.contact || "Contact"}
+            Contact
           </a>
-          <div className="sc-lang-switch" role="group" aria-label="Language">
-            <button className={`sc-lang-btn ${locale === "zh" ? "is-active" : ""}`} type="button" onClick={() => setLocale("zh")}>
-              {localeLabels.zh}
-            </button>
-            <button className={`sc-lang-btn ${locale === "en" ? "is-active" : ""}`} type="button" onClick={() => setLocale("en")}>
-              {localeLabels.en}
-            </button>
-          </div>
+          {hideLocaleSwitch ? null : (
+            <div className="sc-lang-switch" role="group" aria-label={locale === "zh" ? "语言" : "Language"}>
+              <button className={`sc-lang-btn ${locale === "zh" ? "is-active" : ""}`} type="button" onClick={() => setLocale("zh")}>
+                {localeLabels.zh}
+              </button>
+              <button className={`sc-lang-btn ${locale === "en" ? "is-active" : ""}`} type="button" onClick={() => setLocale("en")}>
+                {localeLabels.en}
+              </button>
+            </div>
+          )}
         </div>
       </nav>
     </header>
@@ -92,14 +94,14 @@ export function SiteFooter({ locale = "en" }) {
   const copy =
     locale === "zh"
       ? {
-          tagline: "Sound, finally on purpose.",
-          products: "Products",
-          company: "Company",
-          tune: "Stay in tune",
-          body: "Product updates, music intelligence notes, and early access — delivered occasionally.",
+          tagline: "让声音终于有意图。",
+          products: "产品",
+          company: "公司",
+          tune: "保持同步",
+          body: "不定期发送产品更新、音乐智能笔记和早期体验邀请。",
           placeholder: "your@email.com",
-          note: "We respect your privacy. Unsubscribe anytime.",
-          copyright: "© 2026 Sonicite. All rights reserved.",
+          note: "我们尊重你的隐私，可随时退订。",
+          copyright: "© 2026 Sonicite. 保留所有权利。",
         }
       : {
           tagline: "Sound, finally on purpose.",
@@ -117,7 +119,7 @@ export function SiteFooter({ locale = "en" }) {
       <div className="sc-sf-accent" aria-hidden="true"></div>
       <div className="sc-container sc-sf-grid">
         <div className="sc-sf-col sc-sf-brand">
-          <a href={homeHref} className="sc-sf-logo" aria-label="Sonicite home">
+          <a href={homeHref} className="sc-sf-logo" aria-label={locale === "zh" ? "Sonicite 首页" : "Sonicite home"}>
             <Image src={logoSrc} alt="sonicite" width={2000} height={800} className="sc-logo-img" />
           </a>
           <p className="sc-sf-tagline">{copy.tagline}</p>
@@ -142,16 +144,16 @@ export function SiteFooter({ locale = "en" }) {
           <h5>{copy.company}</h5>
           <ul>
             <li>
-              <a href={`/experiences?lang=${lang}`}>Experiences</a>
+              <a href={`/experiences?lang=${lang}`}>{locale === "zh" ? "现场体验" : "Experiences"}</a>
             </li>
             <li>
-              <a href={`/blog?lang=${lang}`}>Blog</a>
+              <a href={`/blog?lang=${lang}`}>{locale === "zh" ? "博客" : "Blog"}</a>
             </li>
             <li>
-              <a href={`/about?lang=${lang}`}>About</a>
+              <a href={`/about?lang=${lang}`}>{locale === "zh" ? "关于" : "About"}</a>
             </li>
             <li>
-              <a href={`/contact?lang=${lang}`}>Contact</a>
+              <a href={`/contact?lang=${lang}`}>{locale === "zh" ? "联系" : "Contact"}</a>
             </li>
           </ul>
         </nav>
@@ -161,9 +163,9 @@ export function SiteFooter({ locale = "en" }) {
           <p>{copy.body}</p>
           <form className="sc-sf-sub-form" onSubmit={(event) => event.preventDefault()}>
             <label className="sc-sf-sub-row">
-              <span className="sr-only">Email</span>
+              <span className="sr-only">{locale === "zh" ? "邮箱" : "Email"}</span>
               <input type="email" name="email" placeholder={copy.placeholder} autoComplete="email" className="sc-sf-sub-input" />
-              <button type="submit" className="sc-sf-sub-btn" aria-label="Subscribe">
+              <button type="submit" className="sc-sf-sub-btn" aria-label={locale === "zh" ? "订阅" : "Subscribe"}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -177,13 +179,13 @@ export function SiteFooter({ locale = "en" }) {
       <div className="sc-container sc-sf-base">
         <div className="sc-sf-base-left">
           <a href={homeHref} className="sc-sf-base-link">
-            Privacy
+            {locale === "zh" ? "隐私" : "Privacy"}
           </a>
           <a href={homeHref} className="sc-sf-base-link">
-            Terms
+            {locale === "zh" ? "条款" : "Terms"}
           </a>
         </div>
-        <div className="sc-sf-social" aria-label="Social">
+        <div className="sc-sf-social" aria-label={locale === "zh" ? "社交媒体" : "Social"}>
           <a href="https://instagram.com/sonicite" target="_blank" rel="noreferrer" className="sc-sf-social-link" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />

@@ -11,37 +11,37 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite 首页",
     },
     locale: { zh: "CN", en: "EN" },
     hero: {
-      eyebrow: "Contact Sonicite",
-      titlePrefix: "Say",
-      titleEmphasis: "hello",
-      summary: "We'd love to hear from you.",
-      bookCall: "Book A Call",
+      eyebrow: "联系 Sonicite",
+      titlePrefix: "打个",
+      titleEmphasis: "招呼",
+      summary: "我们想听听你的想法。",
+      bookCall: "预约通话",
       emailPrompt: "或者发邮件给我们：",
       email: "hello@sonicite.ai",
     },
     section: {
-      label: "Write to us",
-      title: "Tell us\nwhat's on your mind.",
-      body: "One field per thought. No identity boxes, no role pickers — just say what you'd say if we were across the table.",
+      label: "写给我们",
+      title: "告诉我们\n你正在想什么。",
+      body: "不用选择身份，也不用填写复杂角色。就像我们坐在同一张桌子对面一样，把你想说的话写下来。",
     },
     form: {
-      name: "Your name",
-      namePlaceholder: "Jane Smith",
-      email: "Your email",
+      name: "你的名字",
+      namePlaceholder: "张三",
+      email: "你的邮箱",
       emailPlaceholder: "jane@example.com",
-      message: "Your message",
-      messagePlaceholder: "What's on your mind?",
-      submit: "Send",
+      message: "你的消息",
+      messagePlaceholder: "你想聊什么？",
+      submit: "发送",
       sending: "发送中...",
-      sent: "Sent",
+      sent: "已发送",
       success: "感谢您的联系！我们会尽快回复。",
       error: "暂时发送失败，请直接邮件联系 hello@sonicite.ai。",
       errors: {
@@ -58,10 +58,10 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite home",
     },
     locale: { zh: "CN", en: "EN" },
@@ -165,14 +165,10 @@ export function ContactPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
     setLocale(
       queryLocale === "en" || queryLocale === "zh"
         ? queryLocale
-        : storedLocale === "en" || storedLocale === "zh"
-          ? storedLocale
-          : browserLocale,
+        : "zh",
     );
   }, []);
 

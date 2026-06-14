@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { PageAmbient, SectionRule, SiteFooter, SiteNav } from "@/components/sonicite-shared";
-import { articleCopyByLocale, getArticle, getRelatedArticles } from "@/components/blog-article-data";
+import { getArticle, getRelatedArticles } from "@/components/blog-article-data";
 
 const localeStorageKey = "sonicite-landing-locale";
 
@@ -13,121 +13,23 @@ const navCopyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
-      homeLabel: "Sonicite home",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
+      homeLabel: "Sonicite 首页",
     },
     locale: { zh: "CN", en: "EN" },
     actions: {
-      back: "Back to Blog",
-      related: "Related Reading",
-      share: "Share",
-      copied: "Copied",
-      read: "Read article",
-      inviteEyebrow: "Co-creation circle",
-      inviteTitle: "Have insights worth sharing? Got a story, an essay, or a strong take on sound? Join our co-creation circle and write with us.",
-      invitePrimary: "Get in touch",
+      back: "返回 Blog",
+      related: "相关阅读",
+      share: "分享",
+      copied: "已复制",
+      read: "阅读文章",
+      inviteEyebrow: "共创圈",
+      inviteTitle: "有值得分享的洞察、故事、文章，或关于声音的强观点？加入我们的共创圈，一起写。",
+      invitePrimary: "联系我们",
     },
-  },
-  en: {
-    nav: {
-      flow: "Flow",
-      atmos: "Atmos",
-      vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
-      homeLabel: "Sonicite home",
-    },
-    locale: { zh: "CN", en: "EN" },
-    actions: {
-      back: "Back to Blog",
-      related: "Related Reading",
-      share: "Share",
-      copied: "Copied",
-      read: "Read article",
-      inviteEyebrow: "Co-creation circle",
-      inviteTitle: "Have insights worth sharing? Got a story, an essay, or a strong take on sound? Join our co-creation circle and write with us.",
-      invitePrimary: "Get in touch",
-    },
-  },
-};
-
-const cloneArticleMeta = {
-  "why-humans-need-music": {
-    titleParts: ["Why Humans Will Always Need ", "Music", ""],
-    title: "Why Humans Will Always Need Music",
-    category: "Culture",
-    tag: "culture",
-    date: "Jun 04 2026",
-    readTime: "8 min read",
-    byline: "Sonicite",
-    image: "/images/blog-1.jpg",
-    summary:
-      "Music isn't just art — it's one of humanity's oldest survival mechanisms. From physiological rhythm to social bonding, emotional release to memory — as long as we feel, music will always matter.",
-  },
-  "founder-confession": {
-    titleParts: ["From The Pure ", "Love", " of Music"],
-    title: "From The Pure Love of Music",
-    category: "Story",
-    tag: "story",
-    date: "May 28 2026",
-    readTime: "10 min read",
-    byline: "Brenda Xia",
-    image: "/images/blog-2.jpg",
-    summary:
-      "From guzheng to raves, from the DJ booth to building AI tools — Sonicite founder Brenda's musical journey, and why the best products start from personal frustration.",
-  },
-  "how-djs-find-music": {
-    titleParts: ["How Do ", "DJs", " Find Music?"],
-    title: "How Do DJs Find Music?",
-    category: "Insights",
-    tag: "insights",
-    date: "May 14 2026",
-    readTime: "7 min read",
-    byline: "Sonicite",
-    image: "/images/blog-3.jpg",
-    summary:
-      "Finding music has never been the easy part of a DJ's job. We spoke with 20 professional DJs worldwide to break down how they dig, which platforms they trust, and what separates taste from just knowing a lot of songs.",
-  },
-  "why-clubs-ban-phones": {
-    titleParts: ["Why Are More Clubs Going ", "Phone-Free", "?"],
-    title: "Why Are More Clubs Going Phone-Free?",
-    category: "Trend",
-    tag: "trend",
-    date: "Apr 30 2026",
-    readTime: "9 min read",
-    byline: "Sonicite",
-    image: "/images/blog-4.jpg",
-    summary:
-      "From Berlin to Ibiza, nightlife venues are limiting phones to protect immersion, privacy, and authentic dance floor culture. This article explores how smartphones are reshaping club experiences, DJ performance, and the future of nightlife itself.",
-  },
-  "generative-ai-music-industry": {
-    titleParts: ["How ", "Generative AI", " Is Reshaping the Music Industry"],
-    title: "How Generative AI Is Reshaping the Music Industry",
-    category: "Tech",
-    tag: "tech",
-    date: "Apr 16 2026",
-    readTime: "8 min read",
-    byline: "Sonicite",
-    image: "/images/blog-5.jpg",
-    summary:
-      "From Suno and Udio to AI voice cloning, the way music is created, owned, and experienced is rapidly changing. Music is no longer static content, but a dynamic, generative experience.",
-  },
-  "music-media-evolution": {
-    titleParts: ["From ", "Vinyl", " to Streaming"],
-    title: "From Vinyl to Streaming",
-    category: "Tech",
-    tag: "tech",
-    date: "Apr 02 2026",
-    readTime: "8 min read",
-    byline: "Sonicite",
-    image: "/images/blog-6.jpg",
-    summary:
-      "Over the past century, the evolution of music formats has continuously reshaped how music is produced, distributed, and consumed. Technology has become the core logic of the music industry itself.",
   },
 };
 
@@ -145,20 +47,11 @@ function enhanceArticle(article) {
     return null;
   }
 
-  const cloneMeta = cloneArticleMeta[article.id];
-
-  if (!cloneMeta) {
-    return {
-      ...article,
-      tag: "culture",
-      titleParts: [article.title, "", ""],
-      byline: "Sonicite",
-    };
-  }
-
   return {
     ...article,
-    ...cloneMeta,
+    tag: article.tag || "culture",
+    titleParts: article.titleParts || [article.title, "", ""],
+    byline: article.byline || "Sonicite",
     body: article.body,
   };
 }
@@ -283,47 +176,28 @@ function BlogInvitation({ copy, locale }) {
 }
 
 export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRelatedArticles = [] }) {
-  const [locale, setLocale] = useState("zh");
+  const locale = "zh";
   const [copied, setCopied] = useState(false);
-  const copy = navCopyByLocale[locale] ?? fallbackCopy ?? navCopyByLocale.zh;
-  const article = enhanceArticle(getArticle(locale, slug) ?? initialArticle ?? getArticle("zh", slug));
+  const copy = navCopyByLocale.zh ?? fallbackCopy;
+  const article = enhanceArticle(getArticle("zh", slug) ?? initialArticle);
   const relatedArticles = useMemo(() => {
     if (cloneRelatedIds[slug]) {
       return cloneRelatedIds[slug]
-        .map((id) => enhanceArticle(getArticle(locale, id) ?? getArticle("zh", id)))
+        .map((id) => enhanceArticle(getArticle("zh", id)))
         .filter(Boolean);
     }
 
-    const fromLocale = getRelatedArticles(locale, slug);
+    const fromLocale = getRelatedArticles("zh", slug);
     const related = fromLocale.length > 0 ? fromLocale : initialRelatedArticles;
     return related.map(enhanceArticle).filter(Boolean).slice(0, 3);
-  }, [initialRelatedArticles, locale, slug]);
+  }, [initialRelatedArticles, slug]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
-    const nextLocale =
-      queryLocale === "en" || queryLocale === "zh"
-        ? queryLocale
-        : storedLocale === "en" || storedLocale === "zh"
-          ? storedLocale
-          : browserLocale;
-
-    setLocale(nextLocale);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+    document.documentElement.lang = "zh-CN";
     window.localStorage.setItem(localeStorageKey, locale);
 
     const url = new URL(window.location.href);
@@ -342,7 +216,7 @@ export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRel
       return;
     }
 
-    const text = encodeURIComponent(`Read this on Sonicite: ${article.title}`);
+    const text = encodeURIComponent(`在 Sonicite 阅读：${article.title}`);
     const url = encodeURIComponent(window.location.href);
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank", "noopener,noreferrer");
   };
@@ -359,7 +233,7 @@ export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRel
 
   return (
     <div className="sc-page page-blog page-blog-single">
-      <SiteNav locale={locale} setLocale={setLocale} current="blog" labels={copy} />
+      <SiteNav locale={locale} setLocale={() => {}} current="blog" labels={copy} hideLocaleSwitch />
       <PageAmbient />
 
       <main className="sc-main" id="top">
@@ -377,7 +251,7 @@ export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRel
                 <span className="ah-meta-item">{article.readTime}</span>
                 <span className="ah-meta-dot"></span>
                 <span className="ah-meta-item ah-byline-inline">
-                  By <strong>{article.byline}</strong>
+                  作者 <strong>{article.byline}</strong>
                 </span>
               </div>
 
@@ -402,10 +276,10 @@ export function BlogArticlePage({ slug, fallbackCopy, initialArticle, initialRel
                 </a>
                 <div className="as-share">
                   <span className="as-share-label">{copied ? copy.actions.copied : copy.actions.share}</span>
-                  <button aria-label="Share on X" type="button" onClick={handleShare}>
+                  <button aria-label="分享到 X" type="button" onClick={handleShare}>
                     <ShareIcon />
                   </button>
-                  <button aria-label="Copy link" type="button" onClick={handleCopy}>
+                  <button aria-label="复制链接" type="button" onClick={handleCopy}>
                     <LinkIcon />
                   </button>
                 </div>

@@ -15,41 +15,41 @@ const productLogos = {
 
 const navLabels = {
   nav: {
-    product: "Product",
-    products: "Product",
-    experiences: "experiences",
-    blog: "blog",
-    about: "about",
-    contact: "contact",
-    homeLabel: "Sonicite home",
+    product: "产品",
+    products: "产品",
+    experiences: "现场体验",
+    blog: "博客",
+    about: "关于",
+    contact: "联系",
+    homeLabel: "Sonicite 首页",
   },
   locale: { zh: "CN", en: "EN" },
 };
 
 const audienceSlides = [
   {
-    title: "For DJs & Music Curators",
+    title: "面向 DJ 与音乐策划者",
     titleEm: "DJs & Music Curators",
-    sub: "Studio-grade taste at your fingertips.",
-    body: "Spend less time chasing references and more time finishing tracks. Sonicite Flow listens with you, finds the next move, and adapts to your style.",
+    sub: "把专业级判断放到手边。",
+    body: "少花时间追参考，多把时间留给完成作品。Sonicite Flow 和你一起听，找到下一步，并逐渐适配你的风格。",
     href: "/flow",
-    cta: "Try Flow",
+    cta: "体验 Flow",
   },
   {
-    title: "For Brands & Spaces",
+    title: "面向品牌与空间",
     titleEm: "Brands & Spaces",
-    sub: "A signature sound that scales.",
-    body: "Atmos turns your brand into a living sound system, adapting to time, weather, and footfall while staying unmistakably you across every venue.",
+    sub: "可规模化的品牌声音识别。",
+    body: "Atmos 把品牌变成一套可运行的声音系统，随时间、天气和人流调整，同时保持每个空间里的统一识别度。",
     href: "/atmos",
-    cta: "Explore Atmos",
+    cta: "了解 Atmos",
   },
   {
-    title: "For Listeners",
+    title: "面向听众",
     titleEm: "Listeners",
-    sub: "Music that meets you where you are.",
-    body: "Vibe co-creates sound for the room you’re in, the mood you’re in, and the people you’re with, in real time, with the people in it.",
+    sub: "音乐回应你所在的当下。",
+    body: "Vibe 为当下的房间、情绪和人群共同生成声音，让参与者进入实时共创的音乐体验。",
     href: "/vibe",
-    cta: "Meet Vibe",
+    cta: "认识 Vibe",
   },
 ];
 
@@ -59,212 +59,210 @@ const productPages = {
     title: "Sonicite Flow",
     accent: "flow",
     externalHref: "https://flow.sonicite.ai/",
-    heroTitle: "Not lost.",
-    heroAccent: "Led.",
-    heroSub: "Music that knows where you're going.",
-    heroNote: "Built for DJs. Free during pilot.",
-    primaryCta: "Join the waitlist",
+    heroTitle: "不再迷失。",
+    heroAccent: "被音乐带路。",
+    heroSub: "知道你要去哪里的音乐工作流。",
+    heroNote: "为 DJ 打造，试点期免费。",
+    primaryCta: "加入候补名单",
     secondaryCta: null,
-    videoLabel: "Product film - to be embedded",
+    videoLabel: "产品影片 - 即将嵌入",
     audienceIndex: 0,
     sections: [
       {
         type: "flora",
-        eyebrow: "How it works",
-        title: <>Built for every part of <em>your workflow.</em></>,
-        sub: "From library chaos to a set that's ready.",
+        eyebrow: "如何工作",
+        title: <>覆盖你工作流的<em>每一个环节。</em></>,
+        sub: "从混乱曲库，到可直接上场的 set。",
         items: [
           {
             num: "01",
-            label: "Library",
-            title: "Your library, finally understood.",
-            body: "Flow parses every track's style, energy, mood, timbre, vocals, and harmonic structure. Tags generate automatically.",
-            expanded: "Mix suggestions appear alongside. Your library stops being a folder and starts being a tool.",
+            label: "曲库",
+            title: "终于真正理解你的曲库。",
+            body: "Flow 解析每首歌的风格、能量、情绪、音色、人声和和声结构，并自动生成标签。",
+            expanded: "混音建议会同步出现。你的曲库不再只是文件夹，而是一套可操作的工具。",
             visual: "library",
           },
           {
             num: "02",
-            label: "Search",
-            title: "Find it by feeling. Or find its twin.",
-            body: 'Type how a track should feel, like "intense but not distracting", and Flow searches your library and connected platforms.',
-            expanded: "Or start from a track you love: Flow surfaces everything that matches its energy, key, and mood with a similarity score.",
+            label: "搜索",
+            title: "按感觉找歌，也能找到它的双生曲。",
+            body: '输入你想要的感受，比如「强烈但不分散注意力」，Flow 会搜索你的曲库和已连接平台。',
+            expanded: "也可以从一首你喜欢的歌出发：Flow 会找出能量、调性和情绪相近的曲目，并给出相似度。",
             visual: "search",
           },
           {
             num: "03",
-            label: "Setlist",
-            title: "Pick the room. Get the set.",
-            body: "Club, festival, coffee shop, fashion event: select your setting and Flow builds a setlist that fits the energy arc and mood.",
-            expanded: "Adjust any track. Reorder freely. The logic stays intact.",
+            label: "歌单",
+            title: "选择场景，生成整套 set。",
+            body: "Club、音乐节、咖啡店、时装活动：选择场景后，Flow 会生成符合能量曲线与情绪的 setlist。",
+            expanded: "你可以替换任意曲目、自由调整顺序，整体逻辑仍会保持稳定。",
             visual: "setlist",
           },
           {
             num: "04",
-            label: "Assistant",
-            title: "Advice that knows your library.",
-            body: "Ask about mix techniques, gear, or music theory. Flow's assistant has full context of your library.",
-            expanded: "Its suggestions reference your actual tracks, not hypothetical ones.",
+            label: "助手",
+            title: "真正了解你曲库的建议。",
+            body: "你可以询问混音技巧、设备或乐理。Flow 助手拥有你的曲库上下文。",
+            expanded: "它给出的建议会引用你的真实曲目，而不是抽象假设。",
             visual: "assistant",
           },
         ],
       },
       {
         type: "beliefs",
-        eyebrow: "Why Flow",
+        eyebrow: "为什么是 Flow",
         items: [
-          ["Your library finally knows you.", "Flow understands the music you already have, not just metadata. It reads energy, texture, vocals, key, mood, and fit."],
-          ["Break past your own musical boundaries.", "Find adjacent tracks, unexpected twins, and set directions that keep your taste moving without losing your identity."],
-          ["Any venue, any vibe, always ready.", "Turn scene, time, and energy into a working set structure before you step into the room."],
-          ["Play like you've done this a hundred times.", "Keep the judgment yours, while Flow handles the listening, comparison, and structure around it."],
+          ["让曲库终于懂你。", "Flow 理解你已经拥有的音乐，而不只是 metadata。它读取能量、质感、人声、调性、情绪和适配度。"],
+          ["突破自己的音乐边界。", "找到相邻曲目、意外双生曲和新的 set 方向，让你的审美持续移动，同时不丢掉自己的身份。"],
+          ["任何场地、任何 vibe，都能准备好。", "在进入现场前，把场景、时间和能量转化成可执行的 set 结构。"],
+          ["像已经演过一百次那样上场。", "判断仍然属于你，Flow 负责周围的聆听、比较和结构。"],
         ],
       },
     ],
-    finalTitle: <>Ready to hear <span>the difference?</span></>,
-    finalBody: "Join the waitlist and be among the first DJs to manage their library with Flow.",
+    finalTitle: <>准备好听见<span>差别了吗？</span></>,
+    finalBody: "加入候补名单，成为第一批用 Flow 管理曲库的 DJ。",
   },
   atmos: {
     module: "atmos",
     title: "Sonicite Atmos",
     accent: "atmos",
     externalHref: "https://atmos.sonicite.ai/",
-    heroTitle: "Not heard.",
-    heroAccent: "Felt.",
-    heroSub: "Beyond playlists. A living sonic identity.",
+    heroTitle: "不只是被听见。",
+    heroAccent: "而是被感知。",
+    heroSub: "超越播放列表，一套活的声音身份。",
     heroNote: null,
-    primaryCta: "Join the Pilot",
-    secondaryCta: "Hear your space",
-    videoLabel: "Space film + Atmos interface - to be embedded",
+    primaryCta: "加入试点",
+    secondaryCta: "聆听你的空间",
+    videoLabel: "空间影片 + Atmos 界面 - 即将嵌入",
     audienceIndex: 1,
     sections: [
       {
         type: "stats",
-        eyebrow: "Why sound matters",
-        title: <>Every detail of your space is <em>designed.</em> Except the sound.</>,
-        sub: "Light, material, scent, all considered. But most spaces still leave their soundtrack to chance. Atmos changes that.",
+        eyebrow: "为什么声音重要",
+        title: <>空间里的每个细节都被<em>设计过。</em>除了声音。</>,
+        sub: "光线、材质、气味都被认真考虑，但大多数空间仍把背景音乐交给随机播放。Atmos 改变这件事。",
         items: [
-          ["+38%", "Dwell time", "Guests stay longer when the music matches the pace of the space."],
-          ["+9%", "Spend per visit", "Tempo and energy level directly influence how people move, and what they order."],
-          ["96%", "Brand recall", "Sound is processed emotionally before it's processed consciously. It stays."],
-          ["2x", "Emotional response", "Music triggers twice the emotional engagement of any other ambient stimulus in a space."],
+          ["+38%", "停留时间", "当音乐匹配空间节奏，客人会停留更久。"],
+          ["+9%", "单次消费", "速度和能量会直接影响人的移动方式，以及他们点什么。"],
+          ["96%", "品牌记忆", "声音先被情绪处理，再被意识处理。它会留下来。"],
+          ["2x", "情绪响应", "音乐触发的情绪参与度，是其他环境刺激的两倍。"],
         ],
       },
       {
         type: "flora",
-        eyebrow: "How it works",
-        title: <>From a few questions to a <em>living sonic identity.</em></>,
+        eyebrow: "如何工作",
+        title: <>从几个问题开始，生成一套<em>活的声音身份。</em></>,
         items: [
-          ["01", "Describe", "Describe your space. We read your brand.", "Answer four questions about your space and your guests. Or go deeper: upload your brand guide, drop in your website.", "Atmos reads your visual identity and translates it into sound direction.", "Brand input"],
-          ["02", "Persona", "Your brand persona takes shape.", "Atmos matches your space to a sonic archetype and generates a named persona with sound direction, space essence, and wants and avoids.", "Not a genre. A character built around your brand.", "Persona card"],
-          ["03", "Live", "Music goes live. Sequenced like a pro set.", "Every track is selected and ordered by key, energy, and emotional arc, the way a professional DJ builds a set.", "Not shuffled. Not random. A continuous sound journey that fits your space and shifts with the time of day.", "Live playback"],
-          ["04", "Tune", "Adjust the mood. Train your sound.", "Drag the mood dial between Fluid and Structured, Easy and Intense, and hear the shift in real time.", "The more you interact, the more precisely Atmos understands what your space needs.", "Space Tune dial"],
+          ["01", "描述", "描述你的空间，我们读取你的品牌。", "回答四个关于空间和客人的问题。也可以更深入：上传品牌手册，或输入你的网站。", "Atmos 会读取视觉身份，并把它翻译成声音方向。", "品牌输入"],
+          ["02", "人格", "你的品牌声音人格开始成形。", "Atmos 会匹配空间的声音原型，并生成有名字的人格，包括声音方向、空间气质、偏好和避雷。", "这不是一种曲风，而是围绕品牌建立的角色。", "人格卡片"],
+          ["03", "上线", "音乐开始运行，像专业 set 一样编排。", "每首歌都按调性、能量和情绪弧线选择与排序，就像专业 DJ 搭建一套 set。", "不是 shuffle，不是随机，而是一段连续、贴合空间并随时段变化的声音旅程。", "实时播放"],
+          ["04", "调音", "调整情绪，训练你的声音。", "拖动情绪旋钮，在 Fluid 与 Structured、Easy 与 Intense 之间切换，并实时听到变化。", "互动越多，Atmos 越能精准理解你的空间需要什么。", "空间调音旋钮"],
         ].map(([num, label, title, body, expanded, visual]) => ({ num, label, title, body, expanded, visual })),
       },
       {
         type: "marquee",
-        eyebrow: "Archetypes",
-        title: <>12 sonic identities. <em>Which one is your space?</em></>,
-        sub: "Each archetype comes with curated music, a sound direction, and a persona. Hover to preview.",
-        items: ["The Quiet Studio", "The Slow Bloom", "The Late Bar", "The Open Floor", "The Atelier", "The Garden", "The Long Drive", "The High Hall", "The Sun Room", "The Velvet Room", "The Workshop", "The Threshold"],
+        eyebrow: "声音原型",
+        title: <>12 种声音身份。<em>哪一种属于你的空间？</em></>,
+        sub: "每个原型都包含策划音乐、声音方向和人格设定。悬停即可预览。",
+        items: ["安静工作室", "缓慢绽放", "深夜酒吧", "开放舞池", "创作工坊", "花园", "长途公路", "高挑大厅", "阳光房", "丝绒房间", "工作间", "门槛"],
       },
       {
         type: "beliefs",
-        eyebrow: "Why Atmos",
+        eyebrow: "为什么是 Atmos",
         items: [
-          ["Not a playlist. A sonic identity.", "Atmos builds a living sound language for your space, not a shuffled folder of acceptable tracks."],
-          ["Built by music directors. Refined by AI.", "Human taste sets the frame. AI keeps the system adaptive, responsive, and consistent across time."],
-          ["Sounds different at 9am and 9pm.", "Atmos changes with the rhythm of the day while preserving one coherent brand feeling."],
-          ["The more it plays, the better it fits.", "Feedback, mood shifts, and space behavior help refine the sound into something specific to you."],
+          ["不是播放列表，而是声音身份。", "Atmos 为你的空间建立一套活的声音语言，而不是一堆还不错的随机曲目。"],
+          ["由音乐总监建立，由 AI 持续细化。", "人类审美设定框架，AI 让系统随时间保持适应、响应和一致。"],
+          ["早上 9 点和晚上 9 点听起来不同。", "Atmos 随一天的节奏变化，同时保留统一的品牌感受。"],
+          ["播放越久，越贴合。", "反馈、情绪变化和空间行为会持续帮助声音变得更具体、更属于你。"],
         ],
       },
       {
         type: "beyond",
-        eyebrow: "Beyond the platform",
-        title: <>Need something <em>built from scratch?</em></>,
-        sub: "For brand activations, pop-ups, and events where the sound needs to be designed, not just played. Our team takes on select projects directly.",
-        items: ["Brand activations", "Pop-up spaces", "Product launches", "Cultural events", "Retail openings"],
+        eyebrow: "平台之外",
+        title: <>需要从零<em>定制声音</em>吗？</>,
+        sub: "适合品牌活动、快闪空间和需要被设计而不是被播放的事件。我们会选择性承接项目。",
+        items: ["品牌活动", "快闪空间", "产品发布", "文化事件", "零售开业"],
       },
       {
         type: "faq",
         eyebrow: "FAQ",
-        title: <>A few honest <em>answers.</em></>,
+        title: <>几个直接的<em>回答。</em></>,
         items: [
-          ["How is Atmos different from Spotify or a playlist service?", "Spotify surfaces music you might like as a listener. Atmos builds a sound identity for your space as a brand: matched to your archetype, your guests, and your business rhythm."],
-          ["How much can we customize the sound?", "Fully. Start with four quick questions for a first version, or go deep with brand materials, audience profiles, and time-of-day rhythm settings."],
-          ["What does the Pilot program involve?", "We work directly with a small number of spaces to deploy Atmos, gather real feedback, and refine the product together."],
-          ["What kinds of spaces is Atmos right for?", "Cafes, restaurants, retail stores, hotels, wellness studios, galleries, event venues, and any physical space where sound matters."],
+          ["Atmos 和 Spotify 或播放列表服务有什么不同？", "Spotify 帮听众发现可能喜欢的音乐。Atmos 为品牌空间建立声音身份：匹配你的原型、客人和营业节奏。"],
+          ["声音可以定制到什么程度？", "可以完全定制。你可以用四个快速问题生成第一版，也可以深入输入品牌资料、人群画像和全天时段节奏设置。"],
+          ["Pilot 试点包含什么？", "我们会直接与少量空间合作部署 Atmos，收集真实反馈，并一起打磨产品。"],
+          ["Atmos 适合什么空间？", "咖啡店、餐厅、零售店、酒店、疗愈空间、画廊、活动场地，以及任何声音重要的真实空间。"],
         ],
       },
     ],
-    finalTitle: <>Ready to give your space <span>its own sound?</span></>,
-    finalBody: "Join the pilot and shape a living sonic identity for your space.",
+    finalTitle: <>准备让你的空间拥有<span>自己的声音</span>了吗？</>,
+    finalBody: "加入试点，为你的空间塑造一套活的声音身份。",
   },
   vibe: {
     module: "vibe",
     title: "Sonicite Vibe",
     accent: "vibe",
     externalHref: "https://vibe.sonicite.ai/",
-    heroTitle: "Not planned.",
-    heroAccent: "Live.",
-    heroSub: "Creation you never play alone.",
-    heroBody: "One sentence. One room. Everyone in.",
-    heroNote: "No sign-up required.",
-    primaryCta: "Start a room",
+    heroTitle: "不是预先安排。",
+    heroAccent: "而是现场生成。",
+    heroSub: "永远不是一个人玩的创作。",
+    heroBody: "一句话，一个房间，所有人一起进入。",
+    heroNote: "无需注册。",
+    primaryCta: "创建房间",
     secondaryCta: null,
     audienceIndex: 2,
     sections: [
       {
         type: "cards3",
-        eyebrow: "How it works",
-        title: <>One sentence. <em>A full jam.</em></>,
+        eyebrow: "如何工作",
+        title: <>一句话，生成<em>一整场 jam。</em></>,
         items: [
-          ["Prompt · Describe", "Tell Vibe what you're feeling.", "No music theory. No DAW. Chinese, English, emoji, whatever works. Describe a mood, a place, a memory.", "\"rainy Tokyo · BPM 92 · piano on the off-beat · a touch of distortion\""],
-          ["Generate", "Music appears in under 3 seconds.", "AI translates your words into playable pattern code, matched to your style, BPM, and constraints. No waiting. No guessing.", "setcps(0.92);\nstack(\"~ piano ~ piano*2\".jux(rev), \"bd ~ ~ sd\".distort(0.3))"],
-          ["Jam", "Share a link. The whole room hears it.", "One URL. Everyone joins the same room, listening to the same music, in sync, anywhere in the world.", "LIVE  vibe.sonicite/r/tokyo-rain\n4 listening · 1 editing"],
+          ["Prompt · 描述", "告诉 Vibe 你正在感受什么。", "不需要乐理，不需要 DAW。中文、英文、emoji 都可以。描述一种情绪、一个地点或一段记忆。", "\"rainy Tokyo · BPM 92 · piano on the off-beat · a touch of distortion\""],
+          ["生成", "3 秒内出现音乐。", "AI 把你的文字翻译成可播放的 pattern code，并匹配风格、BPM 和约束。无需等待，无需猜测。", "setcps(0.92);\nstack(\"~ piano ~ piano*2\".jux(rev), \"bd ~ ~ sd\".distort(0.3))"],
+          ["Jam", "分享链接，整个房间一起听见。", "一个 URL，所有人加入同一个房间，在世界任何地方同步聆听、编辑和回应。", "LIVE  vibe.sonicite/r/tokyo-rain\n4 listening · 1 editing"],
         ],
       },
       {
         type: "drops",
         eyebrow: "Vibe Drops",
-        title: <>Can't think of what to play? <em>Start here.</em></>,
-        sub: "A growing library of mood presets. Pick one, hit play, share the room.",
+        title: <>想不到要放什么？<em>从这里开始。</em></>,
+        sub: "不断增长的情绪预设库。选一个，点击播放，分享房间。",
         items: ["after rain", "soft chaos", "warehouse sunrise", "late train", "slow bloom", "neon study", "warm static", "empty club", "roof party", "quiet bass"],
       },
       {
         type: "show",
-        eyebrow: "Show Mode",
-        title: <>The music plays. <em>So does the room.</em></>,
-        sub: "The moment you generate a sound, a visual scene starts running. Sync them to a screen, a wall, a venue.",
+        eyebrow: "演出模式",
+        title: <>音乐开始播放，<em>房间也开始响应。</em></>,
+        sub: "声音生成的瞬间，视觉场景也会启动。可以同步到屏幕、墙面或现场空间。",
         items: [
-          ["Scene switching", "Radar · Cracks · Torn · Particles, auto-switch with BPM and mood."],
-          ["Project mode", "One tap to fullscreen: LED wall, projector, party display. Plug in and go."],
-          ["Brand BG", "Upload a logo or visual identity. Vibe adapts it as a live show backdrop."],
+          ["场景切换", "Radar · Cracks · Torn · Particles，会随 BPM 和情绪自动切换。"],
+          ["投影模式", "一键全屏：LED 墙、投影仪、派对屏幕，连接即可使用。"],
+          ["品牌背景", "上传 logo 或视觉身份，Vibe 会把它适配成现场演出背景。"],
         ],
       },
       {
         type: "beliefs",
-        eyebrow: "Why Vibe",
+        eyebrow: "为什么是 Vibe",
         items: [
-          ["No experience needed.", "If you can describe a feeling, you can make music with Vibe. No DAW, no theory, no plugins."],
-          ["One link, infinite collaborators.", "Invite the room into the same sound, whether they are listening, editing, reacting, or performing."],
-          ["Music and visuals, together.", "The generated sound already knows how to move a screen, a wall, or a venue."],
-          ["Open. Build on it. Perform it.", "Vibe treats music as a shared live object, something people can shape together."],
+          ["不需要任何经验。", "只要能描述感受，就能用 Vibe 做音乐。不需要 DAW、乐理或插件。"],
+          ["一个链接，无限协作者。", "把整个房间邀请进同一段声音，不论他们在听、编辑、回应还是表演。"],
+          ["音乐和视觉一起发生。", "生成的声音已经知道该如何带动屏幕、墙面或现场空间。"],
+          ["开放、可延展、可演出。", "Vibe 把音乐当作共享的现场对象，让人们一起塑造它。"],
         ],
       },
     ],
-    finalTitle: <>Start a room. <span>Right now.</span></>,
-    finalBody: "The music is already waiting.",
+    finalTitle: <>现在就<span>创建房间。</span></>,
+    finalBody: "音乐已经在等你。",
   },
 };
 
 function useLocale() {
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("zh");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paramLang = params.get("lang");
-    const saved = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
-    const next = paramLang === "zh" || paramLang === "en" ? paramLang : saved || browserLocale;
+    const next = paramLang === "zh" || paramLang === "en" ? paramLang : "zh";
     setLocale(next);
   }, []);
 
@@ -337,7 +335,7 @@ function ProductHeroWordmark({ module, title }) {
 function FloraSection({ section }) {
   const [active, setActive] = useState(0);
   return (
-    <ProductSection section={section} id={section.eyebrow === "How it works" ? "how" : undefined}>
+    <ProductSection section={section} id={section.eyebrow === "如何工作" ? "how" : undefined}>
       <div className="pd-flora">
         {section.items.map((item, index) => (
           <button className={`pd-flora-card ${active === index ? "is-active" : ""}`} type="button" key={item.title} onClick={() => setActive(index)}>
@@ -364,7 +362,7 @@ function FloraVisual({ type }) {
             <span className="pd-mini-wave">{Array.from({ length: 10 }).map((_, i) => <i key={i}></i>)}</span>
             <span className="pd-mini-meta">
               <b>{["Pendulum - Slam", "Bicep - Apricots", "Floating Points - Birth"][row]}</b>
-              <small>{["warm · groove · 128", "euphoric · vocal · 124", "deep · minimal · 122"][row]}</small>
+              <small>{["温暖 · groove · 128", "明亮 · vocal · 124", "深潜 · minimal · 122"][row]}</small>
             </span>
           </div>
         ))}
@@ -374,7 +372,7 @@ function FloraVisual({ type }) {
   if (type === "search") {
     return (
       <div className="pd-mini">
-        <div className="pd-mini-search">intense but not distracting</div>
+        <div className="pd-mini-search">强烈但不分散注意力</div>
         {["Skee Mask - CZ3000 Dust 94%", "Four Tet - Two Thousand 91%", "DJ Python - Pia 88%"].map((item) => (
           <span className="pd-mini-result" key={item}>{item}</span>
         ))}
@@ -384,19 +382,19 @@ function FloraVisual({ type }) {
   if (type === "setlist") {
     return (
       <div className="pd-mini pd-mini-arc">
-        <span>Club</span>
+        <span>Club 场景</span>
         <svg viewBox="0 0 240 80" aria-hidden="true">
           <path d="M0 62 C45 62 78 42 118 30 C160 18 190 24 240 48" />
         </svg>
-        <small>8 tracks · 62 min · 124 bpm</small>
+        <small>8 首 · 62 分钟 · 124 bpm</small>
       </div>
     );
   }
   if (type === "assistant") {
     return (
       <div className="pd-mini pd-mini-chat">
-        <span>Tighten the second hour.</span>
-        <b>Swap to a tighter groove in A min.</b>
+        <span>让第二小时更紧。</span>
+        <b>换到 A 小调里更紧的 groove。</b>
         <i></i>
       </div>
     );
@@ -461,9 +459,9 @@ function MarqueeSection({ section }) {
         <div className="pd-marquee-track">
           {items.map((item, index) => (
             <article className="pd-archetype" key={`${item}-${index}`}>
-              <span>Archetype</span>
+              <span>声音原型</span>
               <h4>{item}</h4>
-              <p>Curated direction, emotional tempo, and a repeatable sonic persona.</p>
+              <p>策划方向、情绪速度，以及可重复的声音人格。</p>
             </article>
           ))}
         </div>
@@ -527,7 +525,7 @@ function BeyondSection({ section }) {
   return (
     <ProductSection section={section}>
       <div className="pd-beyond">
-        <a href="/experiences" className="pd-beyond-link">See how we've done it</a>
+        <a href="/experiences" className="pd-beyond-link">查看我们的现场案例</a>
         <ul>
           {section.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
@@ -589,7 +587,7 @@ function AudienceSection({ activeIndex }) {
       </div>
       <div className="pd-section-inner pd-audience-container">
         <div className="pd-audience-stage">
-          <button className="pd-audience-arrow" type="button" aria-label="Previous audience" onClick={previous}>
+          <button className="pd-audience-arrow" type="button" aria-label="上一组受众" onClick={previous}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 5l-7 7 7 7" />
             </svg>
@@ -598,7 +596,7 @@ function AudienceSection({ activeIndex }) {
           {audienceSlides.map((slide, index) => (
             <article className={`pd-audience-slide ${selected === index ? "is-active" : ""}`} key={slide.title}>
               <h2 className="pd-audience-title" data-prev={prevSlide.title} data-next={nextSlide.title}>
-                For <em>{slide.titleEm}</em>
+                面向 <em>{slide.titleEm}</em>
               </h2>
               <p className="pd-audience-sub">{slide.sub}</p>
               <p className="pd-audience-body">{slide.body}</p>
@@ -611,14 +609,14 @@ function AudienceSection({ activeIndex }) {
             </article>
           ))}
           </div>
-          <button className="pd-audience-arrow" type="button" aria-label="Next audience" onClick={next}>
+          <button className="pd-audience-arrow" type="button" aria-label="下一组受众" onClick={next}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
         <div className="pd-audience-foot">
-          <div className="pd-audience-dots" role="tablist" aria-label="Audience slides">
+          <div className="pd-audience-dots" role="tablist" aria-label="受众轮播">
             {audienceSlides.map((slide, index) => (
               <button
                 className={`pd-audience-dot ${selected === index ? "is-active" : ""}`}

@@ -10,71 +10,71 @@ const founders = [
   {
     name: "Brenda",
     last: "Xia",
-    role: "Product · Strategy",
+    role: "产品 · 策略",
     tone: "purple",
     image: "/images/founders/brenda.jpg",
-    text: "Musician since 5. Spent 12 years in North America studying business, working in hospitality, then building products for startups. Kept running into the same problem — no good tools for sound. Stopped waiting.",
+    text: "5 岁开始学习音乐，在北美 12 年学习商业、从事 hospitality 工作，并为创业公司打造产品。她不断遇到同一个问题：声音没有足够好的工具。于是决定不再等待。",
   },
   {
     name: "Stephen",
     last: "Li",
-    role: "Architecture · LLM",
+    role: "架构 · LLM",
     tone: "rose",
     image: "/images/founders/stephen.jpg",
-    text: "Former Microsoft, IBM, Morgan Stanley. 20+ years turning complex problems into reliable systems. Leads LLM architecture and full-stack development at Sonicite.",
+    text: "曾任职 Microsoft、IBM、Morgan Stanley。20 多年来持续把复杂问题转化为可靠系统，在 Sonicite 负责 LLM 架构与全栈开发。",
   },
   {
     name: "Cookie",
     last: "Pang",
-    role: "Engineering · Systems",
+    role: "工程 · 系统",
     tone: "blue",
     image: "/images/founders/cookie.jpg",
-    text: "Former Tencent. Spent years building systems at scale. Believes the best infrastructure is the kind nobody notices. Leads technical architecture and product development.",
+    text: "曾任职 Tencent，多年构建大规模系统。相信最好的基础设施是几乎不会被注意到的那一种，负责技术架构与产品开发。",
   },
   {
     name: "Mia",
     last: "Zhang",
-    role: "Growth · Partnerships",
+    role: "增长 · 合作",
     tone: "amber",
     image: "/images/founders/mia.jpg",
-    text: "Former Huawei Africa. Built markets from scratch in places most people wouldn't think to start. Focuses on growth, partnerships, and finding the people who need Sonicite most.",
+    text: "曾任职 Huawei Africa，在许多人不会想到的地方从零建立市场。负责增长、合作，以及找到最需要 Sonicite 的人。",
   },
 ];
 
 const beliefs = [
   {
     tone: "purple",
-    title: "Sound is not",
-    emphasis: "decoration",
-    text: "It shapes how people feel, focus, move, and remember. Treating it like background noise is a design failure with consequences that compound silently.",
+    title: "声音不是",
+    emphasis: "装饰",
+    text: "它塑造人的感受、专注、移动和记忆。把它当作背景噪音，是一种会悄悄累积后果的设计失误。",
   },
   {
     tone: "blue",
-    title: "Taste cannot be",
-    emphasis: "automated",
-    text: "AI should expand what's possible for human judgment, not replace it. The best tools make people sharper at the work they already care about deeply.",
+    title: "审美不能被",
+    emphasis: "自动化",
+    text: "AI 应该扩展人类判断的可能性，而不是替代它。最好的工具会让人在自己真正关心的工作上变得更敏锐。",
   },
   {
     tone: "amber",
-    title: "Music is a",
-    emphasis: "language",
-    text: "It communicates what words can't — mood, memory, identity, belonging. It deserves tools as serious and considered as the medium itself.",
+    title: "音乐是一种",
+    emphasis: "语言",
+    text: "它传达语言无法传达的东西：情绪、记忆、身份与归属。它值得拥有和媒介本身同样认真、同样被深思熟虑的工具。",
   },
   {
     tone: "rose",
-    title: "Community is",
-    emphasis: "the point",
-    text: "The scenes, the spaces, the people who keep showing up for each other. Sound is the medium. Connection is always the goal.",
+    title: "社区才是",
+    emphasis: "重点",
+    text: "那些场景、空间，以及持续为彼此出现的人。声音是媒介，连接始终是目标。",
   },
 ];
 
 const timeline = [
-  ["2025 · Q4", "Founded", "Sonicite begins.", "S-tron Hackathon. Sonicite Flow runs for the first time in front of real people. Something clicks."],
-  ["2026 · Jan", "Building", "Sonicite Flow goes live.", "Internal beta opens. First real users. First real feedback."],
-  ["2026 · Mar", "Building", "Sonicite Atmos takes shape.", "First Atmos demo. We start making music — not just building tools to play it."],
-  ["2026 · May", "Building", "Sonicite Vibe launches.", "Live. Real rooms. Sound built in the moment, with the people in it."],
-  ["2026 · Jun", "Now", "Opening up.", "First partnerships. MuShanghai, Cyborg Party, Altnext. Sonicite Experiences begins."],
-  ["→", "Next", "What comes next.", "More spaces. More creators. More of what sound can do."],
+  ["2025 · Q4", "创立", "Sonicite 开始。", "S-tron Hackathon 上，Sonicite Flow 第一次在真实用户面前运行。某些东西被点亮了。"],
+  ["2026 · Jan", "构建中", "Sonicite Flow 上线。", "内部 beta 开放。第一批真实用户，第一轮真实反馈。"],
+  ["2026 · Mar", "构建中", "Sonicite Atmos 成形。", "第一次 Atmos demo。我们开始制作音乐，而不只是制作播放音乐的工具。"],
+  ["2026 · May", "构建中", "Sonicite Vibe 发布。", "真实现场、真实房间。声音在当下与房间里的人一起生成。"],
+  ["2026 · Jun", "现在", "开始开放。", "第一批合作开始：MuShanghai、Cyborg Party、Altnext。Sonicite Experiences 启动。"],
+  ["→", "下一步", "接下来。", "更多空间，更多创作者，更多关于声音能成为什么的答案。"],
 ];
 
 const partners = [
@@ -90,10 +90,10 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite 首页",
     },
     locale: { zh: "CN", en: "EN" },
@@ -103,10 +103,10 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite home",
     },
     locale: { zh: "CN", en: "EN" },
@@ -281,14 +281,10 @@ export function AboutPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
     setLocale(
       queryLocale === "en" || queryLocale === "zh"
         ? queryLocale
-        : storedLocale === "en" || storedLocale === "zh"
-          ? storedLocale
-          : browserLocale,
+        : "zh",
     );
   }, []);
 
@@ -313,13 +309,13 @@ export function AboutPage() {
             <div className="hv8-text about-hero-text">
               <h1 className="hv8-title about-hero-title">
                 <span>
-                  For the <em>love</em> of
+                  因为<em>热爱</em>
                 </span>
                 <br />
-                sound.
+                声音。
               </h1>
               <p className="hv8-dek about-hero-dek">
-                Sonicite is built by people who care about how sound shapes emotion, space, memory, and human connection — and who believe sound deserves better tools.
+                Sonicite 由一群关心声音如何塑造情绪、空间、记忆和人与人连接的人共同建立。我们相信，声音值得拥有更好的工具。
               </p>
             </div>
             <div className="hv8-art about-hero-art" aria-hidden="true">
@@ -331,17 +327,17 @@ export function AboutPage() {
         <section className="thesis about-thesis" id="story">
           <div className="thesis-glow about-thesis-glow" aria-hidden="true"></div>
           <div className="sc-container">
-            <SectionRule label="Our Story" />
+            <SectionRule label="我们的故事" />
             <div className="thesis-grid about-thesis-grid">
               <h2 className="thesis-title">
-                We build the tools
+                我们在打造那些
                 <br />
-                we kept <em>wishing</em>&nbsp;existed.
+                一直<em>希望</em>&nbsp;存在的工具。
               </h2>
               <div className="thesis-body about-thesis-body">
-                <p>It started with a specific feeling — standing in front of a DJ set, or walking into a space that should feel alive, and not being able to find the right music. Not because it didn't exist. Because there was no good way to reach it.</p>
+                <p>它始于一种很具体的感受：站在一套 DJ set 前，或走进一个本该鲜活的空间，却找不到对的音乐。不是因为音乐不存在，而是因为没有好的方式抵达它。</p>
                 <p>
-                  We come from music, technology, design, and spaces. Different paths, <strong>same wall</strong>. So we started building the tools we kept wishing existed.
+                  我们来自音乐、技术、设计和空间。路径不同，撞上的却是<strong>同一堵墙</strong>。所以我们开始自己打造那些一直希望存在的工具。
                 </p>
               </div>
             </div>
@@ -357,21 +353,21 @@ export function AboutPage() {
                 </span>
                 <blockquote className="pq25-quote">
                   <p className="pq25-line">
-                  Sound is <em>communication</em>.
+                  声音是<em>沟通</em>。
                   </p>
                   <p className="pq25-line">
-                  It's <em>atmosphere</em>. It's <em>identity</em>.
+                  它是<em>氛围</em>，是<em>身份</em>。
                   </p>
                   <p className="pq25-line">
-                  It's <em>memory</em>.
+                  它是<em>记忆</em>。
                   </p>
                   <p className="pq25-line pq25-line-coda about-quote-coda">
-                  And increasingly, it's <em>infrastructure</em>.
+                  而且越来越像一种<em>基础设施</em>。
                   </p>
                 </blockquote>
                 <figcaption className="pq25-cap">
                   <span className="pq25-cap-bar" aria-hidden="true"></span>
-                  <span className="pq25-cap-text">From the Sonicite brief</span>
+                  <span className="pq25-cap-text">来自 Sonicite brief</span>
                 </figcaption>
               </figure>
             </div>
@@ -380,12 +376,12 @@ export function AboutPage() {
 
         <section className="about-beliefs" id="beliefs">
           <div className="sc-container">
-            <SectionRule label="Our Beliefs" />
+            <SectionRule label="我们的信念" />
             <div className="about-section-head">
               <h2>
-                What we keep
+                我们反复
                 <br />
-                coming&nbsp;back&nbsp;to.
+                回到的事情。
               </h2>
             </div>
             <div className="about-beliefs-grid">
@@ -395,7 +391,7 @@ export function AboutPage() {
                     <BeliefVisual tone={belief.tone} />
                   </div>
                   <h3>
-                    {belief.title} <em>{belief.emphasis}</em>.
+                    {belief.title} <em>{belief.emphasis}</em>。
                   </h3>
                   <p>{belief.text}</p>
                 </article>
@@ -406,15 +402,15 @@ export function AboutPage() {
 
         <section className="about-crew" id="team">
           <div className="sc-container">
-            <SectionRule label="The Crew" />
+            <SectionRule label="团队" />
             <div className="sc-section-head">
               <h2 className="sc-section-head-title">
-                Four founders,
+                四位创始人，
                 <br />
-                one obsession.
+                一个共同执念。
               </h2>
               <div className="sc-section-head-body">
-                <p>Four disciplines, two cities, one problem worth solving. Here's who's behind Sonicite — and the wider circle who help us shape it.</p>
+                <p>四个学科，两座城市，一个值得解决的问题。这是 Sonicite 背后的团队，也包括与我们一起塑造它的更大共创圈。</p>
               </div>
             </div>
 
@@ -439,25 +435,25 @@ export function AboutPage() {
             </div>
 
             <div className="about-advisor">
-              <span>Co-creators</span>
-              <p>We also collaborate with award-winning producers, DMC champions, and other practitioners across music creation, spatial design, and AI systems as our co-creators. Sonicite embraces a broader co-creation program — the most interesting work happens when the people using these tools help shape them.</p>
+              <span>共创者</span>
+              <p>我们也与获奖制作人、DMC 冠军，以及音乐创作、空间设计和 AI 系统领域的实践者合作。Sonicite 欢迎更广泛的共创计划，因为最有意思的工作，往往发生在使用工具的人也参与塑造工具的时候。</p>
             </div>
           </div>
         </section>
 
         <section className="about-timeline" id="now">
           <div className="sc-container">
-            <SectionRule label="Where We Are" />
+            <SectionRule label="我们在哪里" />
             <div className="about-section-head">
-              <h2>A short timeline.</h2>
+              <h2>一条简短时间线。</h2>
             </div>
             <ol className="about-timeline-list">
               {timeline.map(([year, tag, title, text]) => (
-                <li className={`about-timeline-item ${tag === "Now" ? "is-now" : ""} ${tag === "Next" ? "is-future" : ""}`} key={`${year}-${title}`}>
+                <li className={`about-timeline-item ${tag === "现在" ? "is-now" : ""} ${tag === "下一步" ? "is-future" : ""}`} key={`${year}-${title}`}>
                   <span className="about-timeline-marker"></span>
                   <div className="about-timeline-meta">
                     <span>{year}</span>
-                    <span className={tag === "Now" ? "is-now-tag" : ""}>{tag}</span>
+                    <span className={tag === "现在" ? "is-now-tag" : ""}>{tag}</span>
                   </div>
                   <div className="about-timeline-body">
                     <h4>{title}</h4>
@@ -471,12 +467,12 @@ export function AboutPage() {
 
         <section className="about-partners" id="partners">
           <div className="sc-container">
-            <SectionRule label="Partners" />
+            <SectionRule label="合作伙伴" />
             <div className="about-section-head">
               <h2>
-                The places and people
+                与我们一起
                 <br />
-                we build with.
+                共建的空间与人。
               </h2>
             </div>
             <ul className="about-partner-logos">
@@ -486,21 +482,21 @@ export function AboutPage() {
                 </li>
               ))}
             </ul>
-            <p className="about-partners-note">More partners landing soon.</p>
+            <p className="about-partners-note">更多合作伙伴即将加入。</p>
           </div>
         </section>
 
         <section className="about-thesis about-thesis-late">
           <div className="sc-container">
-            <SectionRule label="Looking Ahead" />
+            <SectionRule label="向前看" />
             <div className="about-thesis-grid">
               <h2>
-                We're still <em>early</em>.
+                我们仍在<em>早期</em>。
               </h2>
               <div className="about-thesis-body">
-                <p>Sonicite is an ongoing exploration of what sound can become. We're learning alongside creators, brands, venues, artists, and communities every day.</p>
+                <p>Sonicite 是一场关于声音还能成为什么的持续探索。我们每天都在与创作者、品牌、场地、艺术家和社区一起学习。</p>
                 <p>
-                  Some answers will come from technology. Others will come from people. <strong>The most interesting ones will come from both.</strong>
+                  有些答案会来自技术，有些会来自人。<strong>最有意思的答案，会来自两者相遇的地方。</strong>
                 </p>
               </div>
             </div>
@@ -542,13 +538,13 @@ export function AboutPage() {
                 </svg>
               </div>
               <div className="about-inv-content">
-                <span>Interested in us?</span>
+                <span>想和我们聊聊？</span>
                 <h3>
-                  Whether you're a <em>user</em>, an <em>investor</em>, or a possible <em>partner</em> — or just someone who thinks about sound too much — we'd love to hear from you.
+                  不论你是<em>用户</em>、<em>投资人</em>，还是潜在<em>合作伙伴</em>，或者只是一个总在思考声音的人，我们都想听听你的想法。
                 </h3>
                 <div>
                   <a className="sc-text-pill" href={`/contact?lang=${locale}`}>
-                    Say hello
+                    打个招呼
                     <span aria-hidden="true">→</span>
                   </a>
                   <a className="sc-text-pill" href="mailto:hello@sonicite.ai">

@@ -12,37 +12,37 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
-      homeLabel: "Sonicite home",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
+      homeLabel: "Sonicite 首页",
     },
     locale: { zh: "CN", en: "EN" },
     hero: {
-      title: "Sound intelligence.",
-      accent: "In writing.",
+      title: "声音智能。",
+      accent: "写成文字。",
       dek: "关于音乐、身份与声音技术的观察。来自 Sonicite 团队的现场笔记，记录我们如何把声音当作系统来认真对待。",
     },
     rule: {
-      notes: "All Notes",
-      articles: "All Articles",
-      featured: "Featured",
+      notes: "全部笔记",
+      articles: "全部文章",
+      featured: "精选",
     },
     filters: [
-      { key: "all", label: "All" },
-      { key: "culture", label: "Culture" },
-      { key: "story", label: "Story" },
-      { key: "insights", label: "Insights" },
-      { key: "trend", label: "Trend" },
-      { key: "tech", label: "Tech" },
+      { key: "all", label: "全部" },
+      { key: "culture", label: "文化" },
+      { key: "story", label: "故事" },
+      { key: "insights", label: "洞察" },
+      { key: "trend", label: "趋势" },
+      { key: "tech", label: "技术" },
     ],
-    readArticle: "Read article",
-    empty: "No articles in this topic yet. Try another tag.",
+    readArticle: "阅读文章",
+    empty: "这个主题暂时还没有文章，试试其他标签。",
     invite: {
-      eyebrow: "Co-creation circle",
-      title: "Have insights worth sharing? Got a story, an essay, or a strong take on sound? Join our co-creation circle and write with us.",
-      primary: "Get in touch",
+      eyebrow: "共创圈",
+      title: "有值得分享的洞察、故事、文章，或关于声音的强观点？加入我们的共创圈，一起写。",
+      primary: "联系我们",
       email: "hello@sonicite.ai",
     },
   },
@@ -51,10 +51,10 @@ const copyByLocale = {
       flow: "Flow",
       atmos: "Atmos",
       vibe: "Vibe",
-      experiences: "Experiences",
-      blog: "Blog",
-      about: "About",
-      contact: "Contact",
+      experiences: "现场体验",
+      blog: "博客",
+      about: "关于",
+      contact: "联系",
       homeLabel: "Sonicite home",
     },
     locale: { zh: "CN", en: "EN" },
@@ -92,56 +92,56 @@ const articleCopy = {
     {
       id: "why-humans-need-music",
       tag: "culture",
-      category: "Culture",
-      title: "Why Humans Will Always Need Music",
-      readTime: "8 min read",
+      category: "文化",
+      title: "人类为什么永远需要音乐",
+      readTime: "8 分钟阅读",
       image: "/images/blog-1.jpg",
-      summary: "Music isn't just art — it's one of humanity's oldest survival mechanisms.",
+      summary: "音乐不只是艺术，也是人类最古老的生存机制之一。",
     },
     {
       id: "founder-confession",
       tag: "story",
-      category: "Story",
-      title: "From The Pure Love of Music",
-      readTime: "10 min read",
+      category: "故事",
+      title: "从对音乐最纯粹的热爱出发",
+      readTime: "10 分钟阅读",
       image: "/images/blog-2.jpg",
-      summary: "Sonicite founder Brenda's musical journey, and why the best products start from personal frustration.",
+      summary: "Sonicite 创始人 Brenda 的音乐旅程，以及为什么最好的产品往往来自真实困扰。",
     },
     {
       id: "how-djs-find-music",
       tag: "insights",
-      category: "Insights",
-      title: "How Do DJs Find Music?",
-      readTime: "7 min read",
+      category: "洞察",
+      title: "DJ 是如何找音乐的？",
+      readTime: "7 分钟阅读",
       image: "/images/blog-3.jpg",
-      summary: "We spoke with 20 professional DJs worldwide to break down how they dig — and what separates taste from knowing a lot of songs.",
+      summary: "我们采访了全球 20 位专业 DJ，拆解他们如何 dig 音乐，以及审美和“知道很多歌”之间的区别。",
     },
     {
       id: "why-clubs-ban-phones",
       tag: "trend",
-      category: "Trend",
-      title: "Why Are More Clubs Going Phone-Free?",
-      readTime: "9 min read",
+      category: "趋势",
+      title: "为什么越来越多 club 开始禁用手机？",
+      readTime: "9 分钟阅读",
       image: "/images/blog-4.jpg",
-      summary: "From Berlin to Ibiza, nightlife venues are limiting phones to protect immersion, privacy, and authentic dance floor culture.",
+      summary: "从 Berlin 到 Ibiza，夜生活场地正在限制手机，以保护沉浸、隐私和真实的舞池文化。",
     },
     {
       id: "generative-ai-music-industry",
       tag: "tech",
-      category: "Tech",
-      title: "How Generative AI Is Reshaping the Music Industry",
-      readTime: "8 min read",
+      category: "技术",
+      title: "生成式 AI 如何重塑音乐行业",
+      readTime: "8 分钟阅读",
       image: "/images/blog-5.jpg",
-      summary: "From Suno and Udio to AI voice cloning, the way music is created, owned, and experienced is rapidly changing.",
+      summary: "从 Suno、Udio 到 AI voice cloning，音乐被创作、拥有和体验的方式正在快速变化。",
     },
     {
       id: "music-media-evolution",
       tag: "tech",
-      category: "Tech",
-      title: "From Vinyl to Streaming",
-      readTime: "8 min read",
+      category: "技术",
+      title: "从 Vinyl 到 Streaming",
+      readTime: "8 分钟阅读",
       image: "/images/blog-6.jpg",
-      summary: "Over the past century, the evolution of music formats has continuously reshaped how music is produced, distributed, and consumed.",
+      summary: "过去一个世纪，音乐格式的演化持续改变音乐的生产、分发与消费方式。",
     },
   ],
   en: [
@@ -279,14 +279,7 @@ export function BlogPage() {
 
     const params = new URLSearchParams(window.location.search);
     const queryLocale = params.get("lang");
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-    const browserLocale = window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
-    const nextLocale =
-      queryLocale === "en" || queryLocale === "zh"
-        ? queryLocale
-        : storedLocale === "en" || storedLocale === "zh"
-          ? storedLocale
-          : browserLocale;
+    const nextLocale = queryLocale === "en" || queryLocale === "zh" ? queryLocale : "zh";
 
     setLocale(nextLocale);
   }, []);
@@ -330,7 +323,7 @@ export function BlogPage() {
           </div>
         </section>
 
-        <section className="blog-filter-section" aria-label="Filter by topic">
+        <section className="blog-filter-section" aria-label="按主题筛选">
           <div className="sc-container">
             <SectionRule label={copy.rule.notes} />
             <div className="bf-bar" role="tablist">
@@ -443,9 +436,7 @@ export function BlogPage() {
               </div>
               <div className="about-inv-content">
                 <span>{copy.invite.eyebrow}</span>
-                <h3>
-                  Have insights worth <em>sharing</em>? Got a story, an essay, or a <em>strong take</em> on sound? Join our co-creation circle and write with us.
-                </h3>
+                <h3>{copy.invite.title}</h3>
                 <div>
                   <a href={`/contact?lang=${locale}`}>
                     {copy.invite.primary}

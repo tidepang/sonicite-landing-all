@@ -1,8 +1,8 @@
 import { ProductDetailPage } from "@/components/product-detail-page";
 
 export const metadata = {
-  title: "Sonicite Vibe | Not planned. Live.",
-  description: "Sonicite Vibe is a live co-creation music experience for rooms, prompts, and shared sound.",
+  title: "Sonicite Vibe | 现场生成的共创音乐体验",
+  description: "Sonicite Vibe 是面向房间、prompt 和共享声音的现场共创音乐体验。",
 };
 
 export default function VibePage() {

@@ -1877,7 +1877,16 @@
   position: absolute;
   inset: 0;
   content: "";
+  pointer-events: none;
   box-shadow: inset 0 0 0 1px rgba(232, 230, 222, 0.05);
+}
+
+.xpd-video-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #050505;
 }
 
 .xpd-video-placeholder {
@@ -1951,6 +1960,16 @@
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.xpd-gallery-img {
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.xpd-gallery-item:hover .xpd-gallery-img {
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.035);
 }
 
 .xpd-credits,
@@ -2769,6 +2788,7 @@
 }
 
 .about-founder-card {
+  --about-founder-glow: rgba(255, 255, 255, 0.16);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -2789,6 +2809,7 @@
 
 .about-founder-portrait {
   position: relative;
+  isolation: isolate;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-bottom: 1px solid rgba(232, 230, 222, 0.08);
@@ -2801,10 +2822,18 @@
   inset: 0;
 }
 
+.about-founder-card[data-tone="purple"] {
+  --about-founder-glow: rgba(200, 184, 255, 0.22);
+}
+
 .about-founder-card[data-tone="purple"] .about-founder-bg {
   background:
     radial-gradient(circle at 50% 110%, rgba(167, 139, 250, 0.85), transparent 60%),
     linear-gradient(180deg, #1b1227 0%, #2a1a44 100%);
+}
+
+.about-founder-card[data-tone="blue"] {
+  --about-founder-glow: rgba(180, 200, 232, 0.2);
 }
 
 .about-founder-card[data-tone="blue"] .about-founder-bg {
@@ -2813,10 +2842,18 @@
     linear-gradient(180deg, #0e1a2a 0%, #18304d 100%);
 }
 
+.about-founder-card[data-tone="amber"] {
+  --about-founder-glow: rgba(216, 200, 168, 0.22);
+}
+
 .about-founder-card[data-tone="amber"] .about-founder-bg {
   background:
     radial-gradient(circle at 50% 110%, rgba(245, 160, 92, 0.85), transparent 60%),
     linear-gradient(180deg, #21130a 0%, #3a2014 100%);
+}
+
+.about-founder-card[data-tone="rose"] {
+  --about-founder-glow: rgba(216, 180, 160, 0.2);
 }
 
 .about-founder-card[data-tone="rose"] .about-founder-bg {
@@ -2826,18 +2863,28 @@
 }
 
 .about-founder-photo {
+  z-index: 1;
   object-fit: cover;
   object-position: center;
-  mix-blend-mode: lighten;
   filter: saturate(0.95) contrast(1.04);
 }
 
 .about-founder-veil {
-  background: linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.22));
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 70%, rgba(0, 0, 0, 0.35));
 }
 
 .about-founder-glow {
-  background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.18), transparent 50%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 100%, var(--about-founder-glow), transparent 55%);
+  transition: opacity 0.6s ease;
+}
+
+.about-founder-card:hover .about-founder-glow {
+  opacity: 1;
 }
 
 .about-founder-body {
@@ -5124,15 +5171,15 @@ input {
 }
 
 .constellation-orbit--flow .constellation-orb__counter {
-  animation: constellation-orbit-spin 38s linear infinite reverse;
+  animation: constellation-counter-spin 38s linear infinite reverse;
 }
 
 .constellation-orbit--atmos .constellation-orb__counter {
-  animation: constellation-orbit-spin 56s linear infinite;
+  animation: constellation-counter-spin 56s linear infinite;
 }
 
 .constellation-orbit--vibe .constellation-orb__counter {
-  animation: constellation-orbit-spin 46s linear infinite reverse;
+  animation: constellation-counter-spin 46s linear infinite reverse;
 }
 
 .constellation-orb__blob {
@@ -5149,29 +5196,30 @@ input {
 
 .constellation-orb__blob::after {
   position: absolute;
-  top: 14%;
-  left: 20%;
+  top: 50%;
+  left: 50%;
   width: 44%;
   height: 44%;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.42), transparent 65%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.42), transparent 65%);
   content: "";
   filter: blur(10px);
   mix-blend-mode: screen;
   opacity: 0.6;
+  transform: translate(-50%, -50%);
 }
 
 .constellation-orbit--flow .constellation-orb__blob {
-  background: radial-gradient(circle at 35% 30%, #d4c5fc 0%, #a78bf5 32%, #6b4fc4 68%, #2a1860 100%);
+  background: radial-gradient(circle at 50% 50%, #d4c5fc 0%, #a78bf5 32%, #6b4fc4 68%, #2a1860 100%);
 }
 
 .constellation-orbit--atmos .constellation-orb__blob {
-  background: radial-gradient(circle at 35% 30%, #c8e2ff 0%, #88baf7 32%, #4684cc 68%, #143368 100%);
+  background: radial-gradient(circle at 50% 50%, #c8e2ff 0%, #88baf7 32%, #4684cc 68%, #143368 100%);
   animation-duration: 9s;
 }
 
 .constellation-orbit--vibe .constellation-orb__blob {
-  background: radial-gradient(circle at 35% 30%, #ffd4ad 0%, #f5a86a 32%, #d27838 68%, #5e2e0a 100%);
+  background: radial-gradient(circle at 50% 50%, #ffd4ad 0%, #f5a86a 32%, #d27838 68%, #5e2e0a 100%);
   animation-duration: 8s;
 }
 
@@ -5182,8 +5230,13 @@ input {
 }
 
 .constellation-orb__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: grid;
   gap: 5px;
+  width: max-content;
+  max-width: 100%;
   padding: 0 14px;
   color: #f5f1e8;
   font-size: clamp(1.45rem, 2.4vw, 2.15rem);
@@ -5192,6 +5245,8 @@ input {
   line-height: 1.05;
   text-align: center;
   text-shadow: 0 1px 16px rgba(0, 0, 0, 0.42);
+  transform: translate(-50%, -50%);
+  transform-origin: center;
   pointer-events: none;
 }
 
@@ -5282,6 +5337,16 @@ input {
 @keyframes constellation-orbit-spin {
   to {
     transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes constellation-counter-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 

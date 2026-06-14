@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const logoSrc = "/images/sonicite-logo.png";
 const flowHref = "https://flow.sonicite.ai/";
-const atmosHref = "https://atmos.sonicite.ai/";
+const atmosHref = "https://atmos.sonicite.ai/sign-in";
 const vibeHref = "https://vibe.sonicite.ai/";
 
 export function PageAmbient() {
@@ -41,7 +41,7 @@ export function SiteNav({ locale, setLocale, current = "home", labels, hideLocal
         <div className="sc-nav-links">
           <div className="sc-product-menu">
             <button className="sc-product-menu-trigger" type="button" aria-current={["flow", "atmos", "vibe"].includes(current) ? "page" : undefined}>
-              Product
+              {locale === "zh" ? "产品" : "Product"}
             </button>
             <div className="sc-product-dropdown" role="menu">
               {productItems.map((item) => (
@@ -53,16 +53,16 @@ export function SiteNav({ locale, setLocale, current = "home", labels, hideLocal
             </div>
           </div>
           <a href={experiencesHref} aria-current={current === "experiences" ? "page" : undefined}>
-            Experiences
+            {locale === "zh" ? "活动" : "Experiences"}
           </a>
           <a href={blogHref} aria-current={current === "blog" ? "page" : undefined}>
-            Blog
+            {locale === "zh" ? "博客" : "Blog"}
           </a>
           <a href={aboutHref} aria-current={current === "about" ? "page" : undefined}>
-            About
+            {locale === "zh" ? "关于" : "About"}
           </a>
           <a href={contactHref} aria-current={current === "contact" ? "page" : undefined}>
-            Contact
+            {locale === "zh" ? "联系" : "Contact"}
           </a>
           {hideLocaleSwitch ? null : (
             <div className="sc-lang-switch" role="group" aria-label={locale === "zh" ? "语言" : "Language"}>

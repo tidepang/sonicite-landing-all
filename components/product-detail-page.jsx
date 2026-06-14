@@ -65,7 +65,7 @@ const productPages = {
     heroNote: "为 DJ 打造，试点期免费。",
     primaryCta: "加入候补名单",
     secondaryCta: null,
-    videoLabel: "产品影片 - 即将嵌入",
+    videoSrc: "https://ioprkugnuswfunqkkvfk.supabase.co/storage/v1/object/public/landing/LAUNCH%20VIDEO.mp4",
     audienceIndex: 0,
     sections: [
       {
@@ -126,14 +126,14 @@ const productPages = {
     module: "atmos",
     title: "Sonicite Atmos",
     accent: "atmos",
-    externalHref: "https://atmos.sonicite.ai/",
+    externalHref: "https://atmos.sonicite.ai/sign-in",
     heroTitle: "不只是被听见。",
     heroAccent: "而是被感知。",
     heroSub: "超越播放列表，一套活的声音身份。",
     heroNote: null,
     primaryCta: "加入试点",
     secondaryCta: "聆听你的空间",
-    videoLabel: "空间影片 + Atmos 界面 - 即将嵌入",
+    videoSrc: "https://ioprkugnuswfunqkkvfk.supabase.co/storage/v1/object/public/landing/Copy%20of%20Copy%20of%20Sonicite%20Atmos%20Product%20Teasing%20Video%20(1).mp4",
     audienceIndex: 1,
     sections: [
       {
@@ -316,19 +316,9 @@ function ProductHero({ page }) {
 
 function ProductHeroWordmark({ module, title }) {
   return (
-    <svg className="pd-hero-wordmark" viewBox="0 0 380 80" preserveAspectRatio="xMidYMid meet" aria-label={title} role="img">
-      <g transform="translate(22 40)" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round">
-        <circle cx="0" cy="0" r="22" strokeOpacity="0.16" />
-        <path d="M-20 -10 a 22 22 0 0 1 40 0" opacity="0.95" />
-        <path d="M-21 -3 a 22 22 0 0 1 42 0" opacity="0.82" />
-        <path d="M-22 4 a 22 22 0 0 1 44 0" opacity="0.7" />
-        <path d="M-20 11 a 22 22 0 0 1 40 0" opacity="0.55" />
-        <path d="M-17 17 a 22 22 0 0 1 34 0" opacity="0.4" />
-      </g>
-      <text x="60" y="58" fill="var(--pd-accent)" fontFamily="Inter, 'Helvetica Neue', Arial, sans-serif" fontWeight="800" fontSize="52" letterSpacing="-0.02em">
-        {module}
-      </text>
-    </svg>
+    <div className="pd-hero-wordmark" aria-label={title} role="img">
+      <Image src={productLogos[module]} alt="" width={2000} height={800} className="pd-hero-logo-img" priority />
+    </div>
   );
 }
 
@@ -640,11 +630,11 @@ function AudienceSection({ activeIndex }) {
 }
 
 function ProductVideo({ page }) {
-  if (!page.videoLabel) return null;
+  if (!page.videoSrc) return null;
   return (
     <section className="pd-video-band">
       <div className="pd-video-frame">
-        <span>{page.videoLabel}</span>
+        <video className="pd-video-player" src={page.videoSrc} autoPlay muted controls playsInline preload="metadata" />
       </div>
     </section>
   );

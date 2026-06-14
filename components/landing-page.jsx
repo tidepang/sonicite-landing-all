@@ -19,7 +19,7 @@ const productPageHref = {
   vibe: "/vibe",
 };
 const flowHref = "https://flow.sonicite.ai/";
-const atmosHref = "https://atmos.sonicite.ai/";
+const atmosHref = "https://atmos.sonicite.ai/sign-in";
 const vibeHref = "https://vibe.sonicite.ai/";
 const footerSocialHrefs = {
   IG: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/sonicite.ai?igsh=NzI3MG9sYm56cDlj",
